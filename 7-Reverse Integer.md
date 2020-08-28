@@ -1,0 +1,76 @@
+24min, submit 11 times.
+
+Runtime: 4 ms, faster than 57.40% of C++ online submissions for Reverse Integer.
+
+Memory Usage: 6.1 MB, less than 28.82% of C++ online submissions for Reverse Integer.
+
+The reason that submit so many times is that the mishandling of the special cases, e.g., 
+
+	- negative numbers, 
+	- maximum numbers. 
+	- output = output * 10 + x % 10;  can cause overflow
+	- negation of self can cause overflow, since the range of the number is $ [−2^{31}, 2^{31} − 1]$
+
+Thoughts: read the problem carefully, every piece of information is important.
+
+```C++
+class Solution {
+public:
+    int reverse(int x) {
+        int output = 0;
+        bool positive = true;
+        if(x < 0)
+        {
+            positive = false;
+            if(x == -2147483648) x = 0;
+            else x = -x;
+        }
+        while(x/10 > 0)
+        {
+            output = output * 10 + x % 10; 
+            x /= 10;
+        }
+        
+        if(output > 214748364)
+            output = 0;
+        else
+            output = output * 10.0 + x % 10; 
+        
+        return positive ? output : -output;
+    }
+};
+```
+
+Improve version:
+
+Runtime: 4 ms, faster than 57.56% of C++ online submissions for Reverse Integer.
+
+Memory Usage: 5.8 MB, less than 97.88% of C++ online submissions for Reverse Integer.
+
+There is no need to check (output == INT_MAX/10 && x > 7) and (output == INT_MAX/10 && x < -8), since the first digit of the input can only be 0, 1, or 2.
+
+
+
+```C++
+class Solution {
+public:
+    int reverse(int x) {
+        int output = 0;
+
+        while(x / 10 != 0)
+        {
+            output = output * 10 + x % 10; 
+            x /= 10;
+        }
+
+        if(output > INT_MAX/10 || (output == INT_MAX/10 && x > 7) || 
+           output < INT_MIN/10 || (output == INT_MAX/10 && x < -8))
+            output = 0;
+        else
+            output = output * 10 + x; 
+
+        return output;
+    }
+};
+```
+
