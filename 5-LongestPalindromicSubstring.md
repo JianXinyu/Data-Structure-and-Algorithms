@@ -104,7 +104,9 @@ public:
 
 ## Manacher's Algorithm
 
-参考：[Link1](https://www.cnblogs.com/bitzhuwei/p/Longest-Palindromic-Substring-Part-II.html), [Link2](https://www.hackerrank.com/topics/manachers-algorithm)
+Reference：[Link1](https://www.cnblogs.com/bitzhuwei/p/Longest-Palindromic-Substring-Part-II.html)(BIT祝威), [Link2](https://www.hackerrank.com/topics/manachers-algorithm)。图片及部分文字陈述参考自Link1, 数学推导参考自Link2。
+
+### Introduction
 
 Given a string **S** with the length of **N**.
 
@@ -135,7 +137,9 @@ Given a string **S** with the length of **N**.
 
    为了计算$P[i]$, 就必须以$T[i]$左右扩展，那么有什么办法节省扩展的时间吗？
 
-   “想象你在"abaaba"中心画一道竖线，你是否注意到数组P围绕此竖线是中心对称的？再试试"aba"的中心，P围绕此中心也是对称的。这当然不是巧合，而是在某个条件下的必然规律。我们将利用此规律减少对数组P中某些元素的重复计算。” -- BIT祝威
+   “想象你在"abaaba"中心画一道竖线，你是否注意到数组P围绕此竖线是中心对称的？再试试"aba"的中心，P围绕此中心也是对称的。这当然不是巧合，而是在某个条件下的必然规律。我们将利用此规律减少对数组P中某些元素的重复计算。” -- [Link1](https://www.cnblogs.com/bitzhuwei/p/Longest-Palindromic-Substring-Part-II.html)(BIT祝威)
+
+   ### Derivation
 
    下面定义几个变量：
 
@@ -147,9 +151,9 @@ Given a string **S** with the length of **N**.
 
    我们可以根据已知的$P[i']$来加速计算$P[i]$. 对于每一个$i$, 有下面几种可能：
 
-    1. Case 1: The length of the longest palindrome centered at $i'$ such that the left boundary of this palindrome does not extend **beyond or until** the left boundary of the longest palindrome centered at $C$, i.e., $P[i']<i'-L$
+    1. Case 1: The length of the longest palindrome centered at $i'$ such that the left boundary of this palindrome does not extend **beyond or until** the left boundary of the longest palindrome centered at $C$, i.e., $P[i']<i'-L=R-i$.
 
-       例如：
+       例如：S = "babcbabcbaccba"
 
        ![image-20200830175043135](\figures\ManacherAlgorithm1.png)
 
@@ -189,10 +193,113 @@ Given a string **S** with the length of **N**.
 
        when $k=P[i']+1$, formula (1) and (2) still exist. however, $T[i'-k]!=T[i'+k]$. 
 
-       $\therefore T[i-k] != T[i+k] \quad \forall k= P[i']+1$
+       $\therefore T[i-k] != T[i+k] \quad k= P[i']+1$
 
-   2. Case 2: the palindrome centred at $i'$ extends beyond the left boundary of the palindrome centred at $C$.
+   2. Case 2: the palindrome centred at $i'$ extends beyond the left boundary of the palindrome centred at $C$, i.e., $P[i']\ge i'-L=R-i$.
 
       ![image-20200830175315190](\figures\ManacherAlgorithm3.png)
 
-同样可以容易得到$P[14],P[15]$.
+      导致Case2 与 Case1不同的原因是，仿照Case1的推导，我们只能确定 $T[i-k] = T[i+k] \quad \forall k\leq i'-L$，却无法确定$k\in(i'-L, P[i']]$时$T[i-k],T[i+k]$的关系。即，只能知道$P[i]\ge R-i$, 至于具体是多少，只能再逐个字符检测了。如果$P[i]> R-i$， 即以$i$为中心的回文子串右边界超过了$R$， 那么以$C$为中心的回文子串就不再是其右边界最靠近$T$右边界的回文子串了，取而代之的是以$i$为中心的回文子串，因此$C=i$，同时相应改变$L, R$。
+
+   3. Case 3: 如果$i>=R$, 那么先前得到的$P[i']$不能给我们提供有用的信息，只能逐个字符检测。
+
+总结一下：
+
+```
+if(i<R)
+{
+	if(P[i']<R-i)
+		P[i]=P[i']
+	else
+	{
+		P[i]>=R-i #(此时要逐个验证R右边的字符)
+		if(i处的回文超过了R) 
+		{
+			C=i;
+            update R;
+		}
+	}
+}
+else
+{
+	check one by one;
+}
+```
+
+### Complexity Analysis
+
+#### 时间复杂度
+
+引用自[Link1](https://www.cnblogs.com/bitzhuwei/p/Longest-Palindromic-Substring-Part-II.html)(BIT祝威)
+
+图中i为索引，T为加入"#"、"^"和"$"后的字符串，P[i]就是算法里的P[i]，calc[i]是为了求出P[i]而需要执行比较的次数。Note: 首位加入不同的字符是为了防止考虑边界情况, 这样i就可以从1开始，到T.length-1结束。
+
+"V"表示此列的字符与其左侧的字符进行了比较，在左侧用"X"对应。绿色的表示比较结果为两个字符相同（即比较结果为成功），红色的表示不同（即比较结果为失败）。
+
+很显然"X"和"V"的数量是相等的。
+
+你可以看到，所需的成功比较的次数（绿色的"V"，表现为横向增长）不超过N，失败的次数（红色的"V"，表现为纵向增长）也不超过N，所以这个算法的时间复杂度就是2N，即O(N)。
+
+![ManacherAlgorithm4](\figures\ManacherAlgorithm4.png)
+
+#### 空间复杂度
+
+创建新字符串$T$，$T.length=2N+3$，数组P, $P.length=2N+3$。因此空间复杂度$O(N)$
+
+### C++ Implementation
+
+Runtime: 28 ms, faster than 91.09% of C++ online submissions for Longest Palindromic Substring.
+
+Memory Usage: 7.7 MB, less than 66.76% of C++ online submissions for Longest Palindromic Substring.
+
+```C++
+string longestPalindrome(string s) {
+    // preprocess
+    string T = "^";
+    for(int i = 0; i < s.length(); i++)
+    {
+        T.append("#");
+        T.append(s.substr(i, 1));
+    }
+    T.append("#$");
+
+    const int n = T.length();
+    vector<int> P(n, 0);
+    int C = 0, R = 0;
+    int maxIdx = 0; // record the position of the longest palindrome
+
+    for(int i = 1; i < n-1; i++)
+    {
+        int i_mirror = C - (i - C);
+        if(R > i)
+        {
+            //Case 1
+            if(P[i_mirror] < R - i)
+                P[i] = P[i_mirror];
+            //Case 2
+            else{
+                P[i] = R - i;
+                while(T[i+P[i]+1] == T[i-P[i]-1])
+                    P[i]++;
+                C = i;
+                R = i + P[i];
+            }
+        }
+        //Case 3
+        else{
+            P[i] = 0;
+            while(T[i+P[i]+1] == T[i-P[i]-1])
+                P[i]++;
+            C = i;
+            R = i + P[i];
+        }
+
+        if(P[i] > P[maxIdx])
+            maxIdx = i;
+        cout << P[i] << ' ';
+    }
+    
+    return s.substr((maxIdx-1-P[maxIdx]) / 2, P[maxIdx]);
+}
+```
+
