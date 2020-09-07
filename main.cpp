@@ -6,10 +6,8 @@ using namespace std;
 
 int main()
 {
-    vector<int> num = {7,1,5,3,6,4};
-    // expected output: 5
-    cout << maxProfit(num);
-
+    uniquePath p;
+    cout << p.uniquePaths(7,3);
 
     return 0;
 }

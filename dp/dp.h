@@ -33,3 +33,11 @@ Decision Making
 
 int maxSubArray(vector<int>& nums);
 int maxProfit(vector<int>& prices);
+class uniquePath
+{
+public:
+    int uniquePaths(int m, int n);
+
+private:
+    unordered_map<int, unordered_map<int, int>> f_;
+};
