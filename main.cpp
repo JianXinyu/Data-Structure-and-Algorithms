@@ -6,9 +6,9 @@ using namespace std;
 
 int main()
 {
-    uniquePath2 p;
-    vector<vector<int>> path {{0,0,0},{0,1,0},{0,0,0}};
-    cout << p.uniquePathsWithObstacles(path);
+    uniquePath3 p;
+    vector<vector<int>> path {{1,3,1},{1,5,1},{4,2,1}};
+    cout << p.minPathSum(path);
 
     return 0;
 }

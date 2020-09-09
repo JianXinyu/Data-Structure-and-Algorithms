@@ -7,6 +7,7 @@
 using std::vector;
 using std::unordered_map;
 using std::max;
+using std::min;
 
 /*
  * Patterns
@@ -39,4 +40,13 @@ public:
 private:
     vector<vector<int>> f_;
     int paths(int m, int n, vector<vector<int>> & o);
+};
+
+class uniquePath3
+{
+public:
+    int minPathSum(vector<vector<int>>& grid);
+private:
+    vector<vector<int>> f_;
+    int pathSum(int m, int n, vector<vector<int>> &g);
 };
