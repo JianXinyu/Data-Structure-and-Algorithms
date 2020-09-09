@@ -1,23 +1,12 @@
 #pragma once
 
 #include <vector>
-#include <queue>
 #include <unordered_map>
-#include <unordered_set>
-#include <algorithm>
 #include <cmath>
 
 using std::vector;
-using std::string;
-using std::queue;
 using std::unordered_map;
-using std::pair;
-using std::unordered_set;
 using std::max;
-using std::min;
-using std::sort;
-using std::reverse;
-
 
 /*
  * Patterns
@@ -40,4 +29,14 @@ public:
 
 private:
     unordered_map<int, unordered_map<int, int>> f_;
+};
+
+class uniquePath2
+{
+public:
+    int uniquePathsWithObstacles(vector<vector<int>>& obstacleGrid);
+
+private:
+    vector<vector<int>> f_;
+    int paths(int m, int n, vector<vector<int>> & o);
 };

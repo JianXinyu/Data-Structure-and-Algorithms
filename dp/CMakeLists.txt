@@ -5,7 +5,8 @@
          STATIC
          53Maximum-Subarray.cpp
          121BestTimetoBuyandSellStock.cpp
-         62UniquePaths.cpp)
+         62UniquePaths.cpp
+         63UniquePaths2.cpp)
 
  target_include_directories(${TARGET_NAME}
          PUBLIC

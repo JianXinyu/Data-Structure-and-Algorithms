@@ -69,7 +69,7 @@ public:
 
 ## Better Solution
 
-iterate the string, consider this character as the middle of a palindrome, expand towards both sides from this character and calculate the length of this palindrome. Since we don't the length of this palindrome, we have check both situations, i.e., odd and even. Then, compare the length.
+iterate the string, consider this character as the middle of a palindrome, expand towards both sides from this character and calculate the length of this palindrome. Since we don't have the length of this palindrome, we have check both situations, i.e., odd and even. Then, compare the length.
 
 getLen() is a lambda function.
 

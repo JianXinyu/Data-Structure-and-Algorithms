@@ -6,8 +6,9 @@ using namespace std;
 
 int main()
 {
-    uniquePath p;
-    cout << p.uniquePaths(7,3);
+    uniquePath2 p;
+    vector<vector<int>> path {{0,0,0},{0,1,0},{0,0,0}};
+    cout << p.uniquePathsWithObstacles(path);
 
     return 0;
 }

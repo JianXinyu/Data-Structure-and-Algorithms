@@ -17,3 +17,7 @@
 121.Best time to buy and sell stock
 
 ![img](.\figures\121stock.png)
+
+62.Unqiue Paths
+
+63.Unique Paths 2
