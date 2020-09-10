@@ -3,6 +3,7 @@
 #include <vector>
 #include <unordered_map>
 #include <cmath>
+#include <bits/stdc++.h>
 
 using std::vector;
 using std::unordered_map;
@@ -50,3 +51,5 @@ private:
     vector<vector<int>> f_;
     int pathSum(int m, int n, vector<vector<int>> &g);
 };
+
+int minimumTotal(vector<vector<int>>& triangle);

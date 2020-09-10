@@ -7,7 +7,8 @@
          121BestTimetoBuyandSellStock.cpp
          62UniquePaths.cpp
          63UniquePaths2.cpp
-         64MinPathSum.cpp)
+         64MinPathSum.cpp
+         120Triangle.cpp)
 
  target_include_directories(${TARGET_NAME}
          PUBLIC
