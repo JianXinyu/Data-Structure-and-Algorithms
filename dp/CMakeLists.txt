@@ -8,7 +8,8 @@
          62UniquePaths.cpp
          63UniquePaths2.cpp
          64MinPathSum.cpp
-         120Triangle.cpp)
+         120Triangle.cpp
+         174DungeonGame.cpp)
 
  target_include_directories(${TARGET_NAME}
          PUBLIC
