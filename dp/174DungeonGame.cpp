@@ -3,10 +3,13 @@
 //
 #include "dp.h"
 
+//T: O(mn)
 int calculateMinimumHP(vector<vector<int>>& dungeon) {
     const int m = dungeon.size();
     const int n = dungeon[0].size();
 
+    //! S: O(mn)
+    // hp[y][x]: min hp required to reach bottom right (P).
     vector<vector<int>> hp(m+1, vector<int>(n+1, INT_MAX));
     hp[m][n-1] = hp[m-1][n] = 1;
 
@@ -17,6 +20,9 @@ int calculateMinimumHP(vector<vector<int>>& dungeon) {
             hp[y][x] = max(1, min(hp[y+1][x], hp[y][x+1]) - dungeon[y][x]);
         }
     }
+
+    //! S:O(n)
+    
 
     return hp[0][0];
 }

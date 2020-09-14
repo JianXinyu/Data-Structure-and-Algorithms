@@ -6,9 +6,9 @@ using namespace std;
 
 int main()
 {
-    uniquePath3 p;
-    vector<vector<int>> path {{1,3,1},{1,5,1},{4,2,1}};
-    cout << p.minPathSum(path);
+//    vector<vector<int>> vec = {{-2, -3, 3}, {-5, -10, 1}, {10, 30, -5}};
+    vector<vector<int>> vec = {{-3,-2}, {-2,-1}};
+    cout << calculateMinimumHP(vec);
 
     return 0;
 }
