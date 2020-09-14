@@ -55,3 +55,5 @@ private:
 int minimumTotal(vector<vector<int>>& triangle);
 
 int calculateMinimumHP(vector<vector<int>>& dungeon);
+
+int minFallingPathSum(vector<vector<int>>& A);
