@@ -5,12 +5,14 @@
          STATIC
          53Maximum-Subarray.cpp
          121BestTimetoBuyandSellStock.cpp
+         #I: O(mn), S = O(mn), T = O(mn)
          62UniquePaths.cpp
          63UniquePaths2.cpp
          64MinPathSum.cpp
          120Triangle.cpp
          174DungeonGame.cpp
-         931MinimumFallingPathSum.cpp)
+         931MinimumFallingPathSum.cpp
+         1210MinimumMoves2ReachTargetwithRotations.cpp)
 
  target_include_directories(${TARGET_NAME}
          PUBLIC

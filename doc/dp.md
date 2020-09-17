@@ -56,3 +56,11 @@ Improve:
 ​	t\[i][j] += min(t\[i - 1][j], t\[i - 1][j - 1])
 
 另外一个S: O(n)的解法是使用滚动数组
+
+174.
+
+931.
+
+
+
+1210. Minimum Moves to Reach Target with Rotations 太难，没做。
