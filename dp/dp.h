@@ -59,3 +59,12 @@ int calculateMinimumHP(vector<vector<int>>& dungeon);
 int minFallingPathSum(vector<vector<int>>& A);
 
 int maximalSquare(vector<vector<char>>& matrix);
+
+class NumMatrix {
+public:
+    NumMatrix(const vector<vector<int>>& matrix);
+
+    int sumRegion(int row1, int col1, int row2, int col2);
+private:
+    vector<vector<int>> sums_;
+};
