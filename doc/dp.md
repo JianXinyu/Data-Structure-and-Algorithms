@@ -63,4 +63,26 @@ Improve:
 
 
 
-1210. Minimum Moves to Reach Target with Rotations 太难，没做。
+1210.Minimum Moves to Reach Target with Rotations 太难，没做。
+
+
+
+### Maximal Rectangle
+
+#### 221.Maximal Square
+
+![img](.\figures\221MaximalSquare1.png)
+
+Brute force can be reduced to $O(n^3)$ if check() can be reduced to $O(1)$
+
+We use the following DP method to pre-compute the every element's size
+
+![img](A:\Programming\LeetCode\doc\figures\221MaximalSquare2.png)
+
+![img](.\figures\221MaximalSquare3.png)
+
+$O(n^2)$ solution:
+
+dp\[i][j] = 以(i,j)为右下角的，最大的全1子矩阵。
+
+![img](.\figures\221MaximalSquare4.png)
