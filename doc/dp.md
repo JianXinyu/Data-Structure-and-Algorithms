@@ -86,3 +86,12 @@ $O(n^2)$ solution:
 dp\[i][j] = 以(i,j)为右下角的，最大的全1子矩阵。
 
 ![img](.\figures\221MaximalSquare4.png)
+
+### 1277. Count Square Submatrices with All Ones
+
+dp\[i][j] := edge of largest square with right bottom corner at (i, j)
+
+dp的定义同221，但这里有一个trick，dp显示size 为 4 的square，则以这个格子为右下角的square就有4个。所以ans可直接+=dp
+
+另外注意先将matrix的值赋给dp，边界条件时，第一行和第一列的无需操作。
+
