@@ -17,6 +17,7 @@
          #Maximal rectangle
          221MaximalSquare.cpp
          304RangeSumQuery2D-Immutable.cpp
+         1277CountSquareSubmatriceswithAllOnes.cpp
          )
 
  target_include_directories(${TARGET_NAME}

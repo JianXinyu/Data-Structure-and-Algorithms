@@ -58,6 +58,7 @@ int calculateMinimumHP(vector<vector<int>>& dungeon);
 
 int minFallingPathSum(vector<vector<int>>& A);
 
+//! Maximal Rectangle
 int maximalSquare(vector<vector<char>>& matrix);
 
 class NumMatrix {
@@ -68,3 +69,5 @@ public:
 private:
     vector<vector<int>> sums_;
 };
+
+int countSquares(vector<vector<int>>& matrix);
