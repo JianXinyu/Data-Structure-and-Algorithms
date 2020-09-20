@@ -71,3 +71,5 @@ private:
 };
 
 int countSquares(vector<vector<int>>& matrix);
+
+int maximalRectangle(vector<vector<char> > &matrix);

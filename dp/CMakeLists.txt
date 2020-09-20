@@ -16,6 +16,7 @@
          1210MinimumMoves2ReachTargetwithRotations.cpp
          #Maximal rectangle
          221MaximalSquare.cpp
+         85MaximalRectangle.cpp
          304RangeSumQuery2D-Immutable.cpp
          1277CountSquareSubmatriceswithAllOnes.cpp
          )

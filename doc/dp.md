@@ -95,7 +95,9 @@ dp\[i][j] = 以(i,j)为右下角的，最大的全1子矩阵。
 
 so now the question is how to calculate dp?
 
-appearently, if martix\[i][j] == 0, dp\[i][j] = 0;
+appearently, if martix\[i][j] == 0, dp\[i][j] = 0; else, dp\[i][j] = dp\[i][j-1] + 1
+
+note, for horizontal case, the first column, dp\[i][0] = martix\[i][0]
 
 #### 304. Range Sum Query 2D - Immutable
 
