@@ -73,3 +73,14 @@ private:
 int countSquares(vector<vector<int>>& matrix);
 
 int maximalRectangle(vector<vector<char> > &matrix);
+
+//! House Robber
+//------------------198 House Robber----------------------//
+class Robber {
+public:
+    int rob(vector<int>& nums);
+private:
+    int rob(const vector<int>& num, int i);
+    vector<int> m_;
+};
+int rob(const vector<int>& num, int i);
