@@ -83,4 +83,4 @@ private:
     int rob(const vector<int>& num, int i);
     vector<int> m_;
 };
-int rob(const vector<int>& num, int i);
+int rob(vector<int>& nums);
