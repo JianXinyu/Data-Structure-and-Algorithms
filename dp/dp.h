@@ -76,6 +76,7 @@ int maximalRectangle(vector<vector<char> > &matrix);
 
 //! House Robber
 //------------------198 House Robber----------------------//
+// recursion
 class Robber {
 public:
     int rob(vector<int>& nums);
@@ -83,4 +84,8 @@ private:
     int rob(const vector<int>& num, int i);
     vector<int> m_;
 };
+// dp
 int rob(vector<int>& nums);
+
+//---------------------------213. House Robber II-----------------------//
+int rob2(vector<int>& nums); // dp
