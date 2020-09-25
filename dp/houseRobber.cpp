@@ -90,3 +90,36 @@ int rob2(vector<int>& nums) {
     }
     return max(dpa, dpb);
 }
+
+//---------------309. Best Time to Buy and Sell Stock with Cooldown--------------//
+//! state transition
+// T: O(n)
+int maxProfit(vector<int>& prices)
+{
+    // S: O(n)
+//    int n = prices.size();
+//    vector<int> rest(n+1, 0), sold(n+1, 0), hold(n+1, 0);
+//
+//    hold[0] = INT_MIN;
+//
+//    for(int i = 1; i < n+1; i++)
+//    {
+//        hold[i] = max(hold[i-1], rest[i-1] - prices[i-1]);
+//        rest[i] = max(rest[i-1], sold[i-1]);
+//        sold[i] = hold[i-1] + prices[i-1];
+//    }
+//
+//    return max(rest.back(), sold.back());
+
+    // S: O(1)
+    int hold = INT_MIN, sold = 0, rest = 0;
+    for( const auto price : prices)
+    {
+        int prev_hold = hold;
+        hold = max(hold, rest - price);
+        rest = max(rest, sold);
+        sold = prev_hold + price;
+    }
+
+    return max(rest, sold);
+}

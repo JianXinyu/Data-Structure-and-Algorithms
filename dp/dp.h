@@ -89,3 +89,6 @@ int rob(vector<int>& nums);
 
 //---------------------------213. House Robber II-----------------------//
 int rob2(vector<int>& nums); // dp
+
+//------------309. Best Time to Buy and Sell Stock with Cooldown------------------//
+int maxProfit(vector<int>& prices);
