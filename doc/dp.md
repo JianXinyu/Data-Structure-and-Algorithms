@@ -140,3 +140,28 @@ hold[i] 表示在第i天（或之前）买入股票后能够获得的最大利�
 为什么必须有一个rest状态？因为题目条件的限制。能去 hold 的只有 rest (不能由 sold 直接去 rest) ，所以至少必須休息一天後才能買。
 
 ![img](.\figures\309Best Time to Buy and Sell Stock with Cooldown.png)
+
+### 740. Delete and Earn
+
+Reduce the problem to [House Robber Problem](http://zxi.mytechroad.com/blog/dynamic-programming/leetcode-198-house-robber/)
+
+Key observations: If we take nums[i]
+
+1. We can safely take all of its copies.
+2. We can’t take any of copies of nums[i – 1] and nums[i + 1]
+
+This problem is reduced to 198 House Robber.
+
+Houses[i] has all the copies of num whose value is i.
+
+[3 4 2] -> [0 2 3 4], rob([0 **2** 3 **4**]) = 6       
+
+[2, 2, 3, 3, 3, 4] -> [0 2*2 3*3 4], rob([0 2*2 **3\*3** 4]) = 9
+
+Time complexity: O(n+r) reduction + O(r) solving rob = O(n + r)
+
+Space complexity: O(r)
+
+r = max(nums) – min(nums) + 1
+
+如何转为house robber problem？先求出旧数组的范围，根据范围确定新数组的长度，再迭代旧数组，给新数组赋值。注意由于同样的整数可以重复计算，所以累加即可，这其实降低了难度。

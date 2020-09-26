@@ -43,7 +43,7 @@ int rob(vector<int>& nums)
         dp2 = dp1;
         dp1 = dp;
     }
-    return dp;
+    return dp1;
 }
 
 //---------------------------213. House Robber II-----------------------//
@@ -122,4 +122,18 @@ int maxProfit(vector<int>& prices)
     }
 
     return max(rest, sold);
+}
+
+//--------------740. Delete and Earn------------------//
+int deleteAndEarn(vector<int>& nums)
+{
+    if(nums.empty()) return 0;
+    const auto range = minmax_element(nums.begin(), nums.end());
+    const int l = *(range.first);
+    const int r = *(range.second);
+    vector<int> points(r - l + 1, 0);
+    for(const int num : nums)
+        points[num - l] += num;
+
+    return rob(points);
 }

@@ -4,12 +4,13 @@
 #include <unordered_map>
 #include <cmath>
 #include <bits/stdc++.h>
+#include <algorithm>
 
 using std::vector;
 using std::unordered_map;
 using std::max;
 using std::min;
-
+using std::minmax_element;
 /*
  * Patterns
  * https://leetcode.com/discuss/general-discussion/458695/dynamic-programming-patterns
@@ -92,3 +93,6 @@ int rob2(vector<int>& nums); // dp
 
 //------------309. Best Time to Buy and Sell Stock with Cooldown------------------//
 int maxProfit(vector<int>& prices);
+
+//--------------740. Delete and Earn------------------//
+int deleteAndEarn(vector<int>& nums);
