@@ -96,3 +96,6 @@ int maxProfit(vector<int>& prices);
 
 //--------------740. Delete and Earn------------------//
 int deleteAndEarn(vector<int>& nums);
+
+//--------------790. Domino and Tromino Tilling-----------------//
+int numTiling(int N);
