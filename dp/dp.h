@@ -99,3 +99,6 @@ int deleteAndEarn(vector<int>& nums);
 
 //--------------790. Domino and Tromino Tilling-----------------//
 int numTiling(int N);
+
+//------------801. Minimum Swaps To Make Sequences Increasing-------------//
+int minSwap(vector<int>& A, vector<int>& B);
