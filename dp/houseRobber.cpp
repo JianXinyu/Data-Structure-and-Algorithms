@@ -154,6 +154,15 @@ int numTiling(int N)
   return dp[N][0];
 }
 
+//int numTilings(int N) {
+//  constexpr int kMod = 1000000007;
+//  vector<long> dp(N + 1, 1);
+//  dp[2] = 2;
+//  for (int i = 3; i <= N; ++i)
+//    dp[i] = (dp[i - 3] + dp[i - 1] * 2) % kMod;
+//  return dp[N];
+//}
+
 //------------801. Minimum Swaps To Make Sequences Increasing-------------//
 int minSwap(vector<int>& A, vector<int>& B) {
   const int n = A.size();

@@ -121,6 +121,8 @@ circle与line的区别仅在第一个和最后一个相邻，二者只能取其�
 
 ### 309. Best Time to Buy and Sell Stock with Cooldown
 
+<font color='red'> 好题！</font>
+
 **状态转移**：三种状态及以上需要考虑
 
 先判断有几种状态，画出状态机
@@ -165,3 +167,10 @@ Space complexity: O(r)
 r = max(nums) – min(nums) + 1
 
 如何转为house robber problem？先求出旧数组的范围，根据范围确定新数组的长度，再迭代旧数组，给新数组赋值。注意由于同样的整数可以重复计算，所以累加即可，这其实降低了难度。
+
+### 790. Domino and Tromino Tiling 
+
+<font color='red'>这题不会做，答案看明白了。</font> 感觉不应该归类于house robber
+
+### 801. Minimum Swaps To Make Sequences Increasing
+
