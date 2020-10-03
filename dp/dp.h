@@ -102,3 +102,6 @@ int numTiling(int N);
 
 //------------801. Minimum Swaps To Make Sequences Increasing-------------//
 int minSwap(vector<int>& A, vector<int>& B);
+
+//-------------279. Perfect Squares-------------//
+int numSquares(int n);

@@ -6,7 +6,6 @@ using namespace std;
 
 int main()
 {
-    vector<int> vec = {2,1,1,2};
-    cout << rob(vec);
+    cout << numSquares(13);
     return 0;
 }
