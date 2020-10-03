@@ -174,3 +174,14 @@ r = max(nums) – min(nums) + 1
 
 ### 801. Minimum Swaps To Make Sequences Increasing
 
+
+
+# Perfect Squares
+
+dp[n]定义为n的perfect squares number，那么dp[i]可以通过遍历所有比i小的平方数来确定：
+
+````
+for(int j = 1; j*j <= i; j++)
+	dp[i] = min(dp[i], dp[i-j*j]+1);
+````
+
