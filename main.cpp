@@ -6,6 +6,6 @@ using namespace std;
 
 int main()
 {
-    cout << numSquares(13);
+    cout << numSquares(25);
     return 0;
 }

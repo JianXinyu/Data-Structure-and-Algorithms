@@ -111,6 +111,8 @@ dp的定义同221，但这里有一个trick，dp显示size 为 4 的square，则
 
 # House Robber
 
+---- S:O(3n) T:O(3n)
+
 ### 198. house robber
 
 dp[n]取决于dp[n-2]和dp[n-1]
@@ -178,10 +180,32 @@ r = max(nums) – min(nums) + 1
 
 # Perfect Squares
 
+1. DP解法
+
 dp[n]定义为n的perfect squares number，那么dp[i]可以通过遍历所有比i小的平方数来确定：
 
-````
+````C++
 for(int j = 1; j*j <= i; j++)
 	dp[i] = min(dp[i], dp[i-j*j]+1);
 ````
 
+S: O(n) T: O(n*sqrt(n))
+
+2. 四平方和定理 Lagrange's four-square theorem / Bachet's conjecture
+
+- *Every natural number can be represented as the sum of four integer squares.*
+
+$$p = a_1^2 + a_2^2 + a_3^2 + a_4^2$$
+
+- *a positive integer can be expressed as the sum of **three** squares if and only if **it is not** of the form* $4^k(8m+7)$ *for integers* `k` *and* `m`
+
+```pseudocode
+1. divid the number by 4 until can't 
+2. calculate the mod, if mod == 7, return 4
+3. now the number is small, we can iterate i
+	1. if i^2 = n^2, return 1
+	2. if i^2 + j^2 = n^2,return 2
+	3. else, return 3
+```
+
+S: O(1), T: $O(log_4n+sqrt(log_4n))$
