@@ -5,9 +5,11 @@
 #include <cmath>
 #include <bits/stdc++.h>
 #include <algorithm>
+#include <string>
 
 using std::vector;
 using std::unordered_map;
+using std::string;
 using std::max;
 using std::min;
 using std::minmax_element;
@@ -103,5 +105,18 @@ int numTiling(int N);
 //------------801. Minimum Swaps To Make Sequences Increasing-------------//
 int minSwap(vector<int>& A, vector<int>& B);
 
+//! Perfect Squares
 //-------------279. Perfect Squares-------------//
 int numSquares(int n);
+
+//! Word Break
+//------------ 139. Word Break-----------------//
+class wordBreak
+{
+public:
+  bool wordbreak(string s, vector<string>& wordDict);
+private:
+  unordered_map<string, bool> mem_;
+  bool wordbreak(const string& s);
+
+};

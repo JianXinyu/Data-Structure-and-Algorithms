@@ -20,7 +20,8 @@
 #         1277CountSquareSubmatriceswithAllOnes.cpp
 #
 #         houseRobber.cpp
-         perfectSquares.cpp
+#         perfectSquares.cpp
+         wordBreak.cpp
          )
 
  target_include_directories(${TARGET_NAME}
