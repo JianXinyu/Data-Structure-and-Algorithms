@@ -10,9 +10,12 @@
 using std::vector;
 using std::unordered_map;
 using std::string;
+using std::unordered_set;
+
 using std::max;
 using std::min;
 using std::minmax_element;
+
 /*
  * Patterns
  * https://leetcode.com/discuss/general-discussion/458695/dynamic-programming-patterns
@@ -118,5 +121,13 @@ public:
 private:
   unordered_map<string, bool> mem_;
   bool wordbreak(const string& s);
-
+};
+//------------140. Word Break II------------//
+class wordBreak2 {
+public:
+  vector<string> wordBreak(string s, vector<string>& wordDict);
+private:
+  vector<string> append(const vector<string>& prefixes, const string& word);
+  const vector<string>& wordBreak(string s, unordered_set<string>& dict);
+  unordered_map<string, vector<string>> mem_;
 };
