@@ -6,6 +6,7 @@ using namespace std;
 
 int main()
 {
-    cout << numSquares(25);
+    vector<int> nums = {8, 9, 3, 4};
+    cout << lengthOfLIS(nums);
     return 0;
 }

@@ -131,3 +131,7 @@ private:
   const vector<string>& wordBreak(string s, unordered_set<string>& dict);
   unordered_map<string, vector<string>> mem_;
 };
+
+//! Longest Increasing Subsequence
+//-------------300-------------------//
+int lengthOfLIS(vector<int>& nums);

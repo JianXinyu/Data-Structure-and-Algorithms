@@ -209,3 +209,31 @@ $$p = a_1^2 + a_2^2 + a_3^2 + a_4^2$$
 ```
 
 S: O(1), T: $O(log_4n+sqrt(log_4n))$
+
+# Word Break
+
+139	140	818 均未仔细研究
+
+
+
+# Longest Increasing Subsequence
+
+## 300.Longest Increasing Subsequence
+
+Solution 1:
+
+​	T: O(n^2)
+
+​     我们可以这样简化问题，找到前n-1位的LIS，那么第n位的LIS该怎么计算?
+
+​		遍历前n-1位，
+
+- 如果nums[n] > nums[i]， 那么就有可能是前i+1位的LIS+1；但是遇到这样的情况怎么办？[8, 9, 3, 4] 显然nums[3] > nums[2]， 那么前3位的LIS+1不就等于3了吗？所以DP不能仅仅定义为前i+1位的LIS。我们把DP数组初始化为1，由于以上判断条件的存在，DP[2]=1而不是2。所以这个地方应该是一个又复杂又自然简单的点，不需要额外处理，相反如果多考虑了反而会错。
+
+- 如果<=，则肯定不用计算了，本来都有更大的了，不用再和一个较小的比了。
+
+  
+
+![img](.\figures\300Longest Increasing Subsequence.png)
+
+![img](A:\Programming\LeetCode\doc\figures\300Longest Increasing Subsequence2.png)

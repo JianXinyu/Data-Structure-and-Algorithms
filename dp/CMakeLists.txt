@@ -21,7 +21,8 @@
 #
 #         houseRobber.cpp
 #         perfectSquares.cpp
-         wordBreak.cpp
+#         wordBreak.cpp
+         longestIncrSubseq.cpp
          )
 
  target_include_directories(${TARGET_NAME}
