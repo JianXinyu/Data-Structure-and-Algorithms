@@ -6,7 +6,7 @@ using namespace std;
 
 int main()
 {
-    vector<int> nums = {8, 9, 3, 4};
-    cout << lengthOfLIS(nums);
+    vector<int> nums = {2,2,2,2,2};
+    cout << findNumberOfLIS(nums);
     return 0;
 }

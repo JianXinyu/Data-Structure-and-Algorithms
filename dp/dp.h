@@ -135,3 +135,6 @@ private:
 //! Longest Increasing Subsequence
 //-------------300-------------------//
 int lengthOfLIS(vector<int>& nums);
+
+//----673 Number of Longest Increasing Subsequence-----//
+int findNumberOfLIS(vector<int>& nums);
