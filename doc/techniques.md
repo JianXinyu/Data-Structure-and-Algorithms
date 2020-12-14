@@ -6,3 +6,33 @@ A **sliding window** is an abstract concept commonly used in array/string proble
 
 ## Dynamic Programming (DP)
 
+
+
+# Two Pointers
+
+16. 3Sum Closest
+
+```c++
+    int threeSumClosest(vector<int>& nums, int target) {
+        int diff = INT_MAX;
+        int len = nums.size();
+        sort(nums.begin(), nums.end());
+        for( int i = 0; i < len && diff != 0; ++i)
+        {
+            int lo = i + 1, hi = len - 1;
+            while( lo < hi)
+            {
+                int sum = nums[i] + nums[lo] + nums[hi];
+                if(abs(target - sum) < abs(diff))
+                    diff = target - sum;
+                if(sum < target)
+                    ++lo;
+                else
+                    --hi;
+            }
+        }
+        
+        return target - diff;
+    }
+```
+

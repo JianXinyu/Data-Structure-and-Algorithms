@@ -4,6 +4,7 @@
 
 using namespace std;
 
+
 int main()
 {
     vector<int> nums = {2,2,2,2,2};
