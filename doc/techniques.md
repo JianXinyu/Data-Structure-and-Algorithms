@@ -12,6 +12,8 @@ A **sliding window** is an abstract concept commonly used in array/string proble
 
 16. 3Sum Closest
 
+    best conceivable runtime (BCR) $O(n^2)$
+
 ```c++
     int threeSumClosest(vector<int>& nums, int target) {
         int diff = INT_MAX;
