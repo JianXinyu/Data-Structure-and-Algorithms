@@ -50,7 +50,9 @@ std::pair<double, pointPair_T> optimizedSearch(const std::vector<point_T>& P,con
     auto PR = std::vector<point_T>();
     std::copy(P.begin(), P.begin() + N/2, std::back_inserter(PL));
     std::copy(P.begin() + N/2, P.end(), std::back_inserter(PR));
+
     double xM = P[(N-1)/2].first; // the middle point x coordinate
+
     auto QL = std::vector<point_T>();
     auto QR = std::vector<point_T>();
     std::copy_if(Q.begin(), Q.end(), std::back_inserter(QL), [&xM](const point_T& point){
@@ -60,21 +62,28 @@ std::pair<double, pointPair_T> optimizedSearch(const std::vector<point_T>& P,con
         return point.first > xM;
     });
 
+    // compute left and right side recursively
     std::pair<double, pointPair_T> ret1 = optimizedSearch(PL, QL);
     std::pair<double, pointPair_T> ret2 = optimizedSearch(PR, QR);
+    // pick up the better one
     std::pair<double, pointPair_T> result = ( ret1.first <= ret2.first )? ret1 : ret2;
+
     double delta = result.first;
     auto strip = std::vector<point_T>();
+    // traverse Q: O(N)
     std::copy_if(Q.begin(), Q.end(), std::back_inserter(strip), [&delta, &xM](const point_T& point){
         return std::abs(xM - point.first) < delta;
     });
 
+    // traverse strip
     for ( auto i = strip.begin(); i != strip.end(); i++ ){
-        for ( auto k = i + 1; k != strip.end() &&
-        (( k->second - i->second) < delta); k++) {
+        for ( auto k = i + 1; k != strip.end(); k++) {
+            // since strip is sorted by y coordinate, std::abs isn't needed.
+            if((k->second - i->second) >= delta) break;
+
             auto new_dist = std::abs(dist(*k, *i));
-            if ( new_dist < result.first) {
-                result = { new_dist, { *k, *i } };
+            if ( new_dist < result.first ) {
+                result = { new_dist, { *i, *k } };
             }
         }
     }
@@ -84,16 +93,16 @@ std::pair<double, pointPair_T> optimizedSearch(const std::vector<point_T>& P,con
 void print_result(const std::pair<double, pointPair_T>& result) {
     point_T a = result.second.first;
     point_T b = result.second.second;
-    std::printf("Mini distance is %.1f; Points: (%.1f, %.1f), (%.1f, %.1f)\n",
+    std::printf("Mini distance is %.2f; Points: (%.2f, %.2f), (%.2f, %.2f)\n",
                 result.first, a.first, a.second, b.first, b.second);
 }
 
 void example(){
     std::default_random_engine re(std::chrono::system_clock::to_time_t(
             std::chrono::system_clock::now() ) );
-    std::uniform_real_distribution<double> urd(-100.0, 100.0);
+    std::uniform_real_distribution<double> urd(-10000.0, 10000.0);
 
-    std::vector<point_T> P(100);
+    std::vector<point_T> P(1000);
     std::generate(P.begin(), P.end(), [&urd, &re]() {
         return point_T { urd(re), urd(re)};
     });
