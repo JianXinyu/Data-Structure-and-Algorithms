@@ -3,7 +3,8 @@
 
  add_library(${TARGET_NAME}
          STATIC
-         169MajorityElement.cpp
+#         169MajorityElement.cpp
+         closest_points.cpp
          )
 
  target_include_directories(${TARGET_NAME}
