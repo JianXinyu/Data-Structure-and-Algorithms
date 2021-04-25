@@ -6,6 +6,7 @@ using namespace std;
 
 int main()
 {
-    example();
+    vector<int> nums = {3,1,2};
+    cout << findMin(nums);
     return 0;
 }

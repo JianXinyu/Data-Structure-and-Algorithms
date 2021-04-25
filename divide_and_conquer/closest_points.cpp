@@ -79,7 +79,7 @@ std::pair<double, pointPair_T> optimizedSearch(const std::vector<point_T>& P,con
     for ( auto i = strip.begin(); i != strip.end(); i++ ){
         for ( auto k = i + 1; k != strip.end(); k++) {
             // since strip is sorted by y coordinate, std::abs isn't needed.
-            if((k->second - i->second) >= delta) break;
+            if((k->second - i->second) >= delta) break; // >= result.first better?
 
             auto new_dist = std::abs(dist(*k, *i));
             if ( new_dist < result.first ) {
@@ -97,7 +97,7 @@ void print_result(const std::pair<double, pointPair_T>& result) {
                 result.first, a.first, a.second, b.first, b.second);
 }
 
-void example(){
+void closest_points_example(){
     std::default_random_engine re(std::chrono::system_clock::to_time_t(
             std::chrono::system_clock::now() ) );
     std::uniform_real_distribution<double> urd(-10000.0, 10000.0);

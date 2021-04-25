@@ -4,9 +4,13 @@
 #include <vector>       // std::vector
 
 using std::vector;
+using std::min;
 
+//153
+int findMin(vector<int>& nums);
+
+// 169
 int majorityElement(vector<int>& nums);
 
-
 // closest points
-void example();
+void closest_points_example();

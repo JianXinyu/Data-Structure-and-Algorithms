@@ -202,7 +202,7 @@ T initContainer(int size)
 }
 
 
-int main()
+void example_quicksort()
 {
     //Open file in write mode
     std::ofstream outfile;
@@ -250,6 +250,6 @@ int main()
 
     outfile.close();
 
-    system("Pause");
-    return 0;
+//    system("Pause");
+//    return 0;
 }

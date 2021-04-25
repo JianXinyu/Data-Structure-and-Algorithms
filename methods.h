@@ -2,7 +2,7 @@
 
 //#include "dp.h"
 #include "divide_and_conquer.h"
-
+#include "sorting.h"
 
 //#include "sliding-window.h"
 //#include "tree.h"

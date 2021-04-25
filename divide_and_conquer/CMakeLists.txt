@@ -5,6 +5,7 @@
          STATIC
 #         169MajorityElement.cpp
          closest_points.cpp
+         153FindMinimuminRotatedSortedArray.cpp
          )
 
  target_include_directories(${TARGET_NAME}
