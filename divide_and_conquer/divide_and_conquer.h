@@ -9,6 +9,9 @@ using std::min;
 //153
 int findMin(vector<int>& nums);
 
+//154
+int findMin2(vector<int>& nums);
+
 // 169
 int majorityElement(vector<int>& nums);
 
