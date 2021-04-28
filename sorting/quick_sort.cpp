@@ -15,10 +15,9 @@ void insertionSort(std::vector<Comparator> & a, int left, int right)
         //begin with the last element
         auto j = i-1;
         // record the value needed to insert
-        auto key = std::move( a[ i ]);
+        auto key = std::move( a[ i ] );
         /* Move the top (i-1)th elements, that are greater/less
-         * than key, to one position ahead
-         * of their current position */
+         * than key, to one position ahead of their current position */
         while(j >= left && key < a[ j - 1])
         {
             a[j+1] = std::move(a[ j ]);
