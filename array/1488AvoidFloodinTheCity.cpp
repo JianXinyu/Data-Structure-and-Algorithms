@@ -9,31 +9,30 @@
 
 vector<int> avoidFlood(vector<int>& rains) {
     // Keep track of full lakes and the last rain date for them.
-    unordered_map<int, int> full;
+    unordered_map<int, int> fullLakes;
     // Keep track of days with no rain that we didn't use yet.
-    set<int> empty_index;
+    set<int> noRain;
     // Hold result to return.
     vector<int> res(rains.size(), INT_MIN);
 
     for(int i = 0; i < rains.size(); i ++){
         if(rains[i] > 0){
-            int index = rains[i];
-            // lake if full
-            if(full.count(index)){
-                // There is no way we can dry the lake
-                if(empty_index.empty()) return {};
-
-                int t = full[index];
-                set<int>::iterator iter = empty_index.lower_bound(t);
-                if(iter == empty_index.end()) return {};
-
+            int index = rains[i]; // lake index
+            // if lake is already full
+            if(fullLakes.count(index)){
+                // if there is no dry day left to use, we can never dry the lake
+                if(noRain.empty()) return {};
+                // otherwise, we choose a dry day to use
+                // note, this dry day must be after the rain day
+                set<int>::iterator iter = noRain.lower_bound(fullLakes[index]);
+                if(iter == noRain.end()) return {};
                 res[*iter] = index;
-                empty_index.erase(iter);
+                noRain.erase(iter);
             }
             res[i] = -1;
-            full[index] = i;
+            fullLakes[index] = i;
         }
-        else empty_index.insert(i);
+        else noRain.insert(i);
     }
 
     for(int& e: res) if(e == INT_MIN) e = 1;
