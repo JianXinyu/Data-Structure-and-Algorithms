@@ -36,7 +36,7 @@ public:
 
 Better solution provided:
 
-using sliding window
+using sliding window。 Sliding window 通常用于数组和字符串，移动一个端点，快速地确定另一个端点
 
 logic:
 
