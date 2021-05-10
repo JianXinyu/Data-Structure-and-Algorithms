@@ -236,4 +236,4 @@ Solution 1:
 
 ![img](.\figures\300Longest Increasing Subsequence.png)
 
-![img](A:\Programming\LeetCode\doc\figures\300Longest Increasing Subsequence2.png)
+![img](.\figures\300Longest Increasing Subsequence2.png)
