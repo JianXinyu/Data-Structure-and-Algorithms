@@ -1,3 +1,14 @@
+# List
+Reverse List: 206, 92
+```cpp
+ListNode *prev = dummy, curr = head, next = curr->next;
+while/for:
+    curr->next = prev;
+    prev = curr;
+    curr = next;
+    next = curr->next;
+
+```
 # Tree
 ## DFS
 ```c++
