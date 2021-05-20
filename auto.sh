@@ -1,8 +1,6 @@
-# 一次性处理git提交
-
 # branch_name=$(git symbolic-ref --short -q HEAD)
 if [ ! -n "$1" ] ;then
-comment="update"
+comment="Too lazy to type comment."
 else
 comment=$1
 fi
