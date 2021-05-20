@@ -75,6 +75,64 @@ while(curr){
 
 ### 题型三：相交或环形链表
 #### 1.  判断某条链表是否存在环
+环形链表求环的起点.
+**Solution 1 Hash**
+-   遍历整个链表,同时将每个节点都插入哈希表,
+-   如果当前节点在哈希表中不存在,继续遍历,
+-   如果存在,那么当前节点就是环的入口节点
+```cpp
+ListNode *detectCycle(ListNode *head){
+	unordered_map<ListNode*, int> m;
+	while(head){
+		if(m.count(head))
+			return head;
+		m[head] = head->val;
+		head = head->next;
+	}
+	return nullptr;
+}
+```
+**Solution 2 Fast and Slow Pointers**
+- 定义一个 fast 指针,每次前进两步,一个 slow 指针,每次前进一步
+- 当两个指针相遇时:
+	- 将 fast 指针指向链表头部,同时 fast 指针每次只前进一步
+	- slow 指针继续前进,每次前进一步
+- 当两个指针再次相遇时,当前节点就是环的入口
+
+为什么第二次相遇的点为环的入口?
+![[linked_list_ring.png | +side -lg]]
+E点为环的入口，P点为两指针第一次相遇点。从head到E的距离为a，从E到P的距离为b，环的周长为L。
+第一次相遇时：
+- 快指针移动的距离为：$s_1 = a+b+n_1*L$. $n_1$为快指针绕环圈数
+- 慢指针移动的距离为：$s_2 = a+b+n_2*L$. $n_2$为慢指针绕环圈数
+- 快指针是慢指针速度的两倍: $s_1 = 2s_2$
+- 解得$a+b=(n_1-2n_2)L$
+- 注意此时慢指针在环上的位置是$b$, i.e., P点
+第一次相遇后，快指针重置到head，当快指针到达E点时，
+- 快指针移动的距离为 $a$
+- 由于两指针速度相同，慢指针也移动了$a$，所以在环上的位置是$b+a=(n_1-2n_2)L$，即在环的起点E
+- 两指针又相遇了
+```cpp
+ListNode *detectCycle(ListNode *head) {
+	if(!head || !head->next) return nullptr;
+	ListNode *fast = head, *slow = head;
+	do{
+		if(fast && fast->next)
+			fast = fast->next->next;
+		else
+			fast = nullptr;
+		slow = slow->next;
+	} while(fast != slow);
+	// if fast and slow are null
+	if(!fast) return nullptr;
+	fast = head;
+	while(fast != slow){
+		fast = fast->next;
+		slow = slow->next;     
+	}
+	return fast;
+}
+```
 #### 2.  获取某条链表环的大小
 #### 3.  获取某两条链表的相交节点
 两个单链表A, B，找出它们相交的起始节点。
