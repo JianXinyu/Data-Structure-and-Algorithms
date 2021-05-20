@@ -92,6 +92,8 @@ ListNode *detectCycle(ListNode *head){
 	return nullptr;
 }
 ```
+T: $O(N)$
+S: $O(N)$
 **Solution 2 Fast and Slow Pointers**
 - 定义一个 fast 指针,每次前进两步,一个 slow 指针,每次前进一步
 - 当两个指针相遇时:
@@ -133,6 +135,9 @@ ListNode *detectCycle(ListNode *head) {
 	return fast;
 }
 ```
+T: $O(N)$
+S: $O(1)$
+[[142. Linked List Cycle II]]
 #### 2.  获取某条链表环的大小
 #### 3.  获取某两条链表的相交节点
 两个单链表A, B，找出它们相交的起始节点。
@@ -184,5 +189,6 @@ ListNode *getIntersectionNode(ListNode *headA, ListNode *headB) {
 
 T: $O(N)$
 S: $O(1)$
+[[160\. Intersection of Two Linked Lists]]
 ### 题型四：设计题
 要求设计一种数据结构，可以在指定的时间或空间复杂度下完成 XX 操作，这种题目的套路就是**牢记所有基本数据结构的基本操作以及其复杂度**。分析算法的瓶颈，并辅以恰当的数据结构进行优化。
