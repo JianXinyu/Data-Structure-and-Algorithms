@@ -89,9 +89,10 @@ bfs(root) {
 	}
 }
 ```
-- zigzag
-==implement 3 expression notations==
 
+Others: 
+- zigzag
+- Vertical Order Traversal [[987. Vertical Order Traversal of a Binary Tree]]
 # 二叉树 Binary Trees
 Def
 For a binary tree with $N$ nodes
