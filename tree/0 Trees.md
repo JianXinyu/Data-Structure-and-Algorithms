@@ -1,5 +1,6 @@
+
 # Tree
-Def: **directed edge**
+Def: recursive definition. **directed edge**
 root, edge, parent/child, leaves, siblings, path/length
 **Depth**: length of the path from the tree's root to the node
 **Height**: longest length of the path  from the node to a leaf.
@@ -68,7 +69,7 @@ postorder(root) {
 ## 层次遍历 Level Order Traversal
 ![[level-order-traversal.gif | +side -lg]]
 层次遍历是逐级遍历树，每一层从左往右依次遍历结点。广度优先搜索（Breadth-First Search）是一种遍历或搜索数据结构（如树或图）的算法。该算法从根节点开始，并首先访问该节点本身。然后遍历其邻居，遍历其第二级邻居，遍历其第三级邻居，依此类推。
-具体算法上，我们可是使用 DFS 并记录当前访问层级的方式实现， 不过更多的时候还是使用借助队列的先进先出的特性来实现。
+具体算法上，可使用 DFS 并记录当前访问层级的方式实现，不过更多的时候还是使用借助队列的先进先出的特性来实现。
 <br>
 ```cpp
 bfs(root) {
@@ -94,6 +95,7 @@ Others:
 - zigzag
 - Vertical Order Traversal [[987. Vertical Order Traversal of a Binary Tree]]
 # 二叉树 Binary Trees
+## Intro
 Def
 For a binary tree with $N$ nodes
 - ==why?==Average depth $O(\sqrt N)$, worst depth $N-1$
@@ -112,14 +114,15 @@ For a binary tree with $N$ nodes
 - etc
 
 ## 二叉树构建 TBD
-二叉树有一个经典的题型就是构造二叉树。注意单前/中/后序遍历是无法确定一棵树。但是中序序列和前、后，层次序列任意组合唯一确定一颗二叉树（前提是遍历是**基于引用**的或者二叉树的**值都不相同**）。前、后、层次序列都是提供根结点的信息，中序序列用来区分左右子树。
+二叉树有一个经典的题型就是构造二叉树。**注意单是前/中/后序遍历无法确定一棵树**。但是中序序列和前、后，层次序列任意组合可以唯一确定一颗二叉树（前提是遍历是**基于引用**的或者二叉树的**值都不相同**）。前、后、层次序列都是提供根结点的信息，中序序列用来区分左右子树。
 
-实际上构造一棵树的本质是：
+实际上构造一棵树的本质是(递归定义)：
 1.  确定根节点
 2.  确定其左子树
 3.  确定其右子树
 
-比如拿到前序遍历结果 preorder 和中序遍历 inorder，在 preorder 我们可以能确定树根 root，拿到 root 可以将中序遍历切割中左右子树。这样就可以确定并构造一棵树，整个过程我们可以用递归完成。详情见 [构建二叉树专题](https://github.com/azl397985856/leetcode/blob/master/selected/construct-binary-tree.md)
+- preorder+inorder [[105. Construct Binary Tree from Preorder and Inorder Traversal]] 用preorder得到结果， 我们可以能确定树根 root，拿到 root 可以将中序遍历切割中左右子树。这样就可以递归构造一棵树。
+- 
 ## 二叉搜索树 Binary Search Tree
 Visualization: https://visualgo.net/en/bst
 二叉搜索树是二叉树的一种，具有以下性质
@@ -329,6 +332,8 @@ fibonacci 数列
 -   [1145\. 二叉树着色游戏](https://leetcode-cn.com/problems/binary-tree-coloring-game/)（树上进行决策）
 # 解题技巧 TBD
  [几乎刷完了力扣所有的树题，我发现了这些东西。。。](https://mp.weixin.qq.com/s?__biz=MzI4MzUxNjI3OA==&mid=2247485899&idx=1&sn=27d1c7b8ff88cbe235b7fca63227d356&chksm=eb88c5d2dcff4cc4102a036bc558b9c598fbf1c69f6ee9dc2822b0784975f8b2df8b8a7609dd&token=450700782&lang=zh_CN#rd) 。
+ ## 一个中心
+ 
 # 8. Sets and Maps in the Standard Library
 
 The STL containers vector and list are inefficient for searching.
