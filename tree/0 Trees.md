@@ -94,6 +94,8 @@ bfs(root) {
 Others: 
 - zigzag
 - Vertical Order Traversal [[987. Vertical Order Traversal of a Binary Tree]]
+
+
 # 二叉树 Binary Trees
 ## Intro
 Def
@@ -122,7 +124,10 @@ For a binary tree with $N$ nodes
 3.  确定其右子树
 
 - preorder+inorder [[105. Construct Binary Tree from Preorder and Inorder Traversal]] 用preorder得到结果， 我们可以能确定树根 root，拿到 root 可以将中序遍历切割中左右子树。这样就可以递归构造一棵树。
-- 
+
+
+## 二叉树遍历
+[二叉树的遍历](https://leetcode-solution-leetcode-pp.gitbook.io/leetcode-solution/thinkings/binary-tree-traversal)
 ## 二叉搜索树 Binary Search Tree
 Visualization: https://visualgo.net/en/bst
 二叉搜索树是二叉树的一种，具有以下性质
@@ -305,6 +310,8 @@ MAX-HEAPIFY(A, i)
 
 递归中可能存在这么多的重复计算，为了消除这种重复计算，一种简单的方式就是记忆化递归。即一边递归一边使用“记录表”（比如哈希表或者数组）记录我们已经计算过的情况，当下次再次碰到的时候，如果之前已经计算了，那么直接返回即可，这样就避免了重复计算。而**动态规划中 DP 数组其实和这里“记录表”的作用是一样的**。
 
+如何理解树的递归? 画图 + 手动代入
+![[tree_recursion.jpg]]
 练习递归:
 平时试着把迭代改成递归
 汉诺塔问题
@@ -332,8 +339,137 @@ fibonacci 数列
 -   [1145\. 二叉树着色游戏](https://leetcode-cn.com/problems/binary-tree-coloring-game/)（树上进行决策）
 # 解题技巧 TBD
  [几乎刷完了力扣所有的树题，我发现了这些东西。。。](https://mp.weixin.qq.com/s?__biz=MzI4MzUxNjI3OA==&mid=2247485899&idx=1&sn=27d1c7b8ff88cbe235b7fca63227d356&chksm=eb88c5d2dcff4cc4102a036bc558b9c598fbf1c69f6ee9dc2822b0784975f8b2df8b8a7609dd&token=450700782&lang=zh_CN#rd) 。
- ## 一个中心
+ ## 一个中心 REVIEW
+ 不管是什么题目，核心就是树的遍历，这是一切的基础。
+ 树的遍历方法有很多[[#Traversal]]
+ 树的遍历可分为两个基本类型：深度优先遍历和广度优先遍历
  
+**树的遍历的迭代写法**
+使用双色标记法来统一前中后三种遍历，灵感来源于垃圾回收算法中的三色标记法。
+-   使用颜色标记节点的状态，新节点为白色，已访问的节点为灰色。
+-   如果遇到的节点为白色，则将其标记为灰色，然后将其右子节点、自身、左子节点依次入栈。
+-   如果遇到的节点为灰色，则将节点的值输出。
+```python
+def inorderTraversal(self, root: TreeNode) -> List[int]:
+	WHITE, GRAY = 0, 1
+	res = []
+	stack = [(WHITE, root)]
+	while stack:
+		color, node = stack.pop()
+		if node is None: continue
+		if color == WHITE:
+			stack.append((WHITE, node.right))
+			stack.append((GRAY, node))
+			stack.append((WHITE, node.left))
+		else:
+			res.append(node.val)
+	return res
+
+#preorder
+stack.append((GRAY, node))
+stack.append((WHITE, node.right))
+stack.append((WHITE, node.left))
+
+#postorder
+stack.append((WHITE, node.right))
+stack.append((WHITE, node.left))
+stack.append((GRAY, node))
+```
+实际上WHITE 就表示的是递归中的第一次进入过程，Gray 则表示递归中的从叶子节点返回的过程。 因此这种迭代的写法更接近递归写法的本质。
+
+## 两个基本点
+- 深度优先搜索 Depth First Search DFS 适合暴力枚举，借助函数调用栈，可用递归轻松实现DFS
+	- Preorder
+	- Inorder
+	- Postorder
+- 广度优先搜索 Breadth First Search BFS 适合求最短距离
+	- 带层的
+	- 不带层的
+### 深度优先遍历
+DFS算法是一种用于遍历树或图的算法。沿着树的深度遍历树的节点，尽可能深的搜索树的分支。当节点 v 的所在边都己被探寻过，搜索将回溯到发现节点 v 的那条边的起始节点。这一过程一直进行到已发现从源节点可达的所有节点为止。如果还存在未被发现的节点，则选择其中一个作为源节点并重复以上过程，整个进程反复进行直到所有节点都被访问为止，属于**盲目搜索**。DFS是图论中的经典算法，利用深度优先搜索算法可以产生目标图的相应拓扑排序表，利用拓扑排序表可以方便的解决很多相关的图论问题，如最大路径问题等等。因发明「深度优先搜索算法」，约翰 · 霍普克洛夫特与罗伯特 · 塔扬在 1986 年共同获得计算机领域的最高奖：图灵奖。
+
+截止2020-02-21，深度优先遍历在 LeetCode 中的题目是 129 道。在 LeetCode 中的题型绝对是超级大户了。而对于树的题目，我们基本上都可以使用 DFS 来解决，甚至我们可以基于 DFS 来做层次遍历，而且由于 DFS 可以基于递归去做，因此算法会更简洁。 在对性能有很高要求的场合，我建议你使用迭代，否则尽量使用递归，不仅写起来简单快速，还不容易出错。
+
+**算法流程**：
+![[depth-first-search.gif | +side -med]]
+1.  首先将根节点放入stack。
+2.  从stack中取出第一个节点，并检验它是否为目标。如果找到所有的节点，则结束搜寻并回传结果。否则将它某一个尚未检验过的直接子节点加入stack中。
+3.  重复步骤 2。
+4.  如果不存在未检测过的直接子节点。将上一级节点加入stack中。
+    重复步骤 2。
+5.  重复步骤 4。
+6.  若stack为空，表示整张图都检查过了——亦即图中没有欲搜寻的目标。结束搜寻并回传“找不到目标”。
+这里的 stack 可以理解为自己实现的栈，也可以理解为调用栈。如果是调用栈的时候就是递归，如果是自己实现的栈的话就是迭代。
+
+**算法模板**:
+```javascript
+const visited = {}
+function dfs(i) {
+    if (满足特定条件）{
+        // 返回结果 or 退出搜索空间
+    }
+
+    visited[i] = true // 将当前状态标为已搜索
+    for (根据i能到达的下个状态j) {
+        if (!visited[j]) { // 如果状态j没有被搜索过
+            dfs(j)
+        }
+    }
+}
+```
+visited 是为了防止由于环的存在而导致死循环的。 而我们知道树是不存在环的，因此树的题目大多数不需要 visited，除非你对树的结构做了修改，比如就左子树的 left 指针指向自身，此时会有环。再比如 [138\. 复制带随机指针的链表](https://leetcode-cn.com/problems/copy-list-with-random-pointer/) 这道题需要记录已经复制的节点，这些需要记录 visited 信息的树的题目**少之又少**。
+
+因此树当中的DFS更多是:
+```javascript
+function dfs(root) {
+    if (满足特定条件）{
+        // 返回结果 or 退出搜索空间
+    }
+    for (const child of root.children) {
+        dfs(child)
+    }
+}
+```
+而几乎所有的题目几乎都是二叉树，因此下面这个模板更常见。
+```javascript
+function dfs(root) {
+    if (满足特定条件）{
+        // 返回结果 or 退出搜索空间
+    }
+    dfs(root.left)
+    dfs(root.right)
+}
+```
+不同的题目除了 if (满足特定条件)部分不同之外，还会写一些特有的逻辑，这些逻辑写的位置不同，效果也截然不同。
+
+前序遍历和后序遍历是最常见的两种 DFS 方式。中序遍历一般用于平衡二叉树。
+```javascript
+// preorder
+function dfs(root) {
+    if (满足特定条件）{
+        // 返回结果 or 退出搜索空间
+    }
+    // 主要逻辑
+    dfs(root.left)
+    dfs(root.right)
+}
+// postorder
+function dfs(root) {
+    if (满足特定条件）{
+        // 返回结果 or 退出搜索空间
+    }
+    dfs(root.left)
+    dfs(root.right)
+    // 主要逻辑
+}
+```
+有时候前后都有，关注主逻辑即可。
+### 广度优先遍历
+层次遍历和 BFS 是**完全不一样**的东西。
+
+层次遍历就是一层层遍历树，按照树的层次顺序进行访问。**BFS 的核心在于求最短问题时候可以提前终止，这才是它的核心价值，层次遍历是一种不需要提前终止的 BFS 的副产物**。这个提前终止不同于 DFS 的剪枝的提前终止，而是找到最近目标的提前终止。比如我要找距离最近的目标节点，BFS 找到目标节点就可以直接返回。而 DFS 要穷举所有可能才能找到最近的，这才是 BFS 的核心价值。实际上，我们也可以使用 DFS 实现层次遍历的效果，借助于递归，代码甚至会更简单。
+
+> 如果找到任意一个满足条件的节点就好了，不必最近的，那么 DFS 和 BFS 没有太大差别。同时为了书写简单，我通常会选择 DFS
 # 8. Sets and Maps in the Standard Library
 
 The STL containers vector and list are inefficient for searching.
