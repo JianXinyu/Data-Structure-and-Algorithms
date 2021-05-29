@@ -35,6 +35,7 @@ for c in s:
  [706\. 设计哈希映射](https://leetcode-cn.com/problems/design-hashmap/solution/li-kou-jia-jia-zhe-ti-ye-ting-fei-mo-shu-s54w/)
  
  # 题目类型
+ 哈希表的一个重要作用就是空间换时间，当你想出暴力算法，可以考虑是否可用哈希表来优化。哈希表优化时间复杂度算是最最简单的一种优化手段了。相比单调栈，二分等简单很多。
  ## 统计
  统计 xx 出现次数/频率
  若已知数据范围较小且比较连续，也可以用数组来实现
