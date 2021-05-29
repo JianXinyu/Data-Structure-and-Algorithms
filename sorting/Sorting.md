@@ -1,5 +1,7 @@
 $\lfloor a \rfloor$ 向下取整
 $\lceil a \rceil$ 向上取整
+
+any general sorting algorithm that uses only comparisons requires $N log N$ time in the worst case
 # Merge Sort
 - $O(N log N)$ worst-case running time, and the number of comparisons used is **nearly optimal**. 
 -  a classic **divide-and-conquer recursive** algorithm.
@@ -183,3 +185,8 @@ median3和quicksort都要修改
 ```
 Question: 
 `swap(nums[j], nums[l+1]);`这里选$j- or- i$有区别吗? 应该是没有区别的
+
+# Linear-Time sort: Bucket Sort, Radix Sort
+## Bucket sort
+extra information needed: the input must consists of only positive integers smaller than M.
+
