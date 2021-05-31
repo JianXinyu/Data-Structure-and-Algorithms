@@ -465,11 +465,92 @@ function dfs(root) {
 ```
 有时候前后都有，关注主逻辑即可。
 ### 广度优先遍历
+![[breadth-first-search.gif | +side -med]]
+BFS 也是图论中算法的一种，不同于 DFS， BFS 采用横向搜索的方式，在数据结构上通常采用队列结构。 注意，DFS 我们借助的是栈来完成，而这里借助的是队列。BFS 比较适合找**最短距离/路径**和**某一个距离的目标**。比如"给定一个二叉树，在树的最后一行找到最左边的值。"，此题是力扣 513 的原题。这不就是求距离根节点**最远距离**的目标么？ 一个 BFS 模板就解决了。
+
+**算法流程**
+1.  首先将根节点放入队列中。
+2.  从队列中取出第一个节点，并检验它是否为目标。
+    -   如果找到目标，则结束搜索并回传结果。
+    -   否则将它所有尚未检验过的直接子节点加入队列中。
+3.  若队列为空，表示整张图都检查过了——亦即图中没有欲搜索的目标。结束搜索并回传“找不到目标”。
+4.  重复步骤 2。
+```javascript
+const visited = {}
+function bfs() {
+    let q = new Queue()
+    q.push(初始状态)
+    while(q.length) {
+        let i = q.pop()
+        if (visited[i]) continue
+        if (i 是我们要找的目标) return 结果
+        for (i的可抵达状态j) {
+            if (j 合法) {
+                q.push(j)
+            }
+        }
+    }
+    return 没找到
+}
+```
+
+BFS 比较适合找**最短距离/路径**和**某一个距离的目标**。根据题目，BFS主要有两类:
+- 如果要求的是最短距离/路径，走到第几步的信息可以忽略。此时无需，这个时候可是用不标记层的目标
+- 如果要求和某个节点的距离等于 k 的所有节点，需要记录第几步的信息
+
+```python
+// 标记层
+def bfs(k):
+	# 使用双端队列，而不是数组。因为数组从头部删除元素的时间复杂度为 N，双端队列的底层实现其实是链表。
+	queue = collections.deque([root])
+	# 记录层数
+	steps = 0
+	# 需要返回的节点
+	ans = []
+	# 队列不空，生命不止！
+	while queue:
+		size = len(queue)
+		# 遍历当前层的所有节点
+		for _ in range(size):
+			node = queue.popleft()
+			if (step == k) ans.append(node)
+			if node.right:
+				queue.append(node.right)
+			if node.left:
+				queue.append(node.left)
+		# 遍历完当前层所有的节点后 steps + 1
+		steps += 1
+	return ans		
+	
+// 不标记层
+def bfs(k):
+	# 使用双端队列，而不是数组。因为数组从头部删除元素的时间复杂度为 N，双端队列的底层实现其实是链表。
+	queue = collections.deque([root])
+	# 队列不空，生命不止！
+	while queue:
+		node = queue.popleft()
+		# 由于没有记录 steps，因此我们肯定是不需要根据层的信息去判断的。否则就用带层的模板了。
+		if (node 是我们要找到的) return node
+		if node.right:
+			queue.append(node.right)
+		if node.left:
+			queue.append(node.left)
+	return -1
+```
+
+
+
 层次遍历和 BFS 是**完全不一样**的东西。
 
 层次遍历就是一层层遍历树，按照树的层次顺序进行访问。**BFS 的核心在于求最短问题时候可以提前终止，这才是它的核心价值，层次遍历是一种不需要提前终止的 BFS 的副产物**。这个提前终止不同于 DFS 的剪枝的提前终止，而是找到最近目标的提前终止。比如我要找距离最近的目标节点，BFS 找到目标节点就可以直接返回。而 DFS 要穷举所有可能才能找到最近的，这才是 BFS 的核心价值。实际上，我们也可以使用 DFS 实现层次遍历的效果，借助于递归，代码甚至会更简单。
 
 > 如果找到任意一个满足条件的节点就好了，不必最近的，那么 DFS 和 BFS 没有太大差别。同时为了书写简单，我通常会选择 DFS
+
+## 三种题型
+搜索类的题目最多，其次是构建类，最后是修改类。
+### 搜索类
+搜索类只有两种解法: DFS, BFS。所有搜索类的题目只要把握三个核心点：**开始点**，**结束点** 和 **目标**。
+
 # 8. Sets and Maps in the Standard Library
 
 The STL containers vector and list are inefficient for searching.
