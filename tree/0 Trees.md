@@ -550,7 +550,43 @@ def bfs(k):
 搜索类的题目最多，其次是构建类，最后是修改类。
 ### 搜索类
 搜索类只有两种解法: DFS, BFS。所有搜索类的题目只要把握三个核心点：**开始点**，**结束点** 和 **目标**。
+#### DFS搜索
+基本套路: 从入口开始做 dfs，然后在 dfs 内部判断是否是结束点，这个结束点通常是**叶子节点**或**空节点**[[#边界]]。返回值有两种情况：
+- 基本值（比如数字）, 直接返回或者使用一个全局变量记录即可
+- 数组, [[#参数扩展]]
+```python
+# 其中 path 是树的路径， 如果需要就带上，不需要就不带
+def dfs(root, path):
+    # 空节点
+    if not root: return
+    # 叶子节点
+    if not root.left and not root.right: return
+    path.append(root)
+    # 逻辑可以写这里，此时是前序遍历
+    dfs(root.left)
+    dfs(root.right)
+    # 需要弹出，不然会错误计算。
+    # 比如对于如下树：
+    """
+              5
+             / \
+            4   8
+           /   / \
+          11  13  4
+         /  \    / \
+        7    2  5   1
+    """
+    # 如果不 pop，那么 5 -> 4 -> 11 -> 2 这条路径会变成 5 -> 4 -> 11 -> 7 -> 2，其 7 被错误地添加到了 path
 
+    path.pop()
+    # 逻辑也可以写这里，此时是后序遍历
+
+    return 你想返回的数据
+```
+
+## 七个技巧
+### 边界
+### 参数扩展
 # 8. Sets and Maps in the Standard Library
 
 The STL containers vector and list are inefficient for searching.
