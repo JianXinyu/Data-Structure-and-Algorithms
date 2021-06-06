@@ -210,7 +210,7 @@ N 为数组长度
 -   [739.每日温度](https://github.com/azl397985856/leetcode/blob/master/daily/2019-06-06.md)
 - [[84. Largest Rectangle in Histogram]]
 - [[768. Max Chunks To Make Sorted II]]
-- [[239. Sliding Window Maximum]]
+- [[LeetCode/Array Stack Queue/239. Sliding Window Maximum]]
 
 #### 拓展
 如何寻找左侧第二个比当前元素大的元素位置？
