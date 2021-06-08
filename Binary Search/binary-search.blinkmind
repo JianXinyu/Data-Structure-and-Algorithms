@@ -1,0 +1,289 @@
+{
+  "rootTopicKey": "ede74f5c-e789-4c7c-a2a1-20487d32fe84",
+  "editorRootTopicKey": "ede74f5c-e789-4c7c-a2a1-20487d32fe84",
+  "focusKey": "25a644f6-7507-46ab-81ba-129840d89b40",
+  "extData": {},
+  "topics": [
+    {
+      "key": "ede74f5c-e789-4c7c-a2a1-20487d32fe84",
+      "parentKey": null,
+      "subKeys": [
+        "d3b61ec8-1559-489a-a100-be242f778cdf",
+        "fc84e556-51d2-433c-abed-acd00e7a808b",
+        "bd0126f4-49fb-4e2e-b905-5f8f5bd34945",
+        "f77544db-f6b3-4a19-be05-bd202d2e143a"
+      ],
+      "collapse": false,
+      "style": null,
+      "blocks": [
+        {
+          "type": "CONTENT",
+          "data": "二分"
+        },
+        {
+          "type": "DESC",
+          "data": "1439 ，778，以及周赛一道题都是二分\\+dfs套路. 其实也是能力检测的一种\n\n658 是个好的二分\n# xxxxx1xxxxx2xxxxx3xxxxx1xxxxx2   二分问题  911\n\n\n单调栈与二分 [https://leetcode\\-cn.com/problems/shortest\\-subarray\\-with\\-sum\\-at\\-least\\-k/](https://leetcode-cn.com/problems/shortest-subarray-with-sum-at-least-k/)\n\n二分法之所以比较简单，是因为我们一下子不能看出来答案。是多少，但是我如果问你，但是x吗？那你就很容易知道x对还是不对，这个代码就容易些。即使我们就可以设计出良好的算法。\n\n二分查找是一个非常实用的算法。它的基本思想是，对于一个在某种意义上有序的数组，这个数组的前半部分满足某一条件，而后半部分不满足这一条件，我们不断选择区间中点，判断其是否满足条件，从而将区间不断折半，最后就可以找到数组中的转折点，也即满足这一条件的最后一个点，或不满足这个条件的第一个点。因为区间的大小每次都缩小为原来的一半，所以二分查找的复杂度是O\\(logN\\)O\\(logN\\)。\n\n二分查找在CP中的一个常见应用是二分答案。在这一类题目中，我们往往需要求出满足条件的最大值或最小值。如果这一取值和条件的成立与否之间满足有序性，我们就可以通过对整个定义域进行二分查找，来找到我们需要的最值。\n\n\n有姐空间这个概念可以引出含很多东西，比如说你可以引出来二分发的时候及时瓦解攻坚，直接发出一半线性的，还是直接摆出一个也是这样的。\n然后还给引出来解空间是多大的时候不会超时，只是就体现到了解放店大小和复杂度的关系，然后超时，那其实是我们会规定一个时间，通常这个规定时间是多少，这个是比较确定的。所以说根据这个机器的性能以及通常这个时间多少比较固定，所以我们只要锁定时间复杂度就够了，时间辅导的话规模就够了，就能够大概的确定一个算法会不会超时。\n\n前缀和与二分 \n5643\\. 将数组分成三个子数组的方案数 [https://leetcode\\-cn.com/problems/ways\\-to\\-split\\-array\\-into\\-three\\-subarrays/](https://leetcode-cn.com/problems/ways-to-split-array-into-three-subarrays/)\n[https://leetcode\\-cn.com/problems/shortest\\-subarray\\-with\\-sum\\-at\\-least\\-k/](https://leetcode-cn.com/problems/shortest-subarray-with-sum-at-least-k/)  ，[https://binarysearch.com/problems/Maximize\\-the\\-Minimum\\-Value\\-After\\-K\\-Sublist\\-Increments](https://binarysearch.com/problems/Maximize-the-Minimum-Value-After-K-Sublist-Increments)，[https://leetcode\\-cn.com/problems/max\\-sum\\-of\\-rectangle\\-no\\-larger\\-than\\-k/](https://leetcode-cn.com/problems/max-sum-of-rectangle-no-larger-than-k/)\n\n能力检测二分  possible [https://binarysearch.com/problems/K\\-Distinct\\-Groups](https://binarysearch.com/problems/K-Distinct-Groups)  [https://binarysearch.com/problems/Square\\-Submatrix\\-Sum\\-Below\\-Target](https://binarysearch.com/problems/Square-Submatrix-Sum-Below-Target)   其实香蕉也是能力检测\n\n计数二分 [https://leetcode\\-cn.com/problems/preimage\\-size\\-of\\-factorial\\-zeroes\\-function/](https://leetcode-cn.com/problems/preimage-size-of-factorial-zeroes-function/)  [https://binarysearch.com/problems/Long\\-Distance](https://binarysearch.com/problems/Long-Distance)\n\n差转正负二分 （binary\\-search 还有一个简单难度的二分就是这种类型） [https://binarysearch.com/problems/Largest\\-Average\\-of\\-Sublist\\-with\\-Length\\-at\\-Least\\-K/editorials/1581111](https://binarysearch.com/problems/Largest-Average-of-Sublist-with-Length-at-Least-K/editorials/1581111)   这道题同时也是一个精度二分。\n\n\n```python\n    l, r = min(A), max(A)\n    while r - l > 10 ** -5:\n        mid = (l + r) / 2\n        if possible(mid):\n            l = mid\n        else:\n            r = mid\n\n    return r\n\n```\n完整代码：\n\n```python\nclass Solution:\n    def solve(self, A, k):\n        def possible(mid):\n            pres = [0]\n            lowest = 0\n            for i, a in enumerate(A):\n                pres.append(pres[-1] + a - mid)\n                if i - k + 1 >= 0:\n                    lowest = min(lowest, pres[i - k + 1])\n                if i - k + 1 >= 0 and pres[i + 1] - lowest > 0:\n                    return True\n            return False\n\n        l, r = min(A), max(A)\n\n        while r - l > 10 ** -5:\n            mid = (l + r) / 2\n            if possible(mid):\n                l = mid\n            else:\n                r = mid\n        return r\n\n```\n\n\n线段树与二分， 很多线段树的题目都可用二分来计算。 比如 [https://leetcode\\-cn.com/problems/online\\-majority\\-element\\-in\\-subarray/discuss/366995/Python3\\-Binary\\-Search\\-Without\\-Using\\-Probabilities/](https://leetcode-cn.com/problems/online-majority-element-in-subarray/discuss/366995/Python3-Binary-Search-Without-Using-Probabilities/) （其实这道题本质还是维护有序序列，从而二分）"
+        }
+      ]
+    },
+    {
+      "key": "253b6240-ed2b-476d-bf98-be50ad9234da",
+      "parentKey": "f77544db-f6b3-4a19-be05-bd202d2e143a",
+      "subKeys": [],
+      "collapse": true,
+      "style": null,
+      "blocks": [
+        {
+          "type": "CONTENT",
+          "data": "极值"
+        }
+      ]
+    },
+    {
+      "key": "25a644f6-7507-46ab-81ba-129840d89b40",
+      "parentKey": "fc84e556-51d2-433c-abed-acd00e7a808b",
+      "subKeys": [],
+      "collapse": true,
+      "style": null,
+      "blocks": [
+        {
+          "type": "CONTENT",
+          "data": "计数二分"
+        },
+        {
+          "type": "DESC",
+          "data": "[https://leetcode\\-cn.com/problems/kth\\-smallest\\-number\\-in\\-multiplication\\-table/](https://leetcode-cn.com/problems/kth-smallest-number-in-multiplication-table/)\n\n一般都是求第 k xxx\n比如 [https://binarysearch.com/problems/Kth\\-Pair\\-Distance](https://binarysearch.com/problems/Kth-Pair-Distance)  其实计数和能力检测差不多，计数只是具体的错失。能力检测是思维模型。\n\n区间二分： [https://binarysearch.com/problems/Virtual\\-Array](https://binarysearch.com/problems/Virtual-Array)  [https://github.com/azl397985856/leetcode/blob/master/problems/715.range\\-module.md](https://github.com/azl397985856/leetcode/blob/master/problems/715.range-module.md)"
+        }
+      ]
+    },
+    {
+      "key": "d3b61ec8-1559-489a-a100-be242f778cdf",
+      "parentKey": "ede74f5c-e789-4c7c-a2a1-20487d32fe84",
+      "subKeys": [
+        "1f42eaf0-47aa-416f-a5c8-ec0341dbf84c",
+        "fd9b0dcc-a8ee-486f-b5d8-3748f29bfe17"
+      ],
+      "collapse": false,
+      "style": null,
+      "blocks": [
+        {
+          "type": "CONTENT",
+          "data": "两种类型"
+        }
+      ]
+    },
+    {
+      "key": "12f35b3d-c66e-447e-9d57-b151b963dd02",
+      "parentKey": "fc84e556-51d2-433c-abed-acd00e7a808b",
+      "subKeys": [],
+      "collapse": true,
+      "style": null,
+      "blocks": [
+        {
+          "type": "CONTENT",
+          "data": "能力检测二分"
+        },
+        {
+          "type": "DESC",
+          "data": "[https://binarysearch.com/problems/Skydivers](https://binarysearch.com/problems/Skydivers)"
+        }
+      ]
+    },
+    {
+      "key": "f77544db-f6b3-4a19-be05-bd202d2e143a",
+      "parentKey": "ede74f5c-e789-4c7c-a2a1-20487d32fe84",
+      "subKeys": [
+        "31e1be09-60fe-4438-bd72-e016dfe095bb",
+        "7037d4a0-52fb-4212-8688-a3d7344b1115",
+        "253b6240-ed2b-476d-bf98-be50ad9234da"
+      ],
+      "collapse": false,
+      "style": null,
+      "blocks": [
+        {
+          "type": "CONTENT",
+          "data": "三个基本概念"
+        }
+      ]
+    },
+    {
+      "key": "6b27f627-f859-4147-a57f-c43514440c71",
+      "parentKey": "fc84e556-51d2-433c-abed-acd00e7a808b",
+      "subKeys": [],
+      "collapse": true,
+      "style": null,
+      "blocks": [
+        {
+          "type": "CONTENT",
+          "data": "插入排序二分"
+        }
+      ]
+    },
+    {
+      "key": "1d55667a-f49a-4bb1-b0cb-cadd52686641",
+      "parentKey": "fc84e556-51d2-433c-abed-acd00e7a808b",
+      "subKeys": [],
+      "collapse": true,
+      "style": null,
+      "blocks": [
+        {
+          "type": "CONTENT",
+          "data": "前缀和二分"
+        },
+        {
+          "type": "DESC",
+          "data": "非负数组前缀和或者非正数组前缀和，总之要单调"
+        }
+      ]
+    },
+    {
+      "key": "9ed06ba5-1aec-457b-901c-51918645c830",
+      "parentKey": "bd0126f4-49fb-4e2e-b905-5f8f5bd34945",
+      "subKeys": [],
+      "collapse": true,
+      "style": null,
+      "blocks": [
+        {
+          "type": "CONTENT",
+          "data": "折半"
+        }
+      ]
+    },
+    {
+      "key": "fd9b0dcc-a8ee-486f-b5d8-3748f29bfe17",
+      "parentKey": "d3b61ec8-1559-489a-a100-be242f778cdf",
+      "subKeys": [],
+      "collapse": true,
+      "style": null,
+      "blocks": [
+        {
+          "type": "CONTENT",
+          "data": "最右插入"
+        }
+      ]
+    },
+    {
+      "key": "1f42eaf0-47aa-416f-a5c8-ec0341dbf84c",
+      "parentKey": "d3b61ec8-1559-489a-a100-be242f778cdf",
+      "subKeys": [],
+      "collapse": true,
+      "style": null,
+      "blocks": [
+        {
+          "type": "CONTENT",
+          "data": "最左插入"
+        }
+      ]
+    },
+    {
+      "key": "7037d4a0-52fb-4212-8688-a3d7344b1115",
+      "parentKey": "f77544db-f6b3-4a19-be05-bd202d2e143a",
+      "subKeys": [],
+      "collapse": true,
+      "style": null,
+      "blocks": [
+        {
+          "type": "CONTENT",
+          "data": "序列有序"
+        }
+      ]
+    },
+    {
+      "key": "bd0126f4-49fb-4e2e-b905-5f8f5bd34945",
+      "parentKey": "ede74f5c-e789-4c7c-a2a1-20487d32fe84",
+      "subKeys": [
+        "9ed06ba5-1aec-457b-901c-51918645c830"
+      ],
+      "collapse": false,
+      "style": null,
+      "blocks": [
+        {
+          "type": "CONTENT",
+          "data": "一个中心"
+        },
+        {
+          "type": "DESC",
+          "data": "折半\n"
+        }
+      ]
+    },
+    {
+      "key": "31e1be09-60fe-4438-bd72-e016dfe095bb",
+      "parentKey": "f77544db-f6b3-4a19-be05-bd202d2e143a",
+      "subKeys": [],
+      "collapse": true,
+      "style": null,
+      "blocks": [
+        {
+          "type": "CONTENT",
+          "data": "解空间"
+        }
+      ]
+    },
+    {
+      "key": "fc84e556-51d2-433c-abed-acd00e7a808b",
+      "parentKey": "ede74f5c-e789-4c7c-a2a1-20487d32fe84",
+      "subKeys": [
+        "12f35b3d-c66e-447e-9d57-b151b963dd02",
+        "1d55667a-f49a-4bb1-b0cb-cadd52686641",
+        "6b27f627-f859-4147-a57f-c43514440c71",
+        "25a644f6-7507-46ab-81ba-129840d89b40"
+      ],
+      "collapse": false,
+      "style": null,
+      "blocks": [
+        {
+          "type": "CONTENT",
+          "data": "四大应用"
+        }
+      ]
+    }
+  ],
+  "config": {
+    "readOnly": false,
+    "allowUndo": true,
+    "layoutDir": 2,
+    "theme": {
+      "name": "default",
+      "randomColor": true,
+      "background": "rgb(57,60,65)",
+      "highlightColor": "#50C9CE",
+      "marginH": 60,
+      "marginV": 20,
+      "contentStyle": {
+        "lineHeight": "1.5",
+        "fontSize": "16px"
+      },
+      "linkStyle": {
+        "lineRadius": 5,
+        "lineType": "curve",
+        "lineWidth": "3px"
+      },
+      "rootTopic": {
+        "contentStyle": {
+          "fontSize": "36px"
+        },
+        "subLinkStyle": {
+          "lineType": "curve",
+          "lineWidth": "3px"
+        }
+      },
+      "primaryTopic": {
+        "contentStyle": {
+          "fontSize": "24px"
+        },
+        "subLinkStyle": {
+          "lineType": "curve",
+          "lineWidth": "3px"
+        }
+      },
+      "normalTopic": {
+        "subLinkStyle": {
+          "lineType": "curve",
+          "lineWidth": "3px"
+        }
+      }
+    }
+  },
+  "formatVersion": "0.0"
+}
