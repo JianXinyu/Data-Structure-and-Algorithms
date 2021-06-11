@@ -178,6 +178,14 @@ def bisect_right(nums, target):
     return r
 ```
 
+
+最左插入和最右插入可以结合使用从而求出**有序序列**中和 target 相等的数的个数
+```python
+nums = \[1,2,2,2,3,4\]  
+i = bisect.bisect\_left(nums, 2) # get 1  
+j = bisect.bisect\_right(nums, 2) # get 4  
+# j - i 就是 nums 中 2 的个数
+```
 #### 小结
 对于二分题目首先要明确解空间，然后根据一定条件（通常是和中间值比较），舍弃其中一半的解。大家可以先从查找满足条件的值的二分入手，进而学习最左和最右二分。同时大家只需要掌握最左和最右二分即可，因为后者功能大于前者。
 
