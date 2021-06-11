@@ -48,7 +48,6 @@ double solve(vector<int>& nums) {
     float l = 0, r = static_cast<float>(nums.back() - nums[0]);
     for(int i = 1; i < 40; ++i){
         float mid = (l+r) / 2;
-        printf("%f\n", mid);
         if(possible(mid, nums))
             r = mid;
         else
@@ -61,3 +60,5 @@ double solve(vector<int>& nums) {
 **Complexity Analysis:**
 T: sort $O(nlogn)$, possible用到了`lower_bound()`，其实质为二分查找，因此复杂度是$O(logn)$，迭代i次，总复杂度为$O(nlogn + ilogn)$
 S: O(1)
+
+[[475. Heaters]]
