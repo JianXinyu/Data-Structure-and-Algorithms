@@ -1,3 +1,47 @@
+# The List ADT
+## Implementation
+### Array
+### Linked list
+
+## `vector` and `list` in the STL
+- `vector`: a growable array implementation of the List ADT. internally stores an array, allows the array to grow by doubling its capacity when needed 
+	- Pros: indexable in constant time
+	- Cons: insertion of new items and removal of existing items  are expensive==exact complexity?==, unless the changes are made at the end of the `vector`.
+- `list`: a doubly linked list implementation of the List ADT
+	- Pros: insertion of new items and removal of existing items are cheap, provided that the position of the changes is know
+	- Cons: isn't easily indexable
+
+Both `vector` and `list` are inefficient for searches.
+list refers to the more general List ADT.
+
+## Vector
+a first-class type, unlike primitive arrays
+
+>- The array is simply a pointer variable to a block of memory; the actual array size must be maintained separately by the programmer.
+>- The block of memory can be allocated via new[] but then must be freed via delete[].
+>- The block of memory cannot be resized (but a new, presumably larger block can be
+
+To avoid ambiguities with the `vector` class in STL, we will name our class template *Vector*. The *Vector* will:
+1. maintain the primitive array (via a pointer variable to the block of allocated memory), the array **capacity**, and the current number of items stored in the *Vector*.
+2. implement the Big-Five to provide:
+	- deep-copy semantics for the copy constructor and operator=, 
+	- a destructor to reclaim the primitive array.
+	- move semantics.
+3. provide 
+	1. a resize routine that will change (generally to a larger number) the size of the *Vector* 
+	2. a reserve routine that will change (generally to a larger number) the capacity of the *Vector*. The capacity is changed by obtaining a new block of memory for the primitive array, copying the old block into the new block, and reclaiming the old block.[^sizecapacity]
+4. provide an implementation of [[Using matrices#Operator]] \[ \](both an accessor and mutator version).
+5. provide basic routines, such as **size**, **empty**, **clear** (which are typically one-liners), **back**, **pop_back**, and **push_back**. The push_back routine will call reserve if the size and capacity are same.
+6. provide support for the nested types **iterator** and **const_iterator**, and associated **begin** and **end** methods.
+
+[code](./code/Vector.h)
+don't quiet understand copy constructor and operator = 
+
+Implementation of the *copy assignment operator=* using a *copy constructor* and *swap*, while simple, is certainly <u>not the most efficient method</u>, especially in the case where both Vectors have the same size. In that special case, which can be tested for, it can be more efficient to simply copy each element one by one using *Object’s operator=*.
+
+[^sizecapacity]:  **Size** is the number of items **currently** in the vector. **Capacity** how many items can be fit in the vector before it is "full". Once full, adding new items will result in a new, larger block of memory being allocated and the existing items being copied to it
+
+-------------------------
 # Stack
 栈的常用操作: 
 - push. O(1)
