@@ -1,2 +1,0 @@
-C:\mingw64\bin\ar.exe qc libdivide_and_conquer.a  CMakeFiles/divide_and_conquer.dir/closest_points.cpp.obj CMakeFiles/divide_and_conquer.dir/153FindMinimuminRotatedSortedArray.cpp.obj
-C:\mingw64\bin\ranlib.exe libdivide_and_conquer.a
