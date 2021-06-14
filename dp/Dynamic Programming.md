@@ -1,3 +1,6 @@
+[[837. New 21 Game]] dp + sliding window
+
+
 题目分类：[Link](https://docs.google.com/spreadsheets/d/1yRCOJ8KysRVkq0O9IlDriT01tC6lzPapmFO4PCmDJQA/edit#gid=1674276502)
 
 # 1-D

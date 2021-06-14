@@ -1,0 +1,38 @@
+#IncludeRegexLine: ^[ 	]*[#%][ 	]*(include|import)[ 	]*[<"]([^">]+)([">])
+
+#IncludeRegexScan: ^.*$
+
+#IncludeRegexComplain: ^$
+
+#IncludeRegexTransform: 
+
+../divide_and_conquer/divide_and_conquer.h
+algorithm
+-
+vector
+-
+
+../sorting/sorting.h
+
+A:/Programming/DataStructure/LeetCode/Play ground/main.cpp
+iostream
+-
+methods.h
+A:/Programming/DataStructure/LeetCode/Play ground/methods.h
+nodes.h
+A:/Programming/DataStructure/LeetCode/Play ground/nodes.h
+memory
+-
+new
+-
+
+A:/Programming/DataStructure/LeetCode/Play ground/methods.h
+divide_and_conquer.h
+A:/Programming/DataStructure/LeetCode/Play ground/divide_and_conquer.h
+sorting.h
+A:/Programming/DataStructure/LeetCode/Play ground/sorting.h
+
+A:/Programming/DataStructure/LeetCode/Play ground/nodes.h
+vector
+-
+
