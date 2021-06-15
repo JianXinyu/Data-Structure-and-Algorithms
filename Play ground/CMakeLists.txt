@@ -7,7 +7,7 @@ add_subdirectory(sorting)
 
 add_executable(${PROJECT_NAME} main.cpp)
 
-target_compile_options(${PROJECT_NAME} PUBLIC -Wall -Wextra -pedantic -Werror)
+target_compile_options(${PROJECT_NAME} PUBLIC -Wextra -pedantic -Werror -Wno-unused-variable)
 
 target_include_directories(${PROJECT_NAME}
         PUBLIC
