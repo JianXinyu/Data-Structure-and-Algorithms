@@ -6,6 +6,19 @@
 #include <windows.h> // to use windows time
 #include <fstream>
 
+template<typename T>
+ostream& operator << (ostream& o, const vector<T>& v)
+{
+    o << "[";
+    for (const auto& x : v)
+    {
+        o << " " << x;
+    }
+    o << " ]";
+
+    return o;
+}
+
 //helper function used in quicksort
 template<typename Comparator>
 void insertionSort(std::vector<Comparator> & a, int left, int right)

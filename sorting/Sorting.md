@@ -2,6 +2,24 @@ $\lfloor a \rfloor$ 向下取整
 $\lceil a \rceil$ 向上取整
 
 any general sorting algorithm that uses only comparisons requires $N log N$ time in the worst case
+
+# 排序算法的稳定性
+假定在待排序的记录序列中，存在多个具有相同的关键字的记录，若经过排序，这些记录的相对次序保持不变，即在原序列中，A1=A2，且A1在A2之前，而在排序后的序列中，A1仍在A2之前，则称这种排序算法是稳定的；否则称为不稳定的。
+
+稳定也可以理解为一切皆在掌握中,元素的位置处在你在控制中.而不稳定算法有时就有点碰运气,随机的成分.当两元素相等时它们的位置在排序后可能仍然相同.但也可能不同.是未可知的.
+
+不稳定排序算法：
+- heap sort
+- quick sort
+- 希尔排序
+- 直接选择排序
+
+稳定排序算法：
+- 基数排序
+- bubble sort
+- 直接插入排序
+- 折半插入排序
+- 归并排序
 # Merge Sort
 - $O(N log N)$ worst-case running time, and the number of comparisons used is **nearly optimal**. 
 -  a classic **divide-and-conquer recursive** algorithm.
@@ -75,6 +93,50 @@ const Comparable & median3( std::vector<Comparable> & a, int left, int right)
 }
 ```
 ### heart of the quicksort routine
+在不考虑用其他排序算法处理小数组的情况下:
+```cpp
+
+template <typename Comparable>
+void quickSort2( std::vector<Comparable> & a, int left, int right)
+{
+        if(left >= right)
+            return;
+
+        if(left == right - 1){
+            if(a[left] > a[right])
+                std::swap(a[left], a[right]);
+            return;
+        }
+
+        const Comparable &pivot = median3(a, left, right);
+        printf("left: %d, right: %d, pivot: %d   ", left, right, pivot);
+        /**begin partitioning**/
+        int i = left, j = right - 1;
+
+        for (;;) {
+            //move i right, skipping over elements that are smaller than the pivot.
+            while (a[++i] < pivot) {}
+            //move j left, skipping over elements that are larger than the pivot.
+            while (pivot < a[--j]) {}
+
+            // When i and j have stopped, i is pointing at a large element
+            // and j is pointing at a small element.
+            // if i is to the left of j, those elements are swapped.
+            if (i < j)
+                std::swap(a[i], a[j]);
+                // repeat the above process until i and j cross
+            else
+                break;
+        }
+        std::swap(a[i], a[right - 1]); // restore pivot
+        std:: cout << a << std::endl;
+        /**end partitioning**/
+        quickSort2(a, left, i - 1); // sort smaller group
+        quickSort2(a, i + 1, right); // sort larger group
+
+}
+```
+考虑用其他排序算法处理小数组: 
 ```cpp
 template <typename Comparable>
 void quicksort( std::vector<Comparable> & a, int left, int right)
