@@ -1,6 +1,8 @@
 - LCS（最长公众子序列）- 典型的二维动态规划问题
 	- [[1143. Longest Common Subsequence]]
 
+状压 DP [[464. Can I Win]]
+数位 dp
 
 [[837. New 21 Game]] dp + sliding window
 
