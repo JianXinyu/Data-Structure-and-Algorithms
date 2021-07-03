@@ -8,3 +8,7 @@ dp[i][j] = max(dp[i-1][j], dp[i][j-w[i]] + v[i])
 ```
 
 https://zxi.mytechroad.com/blog/tag/knapsack/
+
+
+# 完全背包问题
+[[322. Coin Change]]
