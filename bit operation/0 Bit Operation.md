@@ -15,7 +15,7 @@ a = a^b
 ```
 
 [[136. Single Number]]
-[[]]
+
 [[260. Single Number III]]
 ## AND
 `&`
@@ -58,6 +58,8 @@ a = a^b
 > 当 n == 31 时，程序可能有问题。那么会有什么问题呢？
 
 int的范围$-2^{31}~2^{31}-1$
+
+[[137. Single Number II]]
 ### 状态压缩
 
 将状态进行压缩，可使用位来模拟。实际上使用状态压缩和不使用压缩的「思路一模一样，只是 API 不一样」罢了。这部分主要考察大家灵活使用位运算来解决或者降低时空复杂度。
@@ -102,79 +104,10 @@ int的范围$-2^{31}~2^{31}-1$
 位运算的题目，首先要知道的就是各种位运算有哪些，对应的功能以及性质。很多题目的考点基本都是围绕性质展开。另外一种题目的考点是状态压缩，大大减少时间和空间复杂度。使用位运算的状态压缩一点都不神秘，只是 api 不一样罢了。如果你不会，只能说明对位运算 api 不熟悉，多用几次其实就好了。
 
 
-# 位运算
-
-我这里总结了几道位运算的题目分享给大家，分别是 136 和 137， 260 和 645， 总共加起来四道题。 四道题全部都是位运算的套路，如果你想练习位运算的话，不要错过哦～～
-
-## 136. 只出现一次的数字 1
-
-题目大意是除了一个数字出现一次，其他都出现了两次，让我们找到出现一次的数。我们执行一次全员异或即可。
-
-```python
-class Solution:
-    def singleNumber(self, nums: List[int]) -> int:
-        single_number = 0
-        for num in nums:
-            single_number ^= num
-        return single_number
-```
-
-**_复杂度分析_**
-
-- 时间复杂度：$O(N)$，其中 N 为数组长度。
-- 空间复杂度：$O(1)$
-
-## 137. 只出现一次的数字 2
-
-题目大意是除了一个数字出现一次，其他都出现了三次，让我们找到出现一次的数。 灵活运用位运算是本题的关键。
-
-Python3:
-
-```python
-class Solution:
-    def singleNumber(self, nums: List[int]) -> int:
-        res = 0
-        for i in range(32):
-            cnt = 0  # 记录当前 bit 有多少个1
-            bit = 1 << i  # 记录当前要操作的 bit
-            for num in nums:
-                if num & bit != 0:
-                    cnt += 1
-            if cnt % 3 != 0:
-                # 不等于0说明唯一出现的数字在这个 bit 上是1
-                res |= bit
-
-        return res - 2 ** 32 if res > 2 ** 31 - 1 else res
-```
-
-- 为什么 Python 最后需要对返回值进行判断？
-
-如果不这么做的话测试用例是[-2,-2,1,1,-3,1,-3,-3,-4,-2] 的时候，就会输出 4294967292。 其原因在于 Python 是动态类型语言，在这种情况下其会将符号位置的 1 看成了值，而不是当作符号“负数”。 这是不对的。 正确答案应该是 - 4，-4 的二进制码是 1111...100，就变成 2^32-4=4294967292，解决办法就是 减去 2 \*\* 32 。
-
-> 之所以这样不会有问题的原因还在于题目限定的数组范围不会超过 2 \*\* 32
-
-JavaScript:
-
-```js
-var singleNumber = function (nums) {
-  let res = 0;
-  for (let i = 0; i < 32; i++) {
-    let cnt = 0;
-    let bit = 1 << i;
-    for (let j = 0; j < nums.length; j++) {
-      if (nums[j] & bit) cnt++;
-    }
-    if (cnt % 3 != 0) res = res | bit;
-  }
-  return res;
-};
-```
-
-**_复杂度分析_**
-
-- 时间复杂度：$O(N)$，其中 N 为数组长度。
-- 空间复杂度：$O(1)$
-
+-   [190. 颠倒二进制位](https://leetcode-cn.com/problems/reverse-bits/)（简单）
+-   [191. 位 1 的个数](https://leetcode-cn.com/problems/number-of-1-bits/)（简单）
+-   [338. 比特位计数](https://leetcode-cn.com/problems/counting-bits/)（中等）
+-   [1072. 按列翻转得到最大值等行数](https://leetcode-cn.com/problems/flip-columns-for-maximum-number-of-equal-rows/)（中等）
 ## 645. 错误的集合
 
 和上面的`137. 只出现一次的数字2`思路一样。这题没有限制空间复杂度，因此直接 hashmap 存储一下没问题。 不多说了，我们来看一种空间复杂度$O(1)$的解法。
