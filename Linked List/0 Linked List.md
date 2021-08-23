@@ -320,4 +320,13 @@ S: $O(1)$
 206. 反转链表
 234. 回文链表
 
+反转列表:
+[206. 反转链表](https://leetcode-cn.com/problems/reverse-linked-list/)  
+[92. 反转链表 II](https://leetcode-cn.com/problems/reverse-linked-list-ii/)  
+[25. K 个一组翻转链表](https://leetcode-cn.com/problems/reverse-nodes-in-k-group/)
+[206. 反转链表](https://leetcode-cn.com/problems/reverse-linked-list/)  
+[92. 反转链表 II](https://leetcode-cn.com/problems/reverse-linked-list-ii/)  
+[25. K 个一组翻转链表](https://leetcode-cn.com/problems/reverse-nodes-in-k-group/)
+
+---
 [^1]: https://mp.weixin.qq.com/s?__biz=MzI4MzUxNjI3OA==&mid=2247485582&idx=1&sn=eff845460e91be97026c937b229c2989&chksm=eb88c497dcff4d81e08ac30951b160f0083bc9fe5a2b64b8e1ea9e0988e14a9df2b56515f508&token=450700782&lang=zh_CN#rd

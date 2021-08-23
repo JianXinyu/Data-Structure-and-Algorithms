@@ -43,11 +43,13 @@ Implementation of the *copy assignment operator=* using a *copy constructor* and
 
 -------------------------
 # Stack
+LIFO(Last In First Out)
 栈的常用操作: 
 - push. O(1)
 - pop. O(1)
 - top
 - isEmpty
+
 实现：数组栈，链表栈
 
 应用：
@@ -57,14 +59,14 @@ Implementation of the *copy assignment operator=* using a *copy constructor* and
 - 单调栈用来寻找下一个更大（更小）元素
 
 题目推荐：
--   [394. 字符串解码](https://leetcode-cn.com/problems/decode-string/)
+-   [[394. Decode String]]
 -   [946. 验证栈序列](https://leetcode-cn.com/problems/validate-stack-sequences/)
 -   [1381. 设计一个支持增量操作的栈](https://leetcode-cn.com/problems/design-a-stack-with-increment-operation/)
 
 
 ### Postfix Expressions
 
-我们正常使用的数学计算式成为中缀表达式(infix expression)，比如 $1+2+3*4$ 。常见的科学计算器计算的结果都是15，因为考虑了运算优先级，相当于自动加上了括号。但是早期简单的计算器只会按顺序无脑计算，计算结果变成24。所以我们应想办法用顺序的表达式来实现这样的计算(evaluate)顺序：计算1+2的和记为A1，计算3*4记为A2，将A1+A2，最后将其和存在A1。据此我们将表达式写为：$1 \quad 2 + \quad 3 \quad 4 * +$ 。 这种表达式成为后缀表达式(postfix expression)，又称为Reverse Polish Notation(RPN)。
+我们正常使用的数学计算式成为中缀表达式(infix expression)，比如 $1+2+3*4$ 。常见的科学计算器计算的结果都是15，因为考虑了运算优先级，相当于自动加上了括号。但是早期简单的计算器只会按顺序无脑计算，计算结果变成24。所以我们应想办法用顺序的表达式来实现这样的计算(evaluate)顺序：计算1+2的和记为A1，计算3*4记为A2，将A1+A2，最后将其和存在A1。据此我们将表达式写为：$1\quad 2+\quad 3\quad 4 \* +$ 。 这种表达式成为后缀表达式(postfix expression)，又称为Reverse Polish Notation(RPN)。
 
 用Stack最容易evaluate RPN:
 - 看到数(operand)时，push into stack;
@@ -145,7 +147,7 @@ int main()
 
 ### Infix to Postfix Conversion
 stack不仅可以用来计算后缀表达式(evaluate a **postfix** expression)，也可以用来将中缀(**infix**)表达式转为后缀。
-为方便阐述，我们只考虑+、*。 
+为方便阐述，我们只考虑+、\*。 
 - infix expression: $a+b*c+(d*e+f)*g$
 - postfix expression: $a\quad b\quad c *  + d\quad e* f+g*+$
   （空格只用于区分不同的数）
@@ -153,10 +155,9 @@ stack不仅可以用来计算后缀表达式(evaluate a **postfix** expression)�
   1. 读到operand时，立即放入output
   2. 读到operator和左括号时，先放到一个stack里
   3. 如果读到右括号，pop the stack, writing symbols until we encounter a corresponding left parenthesis, which is popped but not output. 如果读到其他symbol，如+、-、(，then we pop entries from the stack until we find an entry of lower priority.  One exception is that we never remove a ( from the stack except when processing a ). For the purposes of this operation, + has lowest priority and **( highest**. When the popping is done, we push the operator onto the stack.
-  4. Finally, if we read the end of input, we pop the stack until it is empty, writing symbols
-     onto the output.
+  4. Finally, if we read the end of input, we pop the stack until it is empty, writing symbols onto the output.
   
-  实现参考自[Rosetta Code](https://rosettacode.org/wiki/Parsing/Shunting-yard_algorithm#C.2B.2B)，写的实在是太漂亮了！仅仅做了少许改动，去掉了异常处理（编译器不支持），改了一些表述使其更符合规范。 限于篇幅，请见我的[Github](https://github.com/JianXinyu/ENGI-4892-Data-Structure-and-Algorithms/blob/master/Exercises/5Stack/mathExpression.cpp).
+  实现参考自[Rosetta Code](https://rosettacode.org/wiki/Parsing/Shunting-yard_algorithm#C.2B.2B)，写的实在是太漂亮了！仅仅做了少许改动，去掉了异常处理（编译器不支持），改了一些表述使其更符合规范。 限于篇幅，请见我的[Github](https://github.com/JianXinyu/ENGI-4892-Data-Structure-and-Algorithms/blob/master/Exercises/5StackQueue/mathExpression.cpp#L77).
 
 
 ## 单调栈
@@ -253,12 +254,13 @@ N 为数组长度
 -   [84\. 柱状图中最大的矩形](https://github.com/azl397985856/leetcode/blob/master/problems/84.largest-rectangle-in-histogram.md)
 -   [739.每日温度](https://github.com/azl397985856/leetcode/blob/master/daily/2019-06-06.md)
 - [[84. Largest Rectangle in Histogram]]
-- [[768. Max Chunks To Make Sorted II]]
-- [[LeetCode/Array Stack Queue/239. Sliding Window Maximum]]
+- [[LeetCode/1 Array Stack Queue/768. Max Chunks To Make Sorted II]]
+- [[LeetCode/1 Array Stack Queue/239. Sliding Window Maximum]]
 
 #### 拓展
 如何寻找左侧第二个比当前元素大的元素位置？
-其题目大意是这样：一列人在排队，身高有高有矮，每个人可以插队无限次比自己矮的人，仅可以插队一次比自己高的人，问如果只有一个人插队，这个人最多能排到多前面？ 答案实际上就是左侧第二个比当前元素大的元素位置+1。
+
+题目大意：一列人在排队，身高有高有矮，每个人可以插队无限次比自己矮的人，仅可以插队一次比自己高的人，问如果只有一个人插队，这个人最多能排到多前面？ 答案实际上就是左侧第二个比当前元素大的元素位置+1。
 
 用单调栈可以简单快速求解出第一个，但第二个却并不能直接用单调栈求解。我们可能会想到，维护**两个单调栈**！当元素被第一个单调栈弹出时，塞进第二个单调栈，当其再次被弹出时遇到的就是答案。但第二个单调栈的单调性就不能简单粗暴地去维护，而需要一些技巧——因为栈先进后出的特性，我们需要把取出的元素先塞进一个临时栈，然后再从临时栈塞进第二个单调栈，以维持其单调性。
 
