@@ -60,7 +60,7 @@ LIFO(Last In First Out)
 
 题目推荐：
 -   [[394. Decode String]]
--   [946. 验证栈序列](https://leetcode-cn.com/problems/validate-stack-sequences/)
+-   [[946. Validate Stack Sequences]]
 -   [1381. 设计一个支持增量操作的栈](https://leetcode-cn.com/problems/design-a-stack-with-increment-operation/)
 
 
