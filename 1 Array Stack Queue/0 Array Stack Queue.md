@@ -61,7 +61,7 @@ LIFO(Last In First Out)
 题目推荐：
 -   [[394. Decode String]]
 -   [[946. Validate Stack Sequences]]
--   [1381. 设计一个支持增量操作的栈](https://leetcode-cn.com/problems/design-a-stack-with-increment-operation/)
+-   [[1381. Design a Stack With Increment Operation]]
 
 
 ### Postfix Expressions
@@ -254,8 +254,8 @@ N 为数组长度
 -   [84\. 柱状图中最大的矩形](https://github.com/azl397985856/leetcode/blob/master/problems/84.largest-rectangle-in-histogram.md)
 -   [739.每日温度](https://github.com/azl397985856/leetcode/blob/master/daily/2019-06-06.md)
 - [[84. Largest Rectangle in Histogram]]
-- [[LeetCode/1 Array Stack Queue/768. Max Chunks To Make Sorted II]]
-- [[LeetCode/1 Array Stack Queue/239. Sliding Window Maximum]]
+- [[768. Max Chunks To Make Sorted II]]
+- [[239. Sliding Window Maximum]]
 
 #### 拓展
 如何寻找左侧第二个比当前元素大的元素位置？
