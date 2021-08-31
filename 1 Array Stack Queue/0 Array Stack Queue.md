@@ -249,10 +249,12 @@ N 为数组长度
 -   最短无序连续子数组
 -   股票价格跨度
 
+medium:
+-   [[739. Daily Temperatures]]
+-   [[42. Trapping Rain Water]]
+hard:
+-   [[84. Largest Rectangle in Histogram]]
 
--   [42\. 接雨水](https://github.com/azl397985856/leetcode/blob/master/problems/42.trapping-rain-water.md)
--   [84\. 柱状图中最大的矩形](https://github.com/azl397985856/leetcode/blob/master/problems/84.largest-rectangle-in-histogram.md)
--   [739.每日温度](https://github.com/azl397985856/leetcode/blob/master/daily/2019-06-06.md)
 - [[84. Largest Rectangle in Histogram]]
 - [[768. Max Chunks To Make Sorted II]]
 - [[239. Sliding Window Maximum]]
