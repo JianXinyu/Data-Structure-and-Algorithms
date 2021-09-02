@@ -255,7 +255,6 @@ medium:
 hard:
 -   [[84. Largest Rectangle in Histogram]]
 
-- [[84. Largest Rectangle in Histogram]]
 - [[768. Max Chunks To Make Sorted II]]
 - [[239. Sliding Window Maximum]]
 
