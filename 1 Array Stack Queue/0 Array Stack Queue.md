@@ -249,14 +249,18 @@ N 为数组长度
 -   最短无序连续子数组
 -   股票价格跨度
 
+easy:
+- [[155. Min-Stack]]
+
 medium:
 -   [[739. Daily Temperatures]]
 -   [[42. Trapping Rain Water]]
+- [[768. Max Chunks To Make Sorted II]]
 hard:
 -   [[84. Largest Rectangle in Histogram]]
 
-- [[768. Max Chunks To Make Sorted II]]
-- [[239. Sliding Window Maximum]]
+
+- [[LeetCode/1 Array Stack Queue/239. Sliding Window Maximum]]
 
 #### 拓展
 如何寻找左侧第二个比当前元素大的元素位置？
@@ -309,10 +313,20 @@ int main()
 
 # Queue
 
-就像stack，queue也是list。 但与stack不同的是，queue在一端插入，却在另一端删除。
+就像stack，queue也是list。 但与stack不同的是，queue在一端插入，却在另一端删除。FIFO
 
 queue的基本操作有:
 
 - enqueue: inserts an element at the end of the list (called the rear)
 - dequeue: deletes (and returns) the element at the start of the list (called the front)
 
+## Queue的实现
+数组: 
+- 普通实现: 出队和入队一定有一个是O(N)
+- 两个指针 head 和 tail: O(1)，但需要动态开辟内存，**c++ dequeue**的实现
+
+链表: 全为O(1)
+
+queue适用于BFS
+
+严格意义上 deque 是双端队列，其允许在两端同时进⾏插⼊和删除。
