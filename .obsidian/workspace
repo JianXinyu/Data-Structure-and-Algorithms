@@ -1,0 +1,93 @@
+{
+  "main": {
+    "id": "25a09591369a2ed9",
+    "type": "split",
+    "children": [
+      {
+        "id": "ff71811bfdb2e826",
+        "type": "leaf",
+        "state": {
+          "type": "markdown",
+          "state": {
+            "file": "1 Array Stack Queue/989. Add to Array-Form of Integer.md",
+            "mode": "source"
+          }
+        }
+      }
+    ],
+    "direction": "vertical"
+  },
+  "left": {
+    "id": "47a2a613a9d06cf8",
+    "type": "split",
+    "children": [
+      {
+        "id": "3c9bf241b9f1c4df",
+        "type": "tabs",
+        "children": [
+          {
+            "id": "5095ec73889d074f",
+            "type": "leaf",
+            "state": {
+              "type": "file-explorer",
+              "state": {}
+            }
+          },
+          {
+            "id": "0791b61fb91bbf1d",
+            "type": "leaf",
+            "state": {
+              "type": "search",
+              "state": {
+                "query": "",
+                "matchingCase": false,
+                "explainSearch": false,
+                "collapseAll": false,
+                "extraContext": false,
+                "sortOrder": "alphabetical"
+              }
+            }
+          }
+        ]
+      }
+    ],
+    "direction": "horizontal",
+    "width": 300
+  },
+  "right": {
+    "id": "68f1fdac2474a01d",
+    "type": "split",
+    "children": [
+      {
+        "id": "d93a1e50a5e03b7c",
+        "type": "tabs",
+        "children": [
+          {
+            "id": "d46f514c22cd9188",
+            "type": "leaf",
+            "state": {
+              "type": "backlink",
+              "state": {
+                "file": "1 Array Stack Queue/989. Add to Array-Form of Integer.md",
+                "collapseAll": false,
+                "extraContext": false,
+                "sortOrder": "alphabetical",
+                "showSearch": false,
+                "searchQuery": "",
+                "backlinkCollapsed": false,
+                "unlinkedCollapsed": true
+              }
+            }
+          }
+        ]
+      }
+    ],
+    "direction": "horizontal",
+    "width": 300,
+    "collapsed": true
+  },
+  "active": "ff71811bfdb2e826",
+  "lastOpenFiles": [
+    "1 Array Stack Queue/Untitled.md"
+  ]
+}
