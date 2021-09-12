@@ -9,7 +9,7 @@
         "state": {
           "type": "markdown",
           "state": {
-            "file": "1 Array Stack Queue/989. Add to Array-Form of Integer.md",
+            "file": "1 Array Stack Queue/678. Valid Parenthesis String.md",
             "mode": "source"
           }
         }
@@ -68,7 +68,7 @@
             "state": {
               "type": "backlink",
               "state": {
-                "file": "1 Array Stack Queue/989. Add to Array-Form of Integer.md",
+                "file": "1 Array Stack Queue/678. Valid Parenthesis String.md",
                 "collapseAll": false,
                 "extraContext": false,
                 "sortOrder": "alphabetical",
@@ -88,6 +88,7 @@
   },
   "active": "ff71811bfdb2e826",
   "lastOpenFiles": [
-    "1 Array Stack Queue/Untitled.md"
+    "1 Array Stack Queue/Untitled.md",
+    "1 Array Stack Queue/989. Add to Array-Form of Integer.md"
   ]
 }
