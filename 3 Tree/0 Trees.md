@@ -161,7 +161,7 @@ else search left
       - adding to an empty tree is a matter of creating a new node and setting the subtree’s "root" to point at it.
       - in a balanced tree, insertion takes logarithmic time. However, insertion may cause the tree to become less balanced.
 
-![image-20200704163048782](figures\image-20200704163048782.png)
+![[avl_insertion.png]]
 
 ```c++
 if insertion point is found
@@ -190,20 +190,21 @@ Solution:  add one more constraint to keep the tree self-balanced.
 
    - **New**: every node's height can differ in height by no more than one
 
-     ​			Each node's balance factor: the difference between the heights of the node's two subtrees
+     
+Each node's balance factor: the difference between the heights of the node's two subtrees
 
-     ![image-20200711091052011](.\figures\avl)
+ ![[avl.jpg]]
 
 #### Single Rotation
 
-​	--- newly-inserted nodes are ***outer*** nodes, since they appear on the outside edge of a subtree.
+- newly-inserted nodes are ***outer*** nodes, since they appear on the outside edge of a subtree.
 
-		- add a node to the left of the left subtree of a node
-		- add a node to the right of the right subtree of a node
+	- add a node to the left of the left subtree of a node
+	- add a node to the right of the right subtree of a node
 
 **Without child**
 
-![image-20200711091430456](.\figures\image-20200711091430456.png)
+![[avl_single_rot.png]]
 
 1. decide which of 17's subtrees has the greater value. In this case, the left subtrees
 
@@ -211,17 +212,17 @@ Solution:  add one more constraint to keep the tree self-balanced.
 
 3. make the old root of the subtree, i.e., 17, the right child of the new subtree root, i.e., 8
 
-   ![image-20200711092231893](.\figures\image-20200711092231893.png)
+   ![[avl_single_rot2.png]]
 
 **With child**
 
 Insert 2 to the tree
 
-![image-20200711093804127](.\figures\image-20200711093804127.png)
+![[avl_single_rot3.png]]
 
 the new subtree root (4) *already has* a child node on its right: the 5 node.
 
-![image-20200711095833215](.\figures\image-20200711095833215.png)
+![[avl_single_rot4.png]]
 
 the right child(5) of the new subtree root(4) becomes the left subchild of the old subtree root(6)
 
@@ -231,11 +232,10 @@ the right child(5) of the new subtree root(4) becomes the left subchild of the o
 
 Insert an ***inner*** node, that is, the right child of a left node or the left child of a right node
 
-![image-20200711110113460](.\figures\image-20200711110113460.png)
+![[avl_double_rot.png]]
 
 If we follow the single rotation rules, we will end up grafting the new node onto a node (which used to be the pre-rotation subtree root) at the same depth in the subtree. A left-right node becomes a right-left node, but it remains an inner node at the same depth!
 
-![drsr](A:\MUN\Course\2020Spring\Data Structures\ENGI-4892-Data-Structure-and-Algorithms\Notes\figures\class.md)
 
 1. arrange for the subtree to be too deep in an outer node rather than an inner one through rotation.
 
@@ -244,9 +244,6 @@ If we follow the single rotation rules, we will end up grafting the new node ont
    
 
 2. rotate. in this case, right rotation
-
-   
-
 
 
 the **complexity** of performing this double-rebalancing in terms of the number of nodes in the tree:
