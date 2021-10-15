@@ -187,7 +187,7 @@ Hence, we must increment $i,j$ before comparing.
 	- a test, 
 	- a jump
 There is no extra juggling as there is in mergesort.==is quicksort really better than mergesort?==
-[code](./quick_sort.cpp)
+[code](Note/8%20Sort/quick_sort.cpp)
 
 ## Analysis
 Assume a random pivot (no median-of-three partitioning) and no cutoff for small arrays, $T(0) = T(1) = 1$
