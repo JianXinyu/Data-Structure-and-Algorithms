@@ -30,7 +30,7 @@ TLE
 构造有序序列.
 
 参考[题解](https://binarysearch.com/problems/Triple-Inversion)
-在把一个element插入sorted array时, 我们想得到它的位置. 用STL`set`的问题在于, 为了得到位置, 还得把再subtract iterators and this operation is O(n). 可以自定义一个`indexed_set`, 只有O(logn).
+在把一个element插入sorted array时, 我们想得到它的位置. 用STL`set`的问题在于, 为了得到位置, 还得再subtract iterators and this operation is O(n). 可以自定义一个`indexed_set`, 只有O(logn).
 
 - go from the end of the array
 - use the function `order_of_key()` to determine how many elements to the right satisfy the requirement in the problem statement. 
