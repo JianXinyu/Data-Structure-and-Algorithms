@@ -32,3 +32,4 @@ CMakeLists.txt.user
 *.out
 *.app
 
+.DS_Store

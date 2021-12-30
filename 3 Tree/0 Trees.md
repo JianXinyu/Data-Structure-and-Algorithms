@@ -158,8 +158,9 @@ else search left
    2. if less than the node value, insert on the left
    3. if bigger than the node value, insert on the right
    4. if equal, increment a counter in the node, add the new value to a linked list hung off the node or (in some cases) simply ignore the new value
-      - adding to an empty tree is a matter of creating a new node and setting the subtree’s "root" to point at it.
-      - in a balanced tree, insertion takes logarithmic time. However, insertion may cause the tree to become less balanced.
+      
+  - adding to an empty tree is a matter of creating a new node and setting the subtree’s "root" to point at it.
+  - in a balanced tree, insertion takes logarithmic time. However, insertion may cause the tree to become less balanced.
 
 ![[avl_insertion.png]]
 
@@ -390,7 +391,7 @@ DFS算法是一种用于遍历树或图的算法。沿着树的深度遍历树�
 **算法流程**：
 ![[depth-first-search.gif | +side -med]]
 1.  首先将根节点放入stack。
-2.  从stack中取出第一个节点，并检验它是否为目标。如果找到所有的节点，则结束搜寻并回传结果。否则将它某一个尚未检验过的直接子节点加入stack中。
+2.  从stack中取出第一个节点，并检验它是否为目标。如果找到所找的节点，则结束搜寻并回传结果。否则将它某一个尚未检验过的直接子节点加入stack中。
 3.  重复步骤 2。
 4.  如果不存在未检测过的直接子节点。将上一级节点加入stack中。
     重复步骤 2。
