@@ -91,6 +91,12 @@ bfs(root) {
 }
 ```
 
+```cpp
+void bfs(TreeNode *root) {
+	
+}
+```
+
 Others: 
 - zigzag
 - Vertical Order Traversal [[987. Vertical Order Traversal of a Binary Tree]]
