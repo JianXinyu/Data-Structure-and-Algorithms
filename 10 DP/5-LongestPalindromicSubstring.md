@@ -1,10 +1,9 @@
+## Naive Solution
 用时: 1.5h, 提交6次且用了debug
 
 Runtime: 1024 ms, faster than 6.24% of C++ online submissions for Longest Palindromic Substring.
 
 Memory Usage: 495.6 MB, less than 5.03% of C++ online submissions for Longest Palindromic Substring.
-
-
 
 logic: 
 
@@ -67,7 +66,7 @@ public:
 
 
 
-## Better Solution
+## DP
 
 iterate the string, consider this character as the middle of a palindrome, expand towards both sides from this character and calculate the length of this palindrome. Since we don't have the length of this palindrome, we have check both situations, i.e., odd and even. Then, compare the length.
 
@@ -101,6 +100,8 @@ public:
   }
 };
 ```
+T: $O(n^2)$
+S: O(1)
 
 ## Manacher's Algorithm
 
@@ -155,50 +156,49 @@ Given a string **S** with the length of **N**.
 
        例如：S = "babcbabcbaccba"
 
-       ![image-20200830175043135](\figures\ManacherAlgorithm1.png)
+     ![[ManacherAlgorithm1.png]]
 
-       此时$i=13$，显然， $P[13]=P[9]=1$. 直观上，因为对称，所以必然成立$P[i]=P[i']$。 我们也可以严格证明在case 1情形下，此规律必然成立。
+      此时$i=13$，显然， $P[13]=P[9]=1$. 直观上，因为对称，所以必然成立$P[i]=P[i']$。 我们也可以严格证明在case 1情形下，此规律必然成立。
 
-       证明分为两部分：
+      证明分为两部分：
 
-       1. 中心位于$i'$的回文子串P1，关于$C$的镜像子串P2(中心位于$i$)也是回文字符串
+      1. 中心位于$i'$的回文子串P1，关于$C$的镜像子串P2(中心位于$i$)也是回文字符串
 
-       2. 在P1之外的字符，关于$C$的镜像字符，不在中心位于$i$的回文子串中。
+      2. 在P1之外的字符，关于$C$的镜像字符，不在中心位于$i$的回文子串中。
 
-          ![image-20200830175411940](\figures\ManacherAlgorithm2.png)
+    ![[ManacherAlgorithm2.png]]
 
-       Consider $T[i'-k], T[i+k]\quad and \quad T[i'+k], T[i-k] \quad \forall k \leq P[i']$:
-       $$
-       \because k\leq P[i'] \quad \therefore k< i'-L=R-i \\
-       \begin{align}
-       T[i'-k]&=T[2C-i-k]=T[C-(i+k-C)]\\
-       T[i+k] &= T[C+(i+k-C)]\\
-       
-       \end{align}
-       $$
-       Let $k'=i+k-C, \therefore k'<i+R-i-C=R-C$
-       $$
-       \begin{align}
-       \therefore T[i'-k]&=T[C-k']\\
-       T[i+k]&=T[C+k']\\
-       \because T[C+k']&=T[C-k'], k'\in[0,R-C)\\
-       \therefore T[i'-k]&=T[i+k] \quad \forall k\leq P[i'] \tag{1}
-       \end{align}
-       $$
-       Same with $ T[i'+k]=T[i-k] \quad \forall k\leq P[i'] \tag{2}$
+   Consider $T[i'-k], T[i+k]\quad and \quad T[i'+k], T[i-k] \quad \forall k \leq P[i']$:
+   $$
+   \because k\leq P[i'] \quad \therefore k< i'-L=R-i \\
+   \begin{align}
+   T[i'-k]&=T[2C-i-k]=T[C-(i+k-C)]\\
+   T[i+k] &= T[C+(i+k-C)]\\
 
-       $\because T[i'-k]=T[i'+k] \quad \forall k \leq P[i']$
+   \end{align}
+   $$
+   Let $k'=i+k-C, \therefore k'<i+R-i-C=R-C$
+   $$
+   \begin{align}
+   \therefore T[i'-k]&=T[C-k']\\
+   T[i+k]&=T[C+k']\\
+   \because T[C+k']&=T[C-k'], k'\in[0,R-C)\\
+   \therefore T[i'-k]&=T[i+k] \quad \forall k\leq P[i'] \tag{1}
+   \end{align}
+   $$
+   Same with $ T[i'+k]=T[i-k] \quad \forall k\leq P[i'] \tag{2}$
 
-       $\therefore T[i-k] = T[i+k] \quad \forall k\leq P[i']$
+   $\because T[i'-k]=T[i'+k] \quad \forall k \leq P[i']$
 
-       when $k=P[i']+1$, formula (1) and (2) still exist. however, $T[i'-k]!=T[i'+k]$. 
+   $\therefore T[i-k] = T[i+k] \quad \forall k\leq P[i']$
 
-       $\therefore T[i-k] != T[i+k] \quad k= P[i']+1$
+   when $k=P[i']+1$, formula (1) and (2) still exist. however, $T[i'-k]!=T[i'+k]$. 
+
+   $\therefore T[i-k] != T[i+k] \quad k= P[i']+1$
 
    2. Case 2: the palindrome centred at $i'$ extends beyond the left boundary of the palindrome centred at $C$, i.e., $P[i']\ge i'-L=R-i$.
 
-      ![image-20200830175315190](\figures\ManacherAlgorithm3.png)
-
+![[ManacherAlgorithm3.png]]
       导致Case2 与 Case1不同的原因是，仿照Case1的推导，我们只能确定 $T[i-k] = T[i+k] \quad \forall k\leq i'-L$，却无法确定$k\in(i'-L, P[i']]$时$T[i-k],T[i+k]$的关系。即，只能知道$P[i]\ge R-i$, 至于具体是多少，只能再逐个字符检测了。如果$P[i]> R-i$， 即以$i$为中心的回文子串右边界超过了$R$， 那么以$C$为中心的回文子串就不再是其右边界最靠近$T$右边界的回文子串了，取而代之的是以$i$为中心的回文子串，因此$C=i$，同时相应改变$L, R$。
 
    3. Case 3: 如果$i>=R$, 那么先前得到的$P[i']$不能给我们提供有用的信息，只能逐个字符检测。
@@ -240,7 +240,7 @@ else
 
 你可以看到，所需的成功比较的次数（绿色的"V"，表现为横向增长）不超过N，失败的次数（红色的"V"，表现为纵向增长）也不超过N，所以这个算法的时间复杂度就是2N，即O(N)。
 
-![ManacherAlgorithm4](\figures\ManacherAlgorithm4.png)
+![[ManacherAlgorithm4.png]]
 
 #### 空间复杂度
 
