@@ -33,6 +33,15 @@ any general sorting algorithm that uses only comparisons requires $N log N$ time
 - **a divide-and-conquer recursive algorithm.**
 
 ## Algorithm
+ The classic quicksort algorithm to sort an array S consists of the following four easy steps:
+ 
+1. If the number of elements in $S$ is 0 or 1, then return.
+
+2. Pick a pivot $v$ in $S$.
+
+3. **Partition** $S − v$ (the remaining elements in $S$) into two disjoint groups: $S_1 = \{ x \in S−v | x \leq v \}$,and $S_2 =\{ x\in S−v|x\ge v\}$.
+
+4. Return {quicksort($S_1$) followed by $v$ followed by quicksort($S_2$)}.
 ### picking the pivot
 - 1st element: if input is random, fine. if input is presorted, horrible!
 - choose the pivot randomly: safe, but random number generation is expensive,
