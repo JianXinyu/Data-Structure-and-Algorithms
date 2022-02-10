@@ -97,8 +97,13 @@ void bfs(TreeNode *root) {
 }
 ```
 
+## Zigzag
+from left to right, then right to left for the next level and alternate between
+也就是按层数的奇偶来决定每一层的输出顺序。规定二叉树的根节点为第 0 层，如果当前层数是偶数，从左至右输出当前层的节点值，否则，从右至左输出当前层的节点值。
+[[103. Binary Tree Zigzag Level Order Traversal]]
+
+
 Others: 
-- zigzag
 - Vertical Order Traversal [[987. Vertical Order Traversal of a Binary Tree]]
 
 
@@ -591,6 +596,8 @@ def dfs(root, path):
 ## 七个技巧
 ### 边界
 ### 参数扩展
+
+
 # 8. Sets and Maps in the Standard Library
 
 The STL containers vector and list are inefficient for searching.

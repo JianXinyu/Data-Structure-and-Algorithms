@@ -263,7 +263,7 @@ Depending on data structure used:
 - normal ADT, such as vector: $\Theta(|V|^2)$
 - AVL, priority heap: $\Theta((|V|+|E|)log|V|)$
 
-![unnamed](A:\MUN\Course\2020Spring\Data Structures\ENGI-4892-Data-Structure-and-Algorithms\Notes\figures\unnamed.jpg)
+![[Dijkstra_Complexity.jpg]]
 
 ## 3.4 Acyclic Graphs
 
