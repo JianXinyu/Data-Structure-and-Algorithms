@@ -223,6 +223,35 @@ int Query(int index) {
 ```
 T: $O(\log n)$
 
+```cpp
+inline int lowbit(int x) {return x & (-x);}
+
+class FenwickTree {
+    vector<int> tree_;
+    int capacity_;
+public:
+    FenwickTree(int n) {
+        capacity_ = n;
+        tree_.resize(n + 1);
+    }
+
+    void Update(int index, int val) {
+        // propagate the information to the left
+        for (; index > 0; index -= lowbit(index)) 
+            tree_[index] = max(tree_[index], val);
+    }
+
+    // Compute suffix max (i.e. bit[i] == max(array[i:]))
+    // NOTE: original array is virtual, but conceptually you can imagine it exists
+    int Query(int index) {
+        // get the information all the way to the right (suffix)
+        int mx = 0; // sometimes we use 0 rather than INT_MIN
+        for (; index <= capacity_; index += lowbit(index))
+            mx = max(mx, tree_[index]);
+        return mx;
+    }
+};
+```
 - [[218. The Skyline Problem]]
 ## 树状数组类的写法
 sum
@@ -424,6 +453,26 @@ Example：
 
 ## 4. 区间叠加 + 单点最值
 [[218. The Skyline Problem]] 后缀定义的应用
+
+# 常见应用
+## 1. 求逆序对
+给定$n$个数$A[i]\in [MIN, MAX]$的排列P，求满足$i<j,A[i]>A[j]$的数对$(i,j)$的个数。
+
+1. 离散化。对数组排序，从小到大变为1到n的整数，相同的数仍然相同。这样将原数组A就映射到了数组B, $B[i]\in[1,n_{unique}]$。$n_{unique}$表示原数组A中有多少个不同的元素，所以$n_{unique}\leq n$
+2. 创建树状数组。用来记录这样一个数组 C（下标从1算起）的前缀和
+	1. 初始时数组 C 的值均为 0。
+	2. 若 $[1, n]$ 这个排列中的数 $i$ 当前已经出现，则 $C[i]$ 的值为 1 ，否则为 0。
+	3. 从数组 B 第一个元素开始遍历，对树状数组执行修改数组 C 的第 $B[j]$ 个数值加 1 的操作。再在树状数组中查询有多少个数小于等于当前的数 $B[j]$（即用树状数组查询数组 C 中的 $[1,B[j]]$ 区间前缀和），当前插入总数 i 减去小于等于 $B[j]$ 元素总数，差值即为大于 $B[j]$ 元素的个数，并加入计数器。
+-[[剑指 Offer 51. 数组中的逆序对]]
+- [315. Count of Smaller Numbers After Self](https://books.halfrost.com/leetcode/ChapterFour/0300~0399/0315.Count-of-Smaller-Numbers-After-Self/)
+- [493. Reverse Pairs](https://books.halfrost.com/leetcode/ChapterFour/0400~0499/0493.Reverse-Pairs/)
+- [1649. Create Sorted Array through Instructions](https://books.halfrost.com/leetcode/ChapterFour/1600~1699/1649.Create-Sorted-Array-through-Instructions/)
+
+## 2. 求区间逆序对
+1.  离散化数组 $A[i]$
+2.  对所有区间按照右端点单调不减排序
+3.  按照区间排序后的结果，从左往右依次遍历每个区间。依照从左往右的区间覆盖元素范围，从左往右将 $A[i]$ 插入至树状数组中，每个元素插入之前计算辅助数组 $C[i]$。
+4.  依次遍历每个区间内的所有元素，对每个元素计算 $Query(A[i] - 1) - C[i]$，累加逆序对的结果即是这个区间所有逆序对的总数。
 
 
 Reference:
