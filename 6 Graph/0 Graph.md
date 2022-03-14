@@ -25,10 +25,10 @@ Problems:
   
 - **degree**: the number of edges that a vertex touches.
 
-  ​	For directed graph:
+  - For directed graph:
 
-  - **in-degree** of a vertex $v$: the number of edges $(u,v)$ pointing **to** the vertex $v$
-  - **out-degree**: the number of edges pointing **away** from the vertex
+	  - **in-degree** of a vertex $v$: the number of edges $(u,v)$ pointing **to** the vertex $v$
+	  - **out-degree**: the number of edges pointing **away** from the vertex
 
 Connection:
 
@@ -70,8 +70,8 @@ How to represent edges:
 How to represent graph using adjacency list?
 
  - for list: 
-   	- vectors: for sparse graph, each vector needs to be initialized with a smaller capacity than the default; otherwise, there could be significant wasted space.
-      	- lists
+ 	- vectors: for sparse graph, each vector needs to be initialized with a smaller capacity than the default; otherwise, there could be significant wasted space.
+ 	- lists
 
 - for whole:
   - map: keys are vertices and values are adjacency list. Simpler
@@ -102,9 +102,11 @@ How to represent graph using adjacency list?
 
 # 2. Topological Sort
 
-A **topological sort** is an ordering of vertices in a DAG, such that if there is a path from $v_i$ to $v_j$, then $v_j$ appears after $v_i$ in the ordering. It contains all vertices. Perhaps there is no path between two vertices, it's OK as long as they fulfill the ordering requirement to other vertices. Thus, it makes the topological sort not unique. or example, in the following DAG, v1, v2, v5, v4, v3, v7, v6 and v1, v2, v5, v4, v7, v3, v6 are both topological orderings. Although there is no path from v3 to v7.
+A **topological sort** is an ordering of vertices in a DAG, such that if there is a path from $v_i$ to $v_j$, then $v_j$ appears after $v_i$ in the ordering. It contains all vertices. Perhaps there is no path between two vertices, it's OK as long as they fulfill the ordering requirement to other vertices. Thus, it makes the topological sort not unique. 
 
-![image-20200724221551375](.\figures\DAG)
+![[DAG.jpg | +side -lg]]
+For example, in the right DAG, v1, v2, v5, v4, v3, v7, v6 and v1, v2, v5, v4, v7, v3, v6 are both topological orderings. Although there is no path from v3 to v7.
+
 
 Topological sort isn't possible if the graph has a cycle.
 
@@ -394,7 +396,7 @@ Prerequisite: use adjacency lists.
 - depth-first spanning tree: undirected graph is connected
 - depth-first spanning forest: unconnected 
 
-##  6. 3 Euler Circuits
+##  6.3 Euler Circuits
 
 - Euler path/Euler tour: find a path in the graph that visits every edge exactly once. is still possible if exactly two vertices have odd degree and we start at one of them and finish at the other. 
 - **Euler circuit**: find a cycle that visits every edge exactly once. is possible only if the graph is connected and each vertex has an even degree
