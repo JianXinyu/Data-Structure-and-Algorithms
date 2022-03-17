@@ -1,3 +1,7 @@
+# Question
+[link](https://leetcode-cn.com/problems/merge-triplets-to-form-target-triplet/)
+Given an array of triplet, can this array give the target triplet using the piece-wise max operation?
+# Analysis
 找出所有可以合并成target的triplets
 > Crux: triplet要含有target中的值，且另外两个值不能大于target中的另外两个值
 ```cpp
