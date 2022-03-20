@@ -255,7 +255,7 @@ easy:
 medium:
 -   [[739. Daily Temperatures]]
 -   [[42. Trapping Rain Water]]
-- [[768. Max Chunks To Make Sorted II]]
+- [[Note/1 Array Stack Queue/768. Max Chunks To Make Sorted II]]
 hard:
 -   [[84. Largest Rectangle in Histogram]]
 
