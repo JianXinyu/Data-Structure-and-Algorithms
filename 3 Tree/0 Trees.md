@@ -30,6 +30,15 @@ preorder(root) {
 }
 ```
 
+```c++
+function<void(TreeNode*, int)> dfs = [&](TreeNode* r, int d){
+    if(!r) return;
+    /* functional code according to question  */
+    dfs(r->right, d+1);
+    dfs(r->left, d+1);
+};
+dfs(root, 0);
+```
 ## 中序遍历 Inorder Traversal 
 first traverse its left subtree recursively, then visit the node in question, then traverse its right subtree recursively
 	- infix notation 

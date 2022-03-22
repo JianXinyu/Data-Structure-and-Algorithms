@@ -253,16 +253,15 @@ easy:
 - [[155. Min-Stack]]
 
 medium:
--   [[739. Daily Temperatures]]
--   [[42. Trapping Rain Water]]
+- [[739. Daily Temperatures]]
+- [[42. Trapping Rain Water]]
 - [[Note/1 Array Stack Queue/768. Max Chunks To Make Sorted II]]
+
 hard:
--   [[84. Largest Rectangle in Histogram]]
+- [[84. Largest Rectangle in Histogram]]
+- [[239. Sliding Window Maximum]]
 
-
-- [[LeetCode/1 Array Stack Queue/239. Sliding Window Maximum]]
-
-#### 拓展
+### 拓展
 如何寻找左侧第二个比当前元素大的元素位置？
 
 题目大意：一列人在排队，身高有高有矮，每个人可以插队无限次比自己矮的人，仅可以插队一次比自己高的人，问如果只有一个人插队，这个人最多能排到多前面？ 答案实际上就是左侧第二个比当前元素大的元素位置+1。
