@@ -54,11 +54,7 @@ https://zxi.mytechroad.com/blog/tag/knapsack/
 
 # 1-D
 [[53. Maximum Subarray]]
-
-### 121.Best time to buy and sell stock
-
-![img](.\figures\121stock.png)
-
+[[121. Best Time to Buy and Sell Stock]]
 # Unique Paths 
 
 I: O(mn), S = O(mn), T = O(mn)
@@ -114,23 +110,11 @@ Improve:
 
 ----- I: O(mn), S = O(mn), T = O(mn)
 
-### 221.Maximal Square
+[[221. Maximal Square]]
 
-![img](.\figures\221MaximalSquare1.png)
+[[85. Maximal Rectangle]]
 
-Brute force can be reduced to $O(n^3)$ if check() can be reduced to $O(1)$
 
-We use the following DP method to pre-compute the every element's size
-
-![img](A:\Programming\LeetCode\doc\figures\221MaximalSquare2.png)
-
-![img](.\figures\221MaximalSquare3.png)
-
-$O(n^2)$ solution:
-
-dp\[i][j] = 以(i,j)为右下角的，最大的全1子矩阵。
-
-![img](.\figures\221MaximalSquare4.png)
 
 
 
@@ -145,8 +129,10 @@ dp的定义同221，但这里有一个trick，dp显示size 为 4 的square，则
 另外注意先将matrix的值赋给dp，边界条件时，第一行和第一列的无需操作。
 
 # House Robber
+T:O(3n)
+S:O(3n) 
 
----- S:O(3n) T:O(3n)
+- [[309. Best Time to Buy and Sell Stock with Cooldown]]<font color='red'> 好题！</font> 多种状态的DP
 
 ### 198. house robber
 
@@ -156,29 +142,7 @@ dp[n]取决于dp[n-2]和dp[n-1]
 
 circle与line的区别仅在第一个和最后一个相邻，二者只能取其一。因此可以分别计算以第一个为起点、倒数第二个为重点和以第二个为起点、最后一个为终点的最大值，再比较即可。
 
-### 309. Best Time to Buy and Sell Stock with Cooldown
 
-<font color='red'> 好题！</font>
-
-**状态转移**：三种状态及以上需要考虑
-
-先判断有几种状态，画出状态机
-
-再用代码表示出状态转移
-
-最后考虑边界条件
-
-逻辑: 对于每个状态，考虑从上一时刻状态转移过来时，取相对的最大值。一直这样维护最大值，那么结果就是最终这几个状态的最大值。
-
-因此dp[i]表示第i天后在这个状态下能获得的最大收益。
-
-sold[i] 表示在第i天卖出股票后能够获得的最大利润。 
-
-hold[i] 表示在第i天（或之前）买入股票后能够获得的最大利润。即第i天结束后手里持有股票。
-
-为什么必须有一个rest状态？因为题目条件的限制。能去 hold 的只有 rest (不能由 sold 直接去 rest) ，所以至少必須休息一天後才能買。
-
-![img](.\figures\309Best Time to Buy and Sell Stock with Cooldown.png)
 
 ### 740. Delete and Earn
 
@@ -252,23 +216,5 @@ S: O(1), T: $O(log_4n+sqrt(log_4n))$
 
 
 # Longest Increasing Subsequence
-
-## 300.Longest Increasing Subsequence
-
-Solution 1:
-
-​	T: O(n^2)
-
-​     我们可以这样简化问题，找到前n-1位的LIS，那么第n位的LIS该怎么计算?
-
-​		遍历前n-1位，
-
-- 如果nums[n] > nums[i]， 那么就有可能是前i+1位的LIS+1；但是遇到这样的情况怎么办？[8, 9, 3, 4] 显然nums[3] > nums[2]， 那么前3位的LIS+1不就等于3了吗？所以DP不能仅仅定义为前i+1位的LIS，如图二，LIS必需包括最后一位。我们把DP数组初始化为1，由于以上判断条件的存在，DP[2]=1而不是2。所以这个地方应该是一个又复杂又自然简单的点，不需要额外处理，相反如果多考虑了反而会错。
-
-- 如果<=，则肯定不用计算了，本来都有更大的了，不用再和一个较小的比了。
-
-  
-
-![img](.\figures\300Longest Increasing Subsequence.png)
-
-![img](.\figures\300Longest Increasing Subsequence2.png)
+[[300. Longest Increasing Subsequence]]
+[[673. Number of Longest Increasing Subsequence]]
