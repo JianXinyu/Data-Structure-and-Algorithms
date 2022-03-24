@@ -1,3 +1,0 @@
-# LeetCode
-
-coding daily practice 

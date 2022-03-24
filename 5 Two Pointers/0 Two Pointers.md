@@ -8,3 +8,7 @@
 
 Easy
 - [[剑指 Offer 22. 链表中倒数第k个节点]]
+
+
+## 作为边界
+- [[42. Trapping Rain Water]]

@@ -55,17 +55,15 @@ https://zxi.mytechroad.com/blog/tag/knapsack/
 # 1-D
 [[53. Maximum Subarray]]
 [[121. Best Time to Buy and Sell Stock]]
+[[42. Trapping Rain Water]] 预先求最大值
+
 # Unique Paths 
 
 I: O(mn), S = O(mn), T = O(mn)
 
-### 62.Unqiue Paths
+[[62. Unique Paths]]: memoization recursion:
 
-- memoization recursion:
-
-  
-
-### 63.Unique Paths 2
+ [[63. Unique Paths II]]
 
 ### 120.Triangle
 

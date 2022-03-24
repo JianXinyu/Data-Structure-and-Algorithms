@@ -16,3 +16,5 @@ a⋅b是k的倍数的充分必要条件是$\gcd(a, k) \cdot \gcd(b, k)$是k的�
 - [[2183. Count Array Pairs Divisible by K]]
 
 
+# 组合数
+- [[62. Unique Paths]]
