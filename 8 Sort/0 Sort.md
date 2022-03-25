@@ -216,7 +216,7 @@ TBD
 
 ![[quicksort_time.png]]
 
-## Reflect
+## Reflect - Descending case
 以上是升序，那么降序该怎么写呢？
 median3和quicksort都要修改
 ```c++

@@ -52,18 +52,18 @@ https://zxi.mytechroad.com/blog/tag/knapsack/
 
 题目分类：[Link](https://docs.google.com/spreadsheets/d/1yRCOJ8KysRVkq0O9IlDriT01tC6lzPapmFO4PCmDJQA/edit#gid=1674276502)
 
-# 1-D
+# 1D
 [[53. Maximum Subarray]]
 [[121. Best Time to Buy and Sell Stock]]
 [[42. Trapping Rain Water]] 预先求最大值
 
-# Unique Paths 
+# 2D 
 
 I: O(mn), S = O(mn), T = O(mn)
 
-[[62. Unique Paths]]: memoization recursion:
-
- [[63. Unique Paths II]]
+- [[62. Unique Paths]]: memoization recursion:
+- [[63. Unique Paths II]]
+- [[64. Minimum Path Sum]]
 
 ### 120.Triangle
 

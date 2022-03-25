@@ -190,7 +190,7 @@ for dist in [0, |V|):
 
 the asymptotic run-time complexity: $\Theta(|V|^2)$
 
-![unnamed (1)](.\figures\unnamed (1).jpg)
+![[bfs.jpg]]
 
 2. Here’s an improved algorithm that uses a *work list* to store the vertices that still need to be examined. We can store the remaining vertices in an ordered sequence like a queue because they will be **added in the same order they need to be examined in**. When examining a vertex at distance 0, we will find all of the vertices at distance 1 and add them to the work queue. Then we’ll start examining vertices with distance 1, discovering vertices at distance 2 and adding them **to the back** of the queue. This ensures that we’ll only start examining vertices of distance 2 once we get through all of the vertices with distance 1.
 
@@ -213,7 +213,7 @@ while q is not empty:
 
 the asymptotic run-time complexity:$\Theta(|E|+|V|)$
 
-![unnamed (2)](.\figures\unnamed (2).jpg)
+![[bfs2.jpg]]
 
 ## 3.2 Dijkstra's Algorithm
 
@@ -303,10 +303,9 @@ Applications:
 A **minimum spanning tree** of an undirected graph G is a tree formed from graph edges that connects all the vertices of G at lowest total cost. 
 
 The minimum spanning tree is:
-
-	- a tree because it is acyclic
-	- spanning because it covers every vertex
-	- minimum for the lowest total cost
+- a tree because it is acyclic
+- spanning because it covers every vertex
+- minimum for the lowest total cost
 
 Properties:
 
