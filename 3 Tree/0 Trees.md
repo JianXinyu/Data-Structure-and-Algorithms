@@ -284,24 +284,40 @@ the **complexity** of performing this double-rebalancing in terms of the number 
 ```cpp
 // 自底向上建堆  
 BUILD-MAX-HEAP(A)  
- A.heap-size = A.length  
- for i = Math.floor(A.length / 2) downto 1  
- MAX-HEAPIFY(A, i)  
+	A.heap-size = A.length  
+	for i = Math.floor(A.length / 2) downto 1  
+	MAX-HEAPIFY(A, i)  
   
 // 维护最大堆的性质  
 MAX-HEAPIFY(A, i)  
- l = LEFT(i)  
- r = RIGHT(i)  
- // 找到当前节点和左右儿子节点中最大的一个，并交换  
- if l <= A.heap-size and A\[l\] > A\[i\]  
- largest = l  
- else largest = i  
- if r <= A.heap-size and A\[r\] > A\[largest\]  
- largest = r  
- if largest != i  
- exchange A\[i\] with A\[largest\]  
- // 递归维护交换后的节点堆性质  
- MAX-HEAPIFY(A, largest)
+	l = LEFT(i)  
+	r = RIGHT(i)  
+	// 找到当前节点和左右儿子节点中最大的一个，并交换  
+	if l <= A.heap-size and A\[l\] > A\[i\]  
+	largest = l  
+	else largest = i  
+	if r <= A.heap-size and A\[r\] > A\[largest\]  
+	largest = r  
+	if largest != i  
+	exchange A\[i\] with A\[largest\]  
+	// 递归维护交换后的节点堆性质  
+	MAX-HEAPIFY(A, largest)
+```
+
+STL中的堆：
+1. priority_queue
+```cpp
+priority_queue<int, vector<int>, less<int>>s;//less表示按照递减(从大到小)的顺序插入元素
+priority_queue<int, vector<int>, greater<int>>s;//greater表示按照递增（从小到大）的顺序插入元素
+priority_queue<pair<int,int>,vector<pair<int,int>>,greater<pair<int,int>>>pq;
+```
+2. 数组建堆
+```cpp
+vector<int> a;
+make_heap(a.begin(),a.end(), less<int>() );//建立大根堆
+make_heap(a.begin(),a.end(), greater<int>() );//建立小根堆
+push_heap(a.begin(),a.end()）;//将最后一个元素插入堆中（堆自动调整）
+pop_heap(a.begin(),a.end()）;//将第一个元素从堆中删去（堆自动调整），并放到最后
 ```
 
 关于堆的更多内容，请参考：

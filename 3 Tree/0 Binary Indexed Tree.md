@@ -256,6 +256,37 @@ public:
 ## 树状数组类的写法
 sum
 ```cpp
+class BIT {
+	vector<int> tree_;
+	int capacity_;
+	inline int lowbit(int x) {return x & (-x);}
+public:
+	BIT(vector<int> &A) {
+		capacity_ = A.size() + 1;
+		tree_.resize(capacity_);
+		// 取决于是否需要初始化
+		// for (int i = 1; i < capacity_; i++) {
+		//     tree_[i] += A[i - 1];
+		//     int j = i + lowbit(i);
+		//     if (j < capacity_) tree_[j] += tree_[i];
+		// }
+	}
+
+	void update(int index, int delta) {
+		for (int i = index; i < capacity_; i += lowbit(i))
+			tree_[i] += delta;
+	}
+
+	int query(int index) {
+		int sum = 0;
+		for (int i = index; i >= 1; i -= lowbit(i))
+			sum += tree_[i];
+		return sum;
+	}
+};
+```
+
+```cpp
 #include <iostream>
 #include <vector>
 using namespace std;
@@ -463,7 +494,9 @@ Example：
 	1. 初始时数组 C 的值均为 0。
 	2. 若 $[1, n]$ 这个排列中的数 $i$ 当前已经出现，则 $C[i]$ 的值为 1 ，否则为 0。
 	3. 从数组 B 第一个元素开始遍历，对树状数组执行修改数组 C 的第 $B[j]$ 个数值加 1 的操作。再在树状数组中查询有多少个数小于等于当前的数 $B[j]$（即用树状数组查询数组 C 中的 $[1,B[j]]$ 区间前缀和），当前插入总数 i 减去小于等于 $B[j]$ 元素总数，差值即为大于 $B[j]$ 元素的个数，并加入计数器。
--[[剑指 Offer 51. 数组中的逆序对]]
+
+- [[1395. Count Number of Teams]]
+- [[剑指 Offer 51. 数组中的逆序对]]
 - [315. Count of Smaller Numbers After Self](https://books.halfrost.com/leetcode/ChapterFour/0300~0399/0315.Count-of-Smaller-Numbers-After-Self/)
 - [493. Reverse Pairs](https://books.halfrost.com/leetcode/ChapterFour/0400~0499/0493.Reverse-Pairs/)
 - [1649. Create Sorted Array through Instructions](https://books.halfrost.com/leetcode/ChapterFour/1600~1699/1649.Create-Sorted-Array-through-Instructions/)
