@@ -329,3 +329,5 @@ queue的基本操作有:
 queue适用于BFS
 
 严格意义上 deque 是双端队列，其允许在两端同时进⾏插⼊和删除。
+
+- [[1438. Longest Continuous Subarray With Absolute Diff Less Than or Equal to Limit]]

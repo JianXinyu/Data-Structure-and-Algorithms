@@ -64,7 +64,7 @@ I: O(mn), S = O(mn), T = O(mn)
 - [[62. Unique Paths]]: memoization recursion:
 - [[63. Unique Paths II]]
 - [[64. Minimum Path Sum]]
-
+- [[118. Pascal's Triangle]]
 ### 120.Triangle
 
 这题直接自己想，time 24min, submit once，结果：
