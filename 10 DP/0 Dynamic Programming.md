@@ -26,7 +26,8 @@ https://zhuanlan.zhihu.com/p/131585177
 
 背包问题是一个NP-complete的组合优化问题，Search的方法需要$O(2^N)$时间才能获得最优解。而使用动态规划，我们可以在**伪多项式（pseudo-polynomial time）**时间内获得最优解。
 
-# 0-1 Knapsack Problem 0-1背包问题
+# 0-1 Knapsack Problem 
+0-1背包问题
 Given N items, w\[i\] is the weight of the i-th item and v\[i\] is value of the i-th item. Given a knapsack with capacity W. Maximize the total value. Each item can be use **0 or 1 time**.
 
 ```cpp
@@ -52,121 +53,47 @@ https://zxi.mytechroad.com/blog/tag/knapsack/
 
 题目分类：[Link](https://docs.google.com/spreadsheets/d/1yRCOJ8KysRVkq0O9IlDriT01tC6lzPapmFO4PCmDJQA/edit#gid=1674276502)
 
-# 1D
+# 做题记录
+## 1D
 [[53. Maximum Subarray]]
 [[121. Best Time to Buy and Sell Stock]]
 [[42. Trapping Rain Water]] 预先求最大值
 
-# 2D 
-
+## 2D Path
 I: O(mn), S = O(mn), T = O(mn)
 
+Medium
 - [[62. Unique Paths]]: memoization recursion:
 - [[63. Unique Paths II]]
 - [[64. Minimum Path Sum]]
 - [[118. Pascal's Triangle]]
-### 120.Triangle
+- [[120. Triangle]]
+- [[931. Minimum Falling Path Sum]]
 
-这题直接自己想，time 24min, submit once，结果：
+Hard
+- [[174. Dungeon Game]] 逆向思维
 
-Runtime: 8 ms, faster than 97.43% of C++ online submissions for Triangle.
-Memory Usage: 8.5 MB, less than 80.36% of C++ online submissions for Triangle.
+1210.Minimum Moves to Reach Target with Rotations 
 
-哈哈哈，我好厉害。
+## Maximal Rectangle 
+I: O(mn), S = O(mn), T = O(mn)
 
-思路：求出到达每一行中的每个元素的minimum path sum
-
-​	f[j] := minmum path sum to jth entry at current row
-
-​	f[j] = min(f[j], f[j-1]) + triangle\[i][j]
-
-S: O(n), T: O(n^2)
-
-Improve:
-
-​	直接使用给的数组t, i.e. triangle, 这样还能避免新建数组f必须用倒序的问题。
-
-​	t\[i][j] := minTotalOf(i,j)
-
-​	t\[i][j] += min(t\[i - 1][j], t\[i - 1][j - 1])
-
-另外一个S: O(n)的解法是使用滚动数组
-
-### 174.
-
-### 931.
-
-
-
-### 1210.Minimum Moves to Reach Target with Rotations 
-
-太难，没做。
-
-
-
-# Maximal Rectangle 
-
------ I: O(mn), S = O(mn), T = O(mn)
-
-[[221. Maximal Square]]
-
-[[85. Maximal Rectangle]]
-
-
-
-
-
-### 304. Range Sum Query 2D - Immutable
-
-### 1277. Count Square Submatrices with All Ones
-
-dp\[i][j] := edge of largest square with right bottom corner at (i, j)
-
-dp的定义同221，但这里有一个trick，dp显示size 为 4 的square，则以这个格子为右下角的square就有4个。所以ans可直接+=dp
-
-另外注意先将matrix的值赋给dp，边界条件时，第一行和第一列的无需操作。
+Medium
+- [[85. Maximal Rectangle]]
+- [[221. Maximal Square]]
+- [[304. Range Sum Query 2D - Immutable]]
+- [[1277. Count Square Submatrices with All Ones]]
 
 # House Robber
 T:O(3n)
 S:O(3n) 
 
+- [[198. House Robber]] dp[n]取决于dp[n-2]和dp[n-1]
+- [[213. House Robber II]] circle与line的区别
+
 - [[309. Best Time to Buy and Sell Stock with Cooldown]]<font color='red'> 好题！</font> 多种状态的DP
 
-### 198. house robber
-
-dp[n]取决于dp[n-2]和dp[n-1]
-
-### 213. House Robber II
-
-circle与line的区别仅在第一个和最后一个相邻，二者只能取其一。因此可以分别计算以第一个为起点、倒数第二个为重点和以第二个为起点、最后一个为终点的最大值，再比较即可。
-
-
-
-### 740. Delete and Earn
-
-Reduce the problem to [House Robber Problem](http://zxi.mytechroad.com/blog/dynamic-programming/leetcode-198-house-robber/)
-
-Key observations: If we take nums[i]
-
-1. We can safely take all of its copies.
-2. We can’t take any of copies of nums[i – 1] and nums[i + 1]
-
-This problem is reduced to 198 House Robber.
-
-Houses[i] has all the copies of num whose value is i.
-
-[3 4 2] -> [0 2 3 4], rob([0 **2** 3 **4**]) = 6       
-
-[2, 2, 3, 3, 3, 4] -> [0 2*2 3*3 4], rob([0 2*2 **3\*3** 4]) = 9
-
-Time complexity: O(n+r) reduction + O(r) solving rob = O(n + r)
-
-Space complexity: O(r)
-
-r = max(nums) – min(nums) + 1
-
-如何转为house robber problem？先求出旧数组的范围，根据范围确定新数组的长度，再迭代旧数组，给新数组赋值。注意由于同样的整数可以重复计算，所以累加即可，这其实降低了难度。
-
+- [[740. Delete and Earn]]
 ### 790. Domino and Tromino Tiling 
 
 <font color='red'>这题不会做，答案看明白了。</font> 感觉不应该归类于house robber

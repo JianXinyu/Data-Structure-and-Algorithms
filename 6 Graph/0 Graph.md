@@ -3,7 +3,7 @@ Problems:
 1. find a minimum spanning tree in an undirected graph. (for directed graph, more difficult) - greed
 2. Euler circuit
 
-# 1. Definition
+# 1. Definitions
 
 - A **graph** $G=(V,E)$ consists of a set of **vertices V** and a set of **edges E**. 
   - Edge is a pair $(v, w)\quad v,w\in V$.  Sometimes an edge has a third component **weight/cost**.
@@ -43,41 +43,104 @@ Applications:
 1. airport system
 2. traffic flow
 
-### Representation
+## Representation
 
 How to represent vertices:
 
 use some kind of iterable container, whether that be a linear data structure or something like a binary search tree that can be used to efficiently look up specific vertices by a name.
 
 How to represent edges:
+### Adjacency matrix
+use a 2D array to represent a graph. For each edge $(u,v)$, set $A[u][v]$ to *true*; otherwise *false*. If the edge has a third component, set $A[u][v]=weight/cost$ and use either a very large or a very small *weight/cost* as a sentinel to indicate nonexistent edges.
 
-1. **Adjacency matrix**: use a 2D array to represent a graph. For each edge $(u,v)$, set $A[u][v]$ to *true*; otherwise *false*. If the edge has a third component, set $A[u][v]=weight/cost$ and use either a very large or a very small *weight/cost* as a sentinel to indicate nonexistent edges.
+- pros: simplicity 
+- cons: space complexity is $\Theta(|V|^2)$
+- apply: suitable for dense graph
 
-   - pros: simplicity 
-   - cons: space complexity is $\Theta(|V|^2)$
-   - apply: suitable for dense graph
+**dense**: $|E|=\Theta(|V|^2)$
+**sparse**: the graph is not dense
+An adjacency matrix is an appropriate representation if the graph is dense. However, in most applications, the graph is sparse.
 
-   **dense**: $|E|=\Theta(|V|^2)$
+```cpp
+#include <vector>
+#include <iostream>
+template<typename V, typename E>
+class Graph_Matrix {
+public:
+    using VertexID = size_t;
 
-   **sparse**: the graph is not dense
+    Graph_Matrix(int num) : numVert_{num} {
+        edges_ = new E* [numVert_];
+        for (VertexID i = 0; i < numVert_; i++) {
+            edges_[i] = new E [numVert_];
+            for (VertexID j = 0; j < numVert_; j++)
+                edges_[i][j] = 0;
+        }
+    }
 
-   However, in most applications, the graph is sparse.
+     // Add a vertex and return its ID, which is used in representing the edge
+    VertexID addVertex(V value) {
+        VertexID id = vertices_.size();
+        std::cout << "ID of Vertex " << value << " is " << id << std::endl;
+        vertices_.push_back(std::move(value));
+        return id;
+    };
 
-2. **Adjacency list**: for each vertex, keep a list of all adjacent vertices. It is the **standard way** to represent graphs. For undirected graphs, each edge $(u,v)$ appears in two lists. 
-   
-   - space complexity: $O(|E|+|V|)$, linear in the size of the graph. For undirected graph, each edge $(u,v)$ appears in two lists, so the space usage doubles. ( When we speak of linear-time graph algorithms,  $O(|E|+|V|)$, is the running time we require.) 
+     // Add an edge between two vertices, representing by their ID
+    Graph_Matrix& addEdge(VertexID from, VertexID to, E value) {
+        if(from > numVert_-1 || to > numVert_-1 || from < 0 || to < 0)
+            std::cout << "Invalid edge index! \n";
+        else
+            edges_[from][to] = value;
+        return *this;
+    };
+
+     // Print the graph
+    void display() {
+        std::cout << "  ";
+        for(int i = 0; i < numVert_; i++)
+            std::cout << vertices_.at(i) << " ";
+        std::cout << '\n';
+        for (int i = 0; i < numVert_; i++) {
+            std::cout << vertices_.at(i) << " ";
+            for (int j = 0; j < numVert_; j++)
+                std::cout << edges_[i][j] << " ";
+            std::cout << '\n';
+        }
+    }
+private:
+    int numVert_; // number of vertices
+    std::vector<V> vertices_;
+    E** edges_;
+};
+
+int main() {
+	Graph_Matrix<std::string, bool> g(4); //Adjacency Matrix
+    g.addVertex("A");
+    g.addVertex("B");
+    g.addVertex("C");
+    g.addVertex("D");
+    g.addEdge(0,1, true);
+    g.addEdge(1,2, true);
+    g.display();
+	return 0;
+}
+```
+
+### Adjacency list
+for each vertex, keep a list of all adjacent vertices. It is the **standard way** to represent graphs. For undirected graphs, each edge $(u,v)$ appears in two lists. 
+
+- space complexity: $O(|E|+|V|)$, linear in the size of the graph. For undirected graph, each edge $(u,v)$ appears in two lists, so the space usage doubles. ( When we speak of linear-time graph algorithms,  $O(|E|+|V|)$, is the running time we require.) 
 
 How to represent graph using adjacency list?
-
- - for list: 
+ - for maintaining the adjacency lists themselves
  	- vectors: for sparse graph, each vector needs to be initialized with a smaller capacity than the default; otherwise, there could be significant wasted space.
  	- lists
-
 - for whole:
   - map: keys are vertices and values are adjacency list. Simpler
   - class: maintain each adjacency list as a data member of a Vertex class. Faster
 
-####  How to measure the importance of a vertex?
+###  How to measure the importance of a vertex?
 
 1. Degree: not informative
 
@@ -112,7 +175,7 @@ Topological sort isn't possible if the graph has a cycle.
 
 How to find topological sort?
 
-1.  find any vertex without  incoming edges.
+1.  find any vertex without  incoming edges by in-degree
 2. print this vertex and remove it, along with its edges, from the graph.
 3. apply the same strategy with the rest graph.
 

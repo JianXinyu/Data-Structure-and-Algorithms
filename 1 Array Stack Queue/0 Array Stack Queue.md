@@ -259,6 +259,7 @@ medium:
 
 hard:
 - [[84. Largest Rectangle in Histogram]]
+- [[85. Maximal Rectangle]]
 - [[239. Sliding Window Maximum]]
 
 ### 拓展
@@ -269,7 +270,7 @@ hard:
 用单调栈可以简单快速求解出第一个，但第二个却并不能直接用单调栈求解。我们可能会想到，维护**两个单调栈**！当元素被第一个单调栈弹出时，塞进第二个单调栈，当其再次被弹出时遇到的就是答案。但第二个单调栈的单调性就不能简单粗暴地去维护，而需要一些技巧——因为栈先进后出的特性，我们需要把取出的元素先塞进一个临时栈，然后再从临时栈塞进第二个单调栈，以维持其单调性。
 
 每个元素最多被塞入三次栈，弹出三次栈，总时间复杂度依旧是O(n)的，当然，常数可能比较大。
-```
+```cpp
 #include<bits/stdc++.h>
 #define ll long long
 #define pb push_back
@@ -331,3 +332,8 @@ queue适用于BFS
 严格意义上 deque 是双端队列，其允许在两端同时进⾏插⼊和删除。
 
 - [[1438. Longest Continuous Subarray With Absolute Diff Less Than or Equal to Limit]]
+
+
+# 做过的题目分类
+array + map + sort
+- [[954. Array of Doubled Pairs]]
