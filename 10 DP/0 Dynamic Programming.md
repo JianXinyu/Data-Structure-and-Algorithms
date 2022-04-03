@@ -54,6 +54,7 @@ https://zxi.mytechroad.com/blog/tag/knapsack/
 题目分类：[Link](https://docs.google.com/spreadsheets/d/1yRCOJ8KysRVkq0O9IlDriT01tC6lzPapmFO4PCmDJQA/edit#gid=1674276502)
 
 # 做题记录
+- [[790. Domino and Tromino Tiling]] dp的理解有点trick
 ## 1D
 [[53. Maximum Subarray]]
 [[121. Best Time to Buy and Sell Stock]]
@@ -84,7 +85,7 @@ Medium
 - [[304. Range Sum Query 2D - Immutable]]
 - [[1277. Count Square Submatrices with All Ones]]
 
-# House Robber
+## House Robber
 T:O(3n)
 S:O(3n) 
 
@@ -94,9 +95,6 @@ S:O(3n)
 - [[309. Best Time to Buy and Sell Stock with Cooldown]]<font color='red'> 好题！</font> 多种状态的DP
 
 - [[740. Delete and Earn]]
-### 790. Domino and Tromino Tiling 
-
-<font color='red'>这题不会做，答案看明白了。</font> 感觉不应该归类于house robber
 
 ### 801. Minimum Swaps To Make Sequences Increasing
 
