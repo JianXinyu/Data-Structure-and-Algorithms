@@ -1,3 +1,13 @@
+# prime
+```cpp
+bool isPrime(int x) {
+	if (x < 2)
+		return false;
+	for (int i = 2; i * i <= x; ++i)
+		if (x % i == 0) return false;
+	return true;
+}
+```
 # gcd
 [wiki](https://zh.wikipedia.org/wiki/%E6%9C%80%E5%A4%A7%E5%85%AC%E5%9B%A0%E6%95%B8)
 **最大公因数**（英语：highest common factor，hcf）也称**最大公约数**（英语：greatest common divisor，gcd）

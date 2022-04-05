@@ -105,6 +105,11 @@ void Add(int index, int delta) {
 }
 ```
 T: $O(\log n)$
+
+注意，这里的index指的是什么：
+- 如果是原数组的索引（原数组的下标是从0开始的），那么$int i = index + 1$
+- 如果是树状数组的索引，则注意当用到原数组时，索引要-1.
+- 下同
 ### max
 原始数组单点修改操作可以是单纯地更新值。比如将$A_i$更新为$val$，需要更新$B_i$及以上的所有关联的节点。
 
@@ -123,7 +128,7 @@ void Update(int index, int val) {
 ```
 T: $O(n \log n)$
 
-观察开头图片中树状数组的结构，可以发现使用树状数组的值，而无需枚举区间内所有原始数组的值。比如，在更新$A_4$后，我们更新$B_4$时，我们只需要比较$max(B_2,B_3,A_4)$; 更新$B_8$是，只需比较$B_4,B_6,B_7,A_8$。
+观察开头图片中树状数组的结构，可以发现使用树状数组的值，而无需枚举区间内所有原始数组的值。比如，在更新$A_4$后，我们更新$B_4$时，我们只需要比较$max(B_2,B_3,A_4)$; 更新$B_8$时，只需比较$B_4,B_6,B_7,A_8$。
 
 归纳可得，比较的是$B_{i-2^k}, ..., B_{i-2^1}, B_{i-2^0}, A[i]$, 其中$2^k<lowbit(i)\leq 2^{k+1}$
 ```cpp
@@ -254,84 +259,63 @@ public:
 ```
 - [[218. The Skyline Problem]]
 ## 树状数组类的写法
-sum
-```cpp
-class BIT {
-	vector<int> tree_;
-	int capacity_;
-	inline int lowbit(int x) {return x & (-x);}
-public:
-	BIT(vector<int> &A) {
-		capacity_ = A.size() + 1;
-		tree_.resize(capacity_);
-		// 取决于是否需要初始化
-		// for (int i = 1; i < capacity_; i++) {
-		//     tree_[i] += A[i - 1];
-		//     int j = i + lowbit(i);
-		//     if (j < capacity_) tree_[j] += tree_[i];
-		// }
-	}
-
-	void update(int index, int delta) {
-		for (int i = index; i < capacity_; i += lowbit(i))
-			tree_[i] += delta;
-	}
-
-	int query(int index) {
-		int sum = 0;
-		for (int i = index; i >= 1; i -= lowbit(i))
-			sum += tree_[i];
-		return sum;
-	}
-};
-```
-
+### sum
+1. 是否要记录原始数组：取决于update的输入
+- 当update的输入是新value时，需要记录原始数组A_
+- 当update的输入是增量delta时，不需要A_
+2. 注意index的含义，是原数组A_的索引还是树状数组tree_的索引
 ```cpp
 #include <iostream>
 #include <vector>
 using namespace std;
 
-inline int lowbit(int x) { return x & (-x); }
-
 class BinaryIndexedTree {
-    vector<int> *tree_ = nullptr;
-    int capacity_ = 0;
-
+    int capacity_;
+    vector<int> tree_;
+    vector<int> A_;
+    inline int lowbit(int x) { return x & (-x); }
 public:
     BinaryIndexedTree(vector<int> nums) {
         capacity_ = nums.size() + 1;
-        tree_ = new vector<int>(capacity_, 0);
+        tree_.resize(capacity_);
+		// 以下取决于是否需要初始化
         for (int i = 1; i < capacity_; i++) {
-			(*tree_)[i] += nums[i-1];
-			int j = i + lowbit(i);
-			if (j < capacity_) (*tree_)[j] += (*tree_)[i];
-            for (int j = i; j >= i - lowbit(i) + 1; j--) {
-                (*tree_)[i] += nums[j-1];
-            }
+            tree_[i] += nums[i - 1];
+            int j = i + lowbit(i);
+            if (j < capacity_) tree_[j] += tree_[i];
         }
+        A_ = std::move(nums);
+    }
+    
+    // update delta
+    // void update(int index, int delta) {
+    //     for (int i = index + 1; i < capacity_; i += lowbit(i))
+    //         tree_[i] += delta;
+    //     A_[index] += delta;
+    // } 
+
+    // update new value
+    void update(int index, int val) {
+        int delta = val - A_[index];
+        for (int i = index + 1; i < capacity_; i += lowbit(i))
+            tree_[i] += delta;
+        A_[index] = val;
     }
 
-    bool Add(int index, int val) {
-        if (index >= capacity_) return false;
-
-        for (int i = index; i < capacity_; i += lowbit(i))
-            (*tree_)[i] += val;
-
-        return true;
-    }
-
-    int Query(int index) {
+    int query(int index) {
         int sum = 0;
-        while (index >= 1) {
-            sum += (*tree_)[index];
-            index -= lowbit(index);
-        }
+        for (int i = index + 1; i >= 1; i -= lowbit(i))
+            sum += tree_[i];
         return sum;
-    } 
-
+    }
+    
+    int sumRange(int left, int right) {
+        return query(right) - query(left - 1);
+    }
+ 
     void getTree() {
         for (int i = 1; i < capacity_; i++)
-            cout << (*tree_)[i] << ' ';
+            cout << tree_[i] << ' ';
         cout << endl;
     }
 
@@ -340,9 +324,9 @@ public:
 int main () {
     BinaryIndexedTree t({1,2,3,4,5,6,7,8});
     t.getTree();
-    t.Add(5,5);
+    t.update(5,5);
     t.getTree();
-    cout << t.Query(3) << endl; 
+    cout << t.query(3) << endl; 
     return 0;
 }
 ```
@@ -357,7 +341,7 @@ int main () {
 求$[m,n]$区间和: $Query(n)-Query(m-1)$
 
 Example:
-- [307. Range Sum Query - Mutable](https://leetcode.com/problems/range-sum-query-mutable/)
+- [[307. Range Sum Query - Mutable]]
 - [327. Count of Range Sum](https://leetcode.com/problems/count-of-range-sum/)
 - [[2179. Count Good Triplets in an Array]]
 ## 2. 区间增减 + 区间求和
