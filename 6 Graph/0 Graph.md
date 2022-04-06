@@ -198,9 +198,9 @@ asymptotic run-time complexity:
    while(!q.isEmpty())
    {
    	Vertex v = q.dequeue();
-   	v.topNum = ++counter;
-   	# this for loop is executed at most once per edge
-   	# thus it has run-time complexity Θ(|E|)
+   	v.topNum = ++counter; // Assign next number
+   	# this for loop is executed at most once per edge, 
+	# thus it has run-time complexity Θ(|E|)
    	for each Vertex w adjacent to v
    		if(--w.indegree == 0)
    			q.enqueue(w);
@@ -209,8 +209,9 @@ asymptotic run-time complexity:
    if(counter != NUM_VERTICES)
    	throw CycleFoundException();
    ```
-   
-   
+
+Example:
+- [[310. Minimum Height Trees]] topological sort used in an undirected graph
    
    
 

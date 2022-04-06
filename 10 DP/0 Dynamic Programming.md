@@ -86,18 +86,16 @@ Medium
 - [[1277. Count Square Submatrices with All Ones]]
 
 ## House Robber
-T:O(3n)
-S:O(3n) 
+T:O(tn)
+S:O(tn) 
+t是状态数目
 
 - [[198. House Robber]] dp[n]取决于dp[n-2]和dp[n-1]
 - [[213. House Robber II]] circle与line的区别
+- [[740. Delete and Earn]] house robber的变种
 
-- [[309. Best Time to Buy and Sell Stock with Cooldown]]<font color='red'> 好题！</font> 多种状态的DP
-
-- [[740. Delete and Earn]]
-
-### 801. Minimum Swaps To Make Sequences Increasing
-
+- [[801. Minimum Swaps To Make Sequences Increasing]] 两种状态的DP
+- [[309. Best Time to Buy and Sell Stock with Cooldown]]<font color='red'> 好题！</font> 三种状态的DP
 
 
 # Perfect Squares
