@@ -55,6 +55,7 @@ https://zxi.mytechroad.com/blog/tag/knapsack/
 
 # 做题记录
 - [[790. Domino and Tromino Tiling]] dp的理解有点trick
+- [[5. Longest Palindromic Substring]]
 ## 1D
 [[53. Maximum Subarray]]
 [[121. Best Time to Buy and Sell Stock]]
