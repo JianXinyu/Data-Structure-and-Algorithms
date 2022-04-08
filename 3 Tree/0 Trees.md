@@ -10,6 +10,16 @@ The height of a tree, or the depth of the tree, is the height of its root.
 **Balanced**: if the heights of each node's subtrees are equal, or at least close, we call  the tree balanced.  A balanced tree has **logarithmic height**: the length of the path from the root to any node in the tree is $O(log n)$.
 
 # Traversal
+```c++
+function<void(TreeNode*, int)> dfs = [&](TreeNode* r, int d){
+    if(!r) return;
+    /* functional code according to question  */
+    dfs(r->right, d+1);
+    dfs(r->left, d+1);
+};
+dfs(root, 0);
+```
+
 ## 前序遍历 Preorder Traversal
 work at a node is performed before (pre) its children are processed. e.g.:
 	- list a directory
@@ -30,15 +40,7 @@ preorder(root) {
 }
 ```
 
-```c++
-function<void(TreeNode*, int)> dfs = [&](TreeNode* r, int d){
-    if(!r) return;
-    /* functional code according to question  */
-    dfs(r->right, d+1);
-    dfs(r->left, d+1);
-};
-dfs(root, 0);
-```
+
 ## 中序遍历 Inorder Traversal 
 first traverse its left subtree recursively, then visit the node in question, then traverse its right subtree recursively
 	- infix notation 
@@ -77,35 +79,73 @@ postorder(root) {
 
 ## 层次遍历 Level Order Traversal
 ![[level-order-traversal.gif | +side -lg]]
-层次遍历是逐级遍历树，每一层从左往右依次遍历结点。广度优先搜索（Breadth-First Search）是一种遍历或搜索数据结构（如树或图）的算法。该算法从根节点开始，并首先访问该节点本身。然后遍历其邻居，遍历其第二级邻居，遍历其第三级邻居，依此类推。
-具体算法上，可使用 DFS 并记录当前访问层级的方式实现，不过更多的时候还是使用借助队列的先进先出的特性来实现。
+层次遍历是逐级遍历树，每一层从左往右依次遍历结点。一般使用广度优先搜索（Breadth-First Search, BFS）。在广度优先搜索的每一轮中，我们会遍历同一层的所有节点。
+
+广度优先搜索其实是一种遍历或搜索数据结构（如树或图）的算法。
+- 从根节点开始，首先访问该节点本身。
+- 然后遍历其邻居，遍历其第二级邻居，遍历其第三级邻居，依此类推。
+
+具体算法上，
+- recursion: 使用 DFS 并记录当前访问层级的方式实现，
+- iteration: 借助队列的先进先出的特性来实现。
 <br>
+**Recursion**
 ```cpp
-bfs(root) {
-	queue = []
-	queue.push(root)
-	while queue.length {
-		curLevel = queue
-		queue = []
-		for i = 0 to curLevel.length {
-			doSomething(curLevel[i])
-			if (curLevel[i].left) {
-				queue.push(curLevel[i].left)
-			}
-			if (curLevel[i].right) {
-				queue.push(curLevel[i].right)
-			}
+class Solution {
+    void pre_order(Node *root, int depth, vector<vector<int>> &ans) {
+        if (!root) return;
+        while (ans.size() <= depth) ans.push_back({});
+        ans[depth].push_back(root->val);
+		//! N-ary tree
+        for (const auto &child : root->children)
+            pre_order(child, depth + 1, ans);
+		//! binary tree
+		pre_order(root->left, depth + 1, ans);
+		pre_order(root->right, depth + 1, ans);
+    }
+public:
+    vector<vector<int>> levelOrder(Node* root) {
+        if (!root) return {};
+        vector<vector<int>> ans;
+        pre_order(root, 0, ans);
+        return ans;
+    }
+};
+```
+
+**Iteration**： 使用queue
+1. 首先把根节点 root 放入队列中，
+2. 随后在广度优先搜索的每一轮中，我们首先记录下当前队列中包含的节点个数cnt，即表示当前层的节点个数。
+3. 在这之后，我们从队列中依次取出节点，直到取出了当前层的全部 cnt 个节点为止。当取出节点 cur 时，我们将 cur 的值放入一个临时列表，再将 cur 的所有子节点全部放入队列中。
+4. 当这一轮遍历完成后，临时列表中就存放了当前层所有节点的值。这样一来，当整个广度优先搜索完成后，我们就可以得到层序遍历的结果。
+```cpp
+vector<vector<int>> levelOrder(Node* root) {
+	if (!root) return {};
+	vector<vector<int>> ans;
+	queue<Node *> q;
+	q.push(root);
+
+	while (!q.empty()) {
+		int cnt = q.size();
+		vector<int> level;
+		while (cnt--) {
+			Node *cur = q.front();
+			q.pop();
+			level.push_back(cur->val);
+			//! N-ary tree
+			// for (const auto &node_ptr : cur->children)
+			//		q.push(node_ptr);
+			//! binary tree
+			if (cur->left) q.push(cur->left);
+			if (cur->right) q.push(cur->right);
 		}
+		ans.push_back(std::move(level));
 	}
-}
+	return ans;
+}	
 ```
 
-```cpp
-void bfs(TreeNode *root) {
-	
-}
-```
-
+- [[429. N-ary Tree Level Order Traversal]]
 ## Zigzag
 from left to right, then right to left for the next level and alternate between
 也就是按层数的奇偶来决定每一层的输出顺序。规定二叉树的根节点为第 0 层，如果当前层数是偶数，从左至右输出当前层的节点值，否则，从右至左输出当前层的节点值。
