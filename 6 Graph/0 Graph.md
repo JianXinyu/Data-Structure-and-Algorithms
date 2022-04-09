@@ -146,7 +146,7 @@ How to represent graph using adjacency list?
 
 2. **Betweenness centrality**: a measure of how many of the shortest paths through a graph flow through a particular vertex.
    $$
-   C_B(v)=\sum_{s\neq w\neq t \in V}\frac{\sigma_{st}(v)}{\sigma_{st}}
+   C_B(v)=\sum_{s\neq v\neq t \in V}\frac{\sigma_{st}(v)}{\sigma_{st}}
    $$
    where $\sigma_{st}$ is the total number of shortest paths from node $s$ to node $t$, $\sigma_{st}(v)$ is the number of those paths that pass through $v$.
 
