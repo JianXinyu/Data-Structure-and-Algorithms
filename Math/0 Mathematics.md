@@ -1,3 +1,5 @@
+辗转相除法：
+- [[780. Reaching Points]]
 # prime
 ```cpp
 bool isPrime(int x) {
