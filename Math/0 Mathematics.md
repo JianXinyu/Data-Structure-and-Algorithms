@@ -1,5 +1,8 @@
 辗转相除法：
 - [[780. Reaching Points]]
+
+数位相关：
+- [[357. Count Numbers with Unique Digits]]
 # prime
 ```cpp
 bool isPrime(int x) {
