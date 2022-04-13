@@ -3,6 +3,9 @@
 
 数位相关：
 - [[357. Count Numbers with Unique Digits]]
+
+数论：
+- [[Note/10 DP/279. Perfect Squares]]
 # prime
 ```cpp
 bool isPrime(int x) {
