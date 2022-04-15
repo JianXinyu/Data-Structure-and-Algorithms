@@ -103,12 +103,12 @@ t是状态数目
 - [[Note/10 DP/279. Perfect Squares]]
 
 
-# Word Break
+## Word Break
 
 139	140	818 均未仔细研究
 
 
 
-# Longest Increasing Subsequence
+## Longest Increasing Subsequence
 [[300. Longest Increasing Subsequence]]
 [[673. Number of Longest Increasing Subsequence]]
