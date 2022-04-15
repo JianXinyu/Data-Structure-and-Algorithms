@@ -20,6 +20,12 @@ any general sorting algorithm that uses only comparisons requires $N log N$ time
 - 直接插入排序
 - 折半插入排序
 - 归并排序
+
+std::sort:
+- [[Amazon OA. Fresh Devlivery]]
+- 
+std::stable sort:
+- [[937. Reorder Data in Log Files]]
 # Merge Sort
 - $O(N log N)$ worst-case running time, and the number of comparisons used is **nearly optimal**. 
 -  a classic **divide-and-conquer recursive** algorithm.

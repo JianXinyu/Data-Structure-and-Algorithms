@@ -6,6 +6,9 @@
 
 数论：
 - [[Note/10 DP/279. Perfect Squares]]
+
+序列：
+- [[ARM Interview. Find In Sequence]]
 # prime
 ```cpp
 bool isPrime(int x) {

@@ -193,3 +193,6 @@ j = bisect.bisect\_right(nums, 2) # get 4
 对于最左和最右二分，简单用两句话总结一下：
 1.  最左二分不断收缩右边界，最终返回左边界
 2.  最右二分不断收缩左边界，最终返回右边界
+
+# 题目
+-[[Amazon OA. Number of Bricks]]

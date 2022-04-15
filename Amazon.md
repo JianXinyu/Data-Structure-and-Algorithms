@@ -1,6 +1,8 @@
-1. minimize memory used by processes
-2. find the earliest month, stock price.
-
+我自己面试遇到的两道题
+- [[Amazon Interview - Flip Equivalent]]
+- [[Amazon Interview. Number Letter Length]]
+---
+以下是online assessment
 ## Sort Log Files
 ![[937. Reorder Data in Log Files]]
 
@@ -8,242 +10,19 @@
 ![[1492. The kth Factor of n]]
 
 ## Fresh Deliveries  
-This question was basically K closest points to the origin (0,0) with added tie condition.
-
-Given a list of N possible delivery destinations, implement an algorithm to create the delivery plan for the closest X destinations.
-**Input:** 
-- `alLocations`, a list where each element consists of a pair of integers representing the x and y coordinates of the delivery locations;
-- `numDeliveries`, an integer representing the number of deliveries that will be delivered in the plan (X).
-
-**Output:** 
-Return a list of elements where each element of the list represents the X closest x and y integer coordinates of the delivery destinations,
-where X represents the `numDeliveries` input. If there is one tie, use the location with the closest X coordinate. If no location is possible,
-return a list with an empty location - not just an empty list.
-
-**Constraints:**
-numDeliveries ≤ size(allLocations)
-
-**Note:**
-- The plan starts with the trucks location [0, 0].
-- The distance of the truck from a delivery destination (x, y) is the square root of $x^2 + y^2$
-- If there are multiple ties, then return the locations starting with the closest x-coordinate as long as you satisfy returning exactly X delivery locations.
-- The returned output can be in any order.
-
-**Example:**
-Input: allLocations = [[1,2],[3,4],[1,-1]], numDeliveries=2
-Output: [[1,-1], [1,2]]
-
-```cpp
-vector<vector<int>> findpath(vector<vector<int>>& allLocations, int numDeliveries) {  
-	sort(allLocations.begin(), allLocations.end(), [](const vector<int> &a, const vector<int> &b){  
-        int d1 = a[0] * a[0] + a[1] * a[1];  
-		int d2 = b[0] * b[0] + b[1] * b[1];  
- 		return d1 < d2;  
-	});  
-	return vector<vector<int>>(allLocations.begin(), allLocations.begin() + numDeliveries);  
-}
-```
+![[Amazon OA. Fresh Devlivery]]
     
-##  Demolition Robot  
-BFS or DFS.
+## Demolition Robot  
+![[Amazon OA. Demolition Robot]]
 
-Given a 2D matrix with values 0 (trenches) , 1 (flat) , and 9 (obstacle). There is only one obstacle.
-Return minimum distance to get the obstacle. If not possible then return -1.  
-
-- The robot must start from the top left corner, which is always flat, and can move one block up, down, right, or left at a time.
- - The demolition robot cannot enter 0 trenches and cannot leave the lot.  
-	
-Constraints: $1\leq rows, columns \leq 1000$
-
-Example:
-Input :  
-[[1, 0, 0],  
- [1, 0, 0],  
- [1, 9, 1]]  
-Output :  3  
- 
-```cpp
-int distanceTraversed(vector<vector<int>> &lot) {
-    const int row = lot.size(), col = lot[0].size();
-    int min_dist = INT_MAX;
-    vector<vector<int>> dist(row, vector<int>(col, INT_MAX));
-    function<void(int, int, int)> dfs = [&](int i, int j, int cur_dist) {
-        if (i < 0 || j < 0 || i >= row || j >= col) return;
-        if (lot[i][j] == 0) return;
-        dist[i][j] = min(dist[i][j], cur_dist + 1);
-        cur_dist = dist[i][j];
-        if (lot[i][j] == 9) {
-            min_dist = min(min_dist, cur_dist);
-            return;
-        }
-        lot[i][j] = 0;
-        dfs(i - 1, j, cur_dist);
-        dfs(i, j - 1, cur_dist);
-        dfs(i + 1, j, cur_dist);
-        dfs(i, j + 1, cur_dist);
-        lot[i][j] = 1;
-    };
-    dfs(0, 0, -1);
-    return min_dist == INT_MAX ? -1 : min_dist;
-}
-```
- 
- ## Split string into balanced strings
-给一个字符串，只包含'[',']','(',')'和'?',
-求所有可能的分割方式，使得分割后的两个字符串都是均衡的。均衡的意思是字符串的左右方括号以及左右圆括号数量相等。'?'可以当成任意一个字符串。
-
-Example:
-输入：`[(?][?][`
-输出：2
-分割成`[(?]`和`[?][`或者分割成`[(?][?`和`][`
-
-```cpp
-int splitString(string &str) {
-    std::map<char, int> pre, suf;
-    for (char ch : str) suf[ch]++;
-    function<bool(map<char, int>)> check = [](map<char, int> m) -> bool {
-        int q = m['?'];
-        int needed = abs(m['('] - m[')']) + abs(m['['] - m[']']);
-        int remain = q - needed;
-        if ((remain >= 0) && (remain % 2 == 0)) return true;
-        return false;
-    };
-    const int n = str.length();
-    int ans = 0;
-    for (int idx = 2; idx < n - 1; idx += 2) {
-        pre[str[idx - 2]]++, suf[str[idx - 2]]--;
-        pre[str[idx - 1]]++, suf[str[idx - 1]]--;
-        if (check(pre) && check(suf)) ans++;
-    }
-    return ans;
-}
-```
+## Split string into balanced strings
+![[Amazon OA.  Split String Into Balanced Strings]]
 
 ## Book Selection
-A book is represented as a **binary string** having two types of pages:
-- '0': an ordinary page  
-- '1': a bookmarked page
+![[Amazon OA. Book Selection]]
 
-Find the number of ways to select **3** pages in ascending index order such that no two adjacent selected pages are of the same type.
-
-Constraints:
-- $1 ≤ | book | ≤ 2 · 10^5$  
-- Each character in book is either '0' or '1'.
-
-Example:  book = '01001'
-The following sequences of pages match the criterion:
-[1, 2 ,3], that is, 01001 → 010.  
-[1, 2 ,4], that is, 01001 → 010.  
-[2, 3 ,5], that is, 01001 → 101.  
-[2, 4 ,5], that is, 01001 → 101.
-The answer is 4.
-
-可以发现，答案只有两种："010", "101"
-所以只需要对每一个 1 统计其左边有多少个0， 右边有多少个0。那么这一个 1 可以增加
-对每一个0，统计左边有多少个1，右边有多少个1；
- 
-```cpp
-long numberOfWays(string &book) {
-    const int n = book.length();
-    int zeros = 0, ones = 0;
-    for (char ch : book)
-        ones += ch - '0';
-    zeros = n - ones;
-
-    long ans = 0;
-    int pre_zeros = 0, pre_ones = 0;
-    for (int i = 0; i < n; i++) {
-        if (book[i] == '0') {
-            ans += (pre_ones * (ones - pre_ones));
-            pre_zeros++;
-        } else {
-            ans += (pre_zeros * (zeros - pre_zeros));
-            pre_ones++;
-        }
-    }
-
-    return ans;
-}
-```
 ## Number Of Bricks
-John (1) and Jack (2), are friends who construct the wall as per the number of bricks given to them.
-They work turn by turn. John works in the increasing order starting from 1 with an increment of 1. Jack places twice the bricks as John places in previous turn. Goal is to find who placed the last brick and how many bricks will be placed in the end.
-
-Example 1:
-numberOfBricks: 13
-John & Jack will construct the wall
-John 1
-Total Bricks till now: 1
-Jack 1 * 2
-Total Bricks till now: 3
-John 2
-Total Bricks till now: 5
-Jack 2 * 2
-Total Bricks till now: 9
-John 3
-Total Bricks till now: 12
-Jack 3 * 2
-Total Bricks till now: 18
-Since total bricks to be placed were 13. But lastly sum became 18, hence lastly Jack has to place on 1 more brick. The correct answer in result array is:
-result[0] = 2 // as Jack placed the last brick
-result[1] = 1 // only 1 brick was to be placed in the end
-
-Example 2:
-numberOfBricks: 10
-John & Jack will construct the wall
-John 1
-Total Bricks till now: 1
-Jack 1 * 2
-Total Bricks till now: 3
-John 2
-Total Bricks till now: 5
-Jack 2 * 2
-Total Bricks till now: 9
-John 3
-Total Bricks till now: 12
-Since total bricks to be placed were 10. But lastly sum became 12, hence lastly John has to place on 1 more brick. The correct answer in result array is:
-result[0] = 1 // as John placed the last brick
-result[1] = 1 // only 1 brick was to be placed in the end"
-
-```python
-count = 0
-target = 10
-A = 1
-B = 2
-while count < target:
-    count += A
-    if count >= target:
-        ans = "John"
-        break
-    count += B
-    if count >= target:
-        ans = "Jack"
-        break
-    A += 1
-    B = 2 * A
-
-print(ans)
-```
-
-用二分查找最后一个周期的前一个周期
-```python
-target = 13
-
-low = 0
-high = target
-while low < high:
-    mid = (low + high + 1) >> 1
-    if 3*(1+mid)*mid//2 < target:
-        low = mid
-    else:
-        high = mid - 1
-
-count = 3*(1+low)*low//2
-if count + low + 1 >= target:
-    print("John")
-else:
-    print("Jack")
-```
+![[Amazon OA. Number of Bricks]]
 
 ## Maximum Pages
 Given a singly linked list
