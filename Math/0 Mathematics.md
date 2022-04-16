@@ -5,10 +5,13 @@
 - [[357. Count Numbers with Unique Digits]]
 
 数论：
-- [[Note/10 DP/279. Perfect Squares]]
+- 平方数 [[Note/10 DP/279. Perfect Squares]] 
+- 回文数 [[479. Largest Palindrome Product]]
 
 序列：
 - [[ARM Interview. Find In Sequence]]
+
+
 # prime
 ```cpp
 bool isPrime(int x) {
