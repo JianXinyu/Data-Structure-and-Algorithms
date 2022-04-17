@@ -106,10 +106,11 @@ t是状态数目
 ## Word Break
 - [[139. Work Break]]
 - [[140. Word Break II]]
-139	140	818 均未仔细研究
-
-
 
 ## Longest Increasing Subsequence
 [[300. Longest Increasing Subsequence]]
 [[673. Number of Longest Increasing Subsequence]]
+
+
+未分类：
+- [[818. Race Car]]
