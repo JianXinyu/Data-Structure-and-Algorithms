@@ -4,10 +4,10 @@ cssclass: img-grid
 https://leetcode-solution.cn/solutionDetail?type=2&id=4001&max_id=4007
 
 ## Intro
+![[trie.png | +side -med -right]]
 Trie/字典树/前缀树: 是一棵N叉树，常用于存储、查找字符串，删除用得比较少
 
 前缀树的每一个结点代表一个字符串的前缀。根节点表示 空字符串。每一个结点会有多个子结点，通往不同子结点的路径上有着不同的字符。子结点代表的字符串是由结点本身的原始字符串 ，以及通往该子结点路径上所有的字符组成的。
-![[trie.png | +side -med -left]]
 
 前缀树的一个重要的特性是，结点所有的后代都与该结点相关的字符串有着共同的前缀，这是前缀树名称的由来。
 
