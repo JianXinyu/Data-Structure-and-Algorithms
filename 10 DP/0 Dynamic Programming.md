@@ -74,8 +74,7 @@ Medium
 
 Hard
 - [[174. Dungeon Game]] 逆向思维
-
-1210.Minimum Moves to Reach Target with Rotations 
+- [[1210. Minimum Moves to Reach Target with Rotations]]
 
 ## Maximal Rectangle 
 I: O(mn), S = O(mn), T = O(mn)
