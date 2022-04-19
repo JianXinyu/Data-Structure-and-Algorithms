@@ -338,3 +338,7 @@ queue适用于BFS
 # 做过的题目分类
 array + map + sort
 - [[954. Array of Doubled Pairs]]
+
+两次遍历：
+- [[821. Shortest Distance to a Character]]
+- [[Amazon OA. Count the Outing Days]]
