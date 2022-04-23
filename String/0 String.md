@@ -7,3 +7,12 @@ serialize and deserialize:
 
 找交替规律：
 - [[Amazon OA. Book Selection]]
+
+Simulation:
+- 分割符划分
+	- [[388. Longest Absolute File Path]]
+
+```cpp
+istringstream
+ostringstream
+```

@@ -335,7 +335,11 @@ queue适用于BFS
 - [[1438. Longest Continuous Subarray With Absolute Diff Less Than or Equal to Limit]]
 
 
-# 做过的题目分类
+# 题目分类
+找规律的：
+- [[Microsoft Interview. 1D Mine]]
+
+
 array + map + sort
 - [[954. Array of Doubled Pairs]]
 
