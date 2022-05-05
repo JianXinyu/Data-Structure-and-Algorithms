@@ -145,15 +145,16 @@ vector<vector<int>> levelOrder(Node* root) {
 }	
 ```
 
+- [[102. Binary Tree Level Order Traversal]]
 - [[429. N-ary Tree Level Order Traversal]]
-## Zigzag
+## Others
+**ZigZag Order Traversal**
 from left to right, then right to left for the next level and alternate between
 也就是按层数的奇偶来决定每一层的输出顺序。规定二叉树的根节点为第 0 层，如果当前层数是偶数，从左至右输出当前层的节点值，否则，从右至左输出当前层的节点值。
 [[103. Binary Tree Zigzag Level Order Traversal]]
 
-
-Others: 
-- Vertical Order Traversal [[987. Vertical Order Traversal of a Binary Tree]]
+**Vertical Order Traversal**
+[[987. Vertical Order Traversal of a Binary Tree]]
 
 
 # 二叉树 Binary Trees

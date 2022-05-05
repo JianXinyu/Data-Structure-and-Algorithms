@@ -12,3 +12,7 @@ Easy
 
 ## 作为边界
 - [[42. Trapping Rain Water]]
+
+## 滑动窗口 Sliding Window
+- [[1438. Longest Continuous Subarray With Absolute Diff Less Than or Equal to Limit]]
+- 

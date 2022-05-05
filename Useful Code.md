@@ -7,7 +7,7 @@ ostream& operator << ( ostream& o, const vector<T>& v ){
 	for( const auto& x : v){
 		o << ' ' << x;
 	}
-	o << ']';
+	o << " ]";
 
 	return o;
 }
