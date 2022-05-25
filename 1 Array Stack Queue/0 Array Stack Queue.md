@@ -346,3 +346,6 @@ array + map + sort
 两次遍历：
 - [[821. Shortest Distance to a Character]]
 - [[Amazon OA. Count the Outing Days]]
+
+找重复元素：
+- [[442. Find All Duplicates in an Array]]

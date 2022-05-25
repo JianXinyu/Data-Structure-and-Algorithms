@@ -22,10 +22,9 @@ b = a^b
 a = a^b
 ```
 
-[[136. Single Number]]
-
-[[260. Single Number III]]
-
+- [[136. Single Number]]
+- [[260. Single Number III]]
+- [[442. Find All Duplicates in an Array]] swap
 
 ## 常见用法
 
