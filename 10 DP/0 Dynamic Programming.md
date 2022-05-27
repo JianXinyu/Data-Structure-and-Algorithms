@@ -60,7 +60,7 @@ https://zxi.mytechroad.com/blog/tag/knapsack/
 [[53. Maximum Subarray]]
 [[121. Best Time to Buy and Sell Stock]]
 [[42. Trapping Rain Water]] 预先求最大值
-
+[[746. Min Cost Climbing Stairs]]
 ## 2D Path
 I: O(mn), S = O(mn), T = O(mn)
 
@@ -108,6 +108,7 @@ t是状态数目
 
 ## Longest Increasing Subsequence
 [[300. Longest Increasing Subsequence]]
+[[467. Unique Substrings in Wraparound String]]
 [[673. Number of Longest Increasing Subsequence]]
 
 
