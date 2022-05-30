@@ -694,6 +694,8 @@ private:
 ```
 
 
-
+# 题目分类
+简单遍历:
+- [[1022. Sum of Root To Leaf Binary Numbers]] 简单的dfs、bfs
 
 
