@@ -196,7 +196,9 @@ Visualization: https://visualgo.net/en/bst
 2.  右子树的所有节点值大于根的节点值（注意不含等号）
 
 另外二叉搜索树的中序遍历结果是一个有序列表，这个性质很有用。比如 1008. 前序遍历构造二叉搜索树。根据先序遍历构建对应的二叉搜索树，由于二叉树的中序遍历是一个有序列表，我们可以有以下思路：1.  对先序遍历结果排序，排序结果是中序遍历结果；2.  根据先序遍历和中序遍历确定一棵树。原问题就又转换为了二叉树构建
-1. **search**: since sorted, search faster than linearly. there are no false starts and the maximum number of recursions is equal to the height of the tree, which in a balanced tree is $O(logn)$.
+### Operations
+#### contains
+since sorted, search faster than linearly. there are no false starts and the maximum number of recursions is equal to the height of the tree, which in a balanced tree is $O(logn)$.
 
 ![[bst.png]]
 
@@ -212,9 +214,10 @@ else if this key < search value
 else search left
 ```
 
-2. **Finding** the minimum or maximum value: straight forward, just keep following left or right
+#### findMin, findMax
+**Finding** the minimum or maximum value: straight forward, just keep following left or right
 
-3. **insertion**:  
+#### insert
    1. start from root, compare the new value to the current node's value 
    2. if less than the node value, insert on the left
    3. if bigger than the node value, insert on the right
@@ -233,10 +236,46 @@ if value to be inserted < this key
 else go right
 ```
 
-4. **Removal**
-   1. find the node by recursive descent
+#### remove
+remove is the hardest operation. 
+Once we find the node to be removed, we need to consider several possibilities:
+1. If the node is a leaf, it can be deleted immediately
+2. If the node has one child, the node can be deleted after its parent adjusts a link to bypass the node. e.g., delete node 4
+![[bst_delete_node_1child.png]]
+3. If the node has two children. The general strategy is to replace the data of this node with the smallest data of the right subtree (which is easily found) and recursively delete that node (which is now empty). Because the smallest node in the right subtree cannot have a left child, the second remove is an easy one. e.g., delete node 2
+![[bst_delete_node_2children.png]]
 
-
+**Code**
+- find the node by recursive descent
+- if the node has two children, find the minimal node of the right subtree, replace the node with this minimal node, and remove this minimal node in the right subtree.
+- if the node has one child, replace the node with its only child
+- if the node has no child, replace the node with nullptr
+```cpp
+template <typename Comparable>
+void remove(const Comparable & x, BinaryNode * & t) {
+    if (t == nullptr) // item not found, do nothing
+        return;
+    if (x < t->val)
+        remove(x, t->left);
+    else if (x > t->val)
+        remove(x, t->right);
+    else if (t->left != nullptr && t->right != nullptr) // two children
+    {
+        // It is inefficient because it makes two passes down the tree 
+        // to find and delete the smallest node in the right subtree.
+        // Writing a special `removeMin` method is better.
+        t->val = findMin(t->right)->val;
+        remove(t->val, t->right);
+    }
+    else // one child or leaf
+    {
+        BinaryNode *oldNode = t;
+        t = (t->left != nullptr) ? t->left : t->right;
+        delete oldNode;
+    }
+}
+```
+- [[450. Delete Node in a BST]] 需要返回root
 
 ### Adelson–Velsky–Landis (AVL) tree
 
@@ -246,13 +285,10 @@ Problem: BST works well when it is balanced, $O(log_2 n)$. adding or removing no
 
 Solution:  add one more constraint to keep the tree self-balanced.
 
-- binary
+BST -> AVL：
+- each node's left subtree and right subtree are partitioned by the node's value
+- **New**: every node's height can differ in height by no more than one
 
-   - each node's left subtree and right subtree are partitioned by the node's value
-
-   - **New**: every node's height can differ in height by no more than one
-
-     
 Each node's balance factor: the difference between the heights of the node's two subtrees
 
  ![[avl.jpg]]

@@ -5,11 +5,13 @@
 - [[357. Count Numbers with Unique Digits]]
 
 数论：
-- 平方数 [[Note/10 DP/279. Perfect Squares]] 
+- 连续整数求和 [[829. Consecutive Numbers Sum]]
+- 平方数
+	- [[279. Perfect Squares]]
 - 回文数 [[479. Largest Palindrome Product]]
 
 序列：
-- [[ARM Interview. Find In Sequence]]
+- [[AMD Interview. Find In Sequence]]
 
 
 # prime

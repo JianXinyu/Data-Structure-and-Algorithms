@@ -195,4 +195,5 @@ j = bisect.bisect\_right(nums, 2) # get 4
 2.  最右二分不断收缩左边界，最终返回右边界
 
 # 题目
--[[Amazon OA. Number of Bricks]]
+- [[Amazon OA. Number of Bricks]]
+- [[875. Koko Eating Bananas]]
