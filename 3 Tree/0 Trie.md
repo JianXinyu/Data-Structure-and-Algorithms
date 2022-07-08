@@ -1,7 +1,6 @@
 ---
 cssclass: img-grid
 ---
-https://leetcode-solution.cn/solutionDetail?type=2&id=4001&max_id=4007
 
 ## Intro
 ![[trie.png | +side -med -right]]
@@ -212,3 +211,5 @@ Space: 最坏情况$O(m^n)$. Trie 的每个结点中都保留着一个字母表�
 给你若干单词 words 和一系列关键字 keywords，让你判断 keywords 是否在 words 中存在，或者判断 keywords 中的单词是否有 words 中的单词的前缀。比 pre 就是 pres 的前缀**之一**。
 
 如果使用 Trie 来解，会怎么样呢？首先我们需要建立 Trie，这部分的时间复杂度是 O(t)，其中 t 为 words 的总字符。**预处理**完毕之后就是查询了。对于查询，由于树的高度是 O(m)，其中 m 为 words 的平均长度，因此查询基本操作的次数不会大于 m。当然查询的基本操作次数也不会大于 k，其中 k 为被查询单词 keyword 的长度，因此对于查询来说，时间复杂度为 O(min(m, k))。时间上优化的代价是空间上的消耗，对于空间来说则是预处理的消耗，空间复杂度为 O(t)。
+
+- [[648. Replace Words]]

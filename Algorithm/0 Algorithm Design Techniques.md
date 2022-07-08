@@ -174,3 +174,13 @@ It has a close relationship with [[0 Sort#Quick Sort]]
 recursive algorithm may not be recognized by the compiler. ==why?==
 Solution: rewrite the recursive algorithm as a nonrecursive algorithm that *systematically records the answers to the sub- problems in a table* ->DP
 
+
+# Greedy
+
+- [[300. Longest Increasing Subsequence]]
+- [[435. Non-overlapping Intervals]]
+- [[455. Assign Cookies]]
+- [[678. Valid Parenthesis String]]
+- [[1887. Reduction Operations to Make the Array Elements Equal]]
+- [[2160. Minimum Sum of Four Digit Number After Splitting Digits]]
+- [[2195. Append K Integers With Minimal Sum]]

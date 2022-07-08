@@ -76,3 +76,4 @@ for (int mask = 0; mask < (1 << n); mask++) {
 Time complexity: $\mathcal{O}(N \times 2^N)$ 
 
 - [[31. Next Permutation]]
+- [[556. Next Greater Element III]]
