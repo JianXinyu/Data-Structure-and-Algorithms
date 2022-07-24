@@ -212,7 +212,7 @@ asymptotic run-time complexity:
 
 Example:
 - [[310. Minimum Height Trees]] topological sort used in an undirected graph
-   
+- [[剑指 Offer II 115. 重建序列]] establish graph and topological sort
    
 
 # 3. Shortest-Path Algorithms
