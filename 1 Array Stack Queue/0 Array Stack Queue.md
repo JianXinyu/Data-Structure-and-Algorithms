@@ -58,9 +58,10 @@ LIFO(Last In First Out)
 - 匹配括号
 - 单调栈用来寻找下一个更大（更小）元素
 
-题目推荐：
+题目：
 - [[385. Mini Parser]]
 -   [[394. Decode String]]
+- [[856. Score of Parentheses]]
 -   [[946. Validate Stack Sequences]]
 -   [[1381. Design a Stack With Increment Operation]]
 
