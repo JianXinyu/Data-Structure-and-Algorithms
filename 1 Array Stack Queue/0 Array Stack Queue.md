@@ -6,7 +6,7 @@
 ## `vector` and `list` in the STL
 - `vector`: a growable array implementation of the List ADT. internally stores an array, allows the array to grow by doubling its capacity when needed 
 	- Pros: indexable in constant time
-	- Cons: insertion of new items and removal of existing items  are expensive==exact complexity?==, unless the changes are made at the end of the `vector`.
+	- Cons: insertion of new items and removal of existing items are expensive ==exact complexity?==, unless the changes are made at the end of the `vector`.
 - `list`: a doubly linked list implementation of the List ADT
 	- Pros: insertion of new items and removal of existing items are cheap, provided that the position of the changes is know
 	- Cons: isn't easily indexable
