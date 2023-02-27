@@ -13,25 +13,20 @@ Problems:
 
 - A **path** in a graph is a sequence of vertices $w_1,w_2, ..., w_N$ such that $(w_i, w_{i+1})\in E$ for $1\leq i \lt N$. Its **length=N-1**. If the path contains an edge $(v,v)$ from a vertex to itself, then the path $v,v$ is referred to as a **loop**. Loopless? A **simple path** is path such that all vertices are distinct, except that the first and last could be the same.
 
-- A **cycle** in a directed graph is a path of length at least 1 such that $w_1=w_N$. **simple cycle** if it's a simple path.  For undirected graph, the edges should be distinct. e.g., path $u,v,u$ in an undirected graph isn't a cycle, but it's a cycle in a directed graph.  
-  - **Acyclic**: a directed graph has no cycles.
-  
-  - **DAG**: directed acyclic graph
-  
-    Problems that cycle causes:
-  
-    - the longest-path problem:  positive-cost cycles
-    - the shortest-path problem: negative-cost cycles
+- A **cycle** in a **directed** graph is a path of length at least 1 such that $w_1=w_N$. **simple cycle** if it's a simple path.  For undirected graph, the edges should be distinct. e.g., path $u,v,u$ in an undirected graph isn't a cycle, but it's a cycle in a directed graph.  
+	- **Acyclic**: a directed graph has no cycles.
+	- **DAG**: directed acyclic graph
+Problems that cycle causes:
+- the longest-path problem:  positive-cost cycles
+- the shortest-path problem: negative-cost cycles
   
 - **degree**: the number of edges that a vertex touches.
 
-  - For directed graph:
-
-	  - **in-degree** of a vertex $v$: the number of edges $(u,v)$ pointing **to** the vertex $v$
-	  - **out-degree**: the number of edges pointing **away** from the vertex
+- For directed graph:
+	- **in-degree** of a vertex $v$: the number of edges $(u,v)$ pointing **to** the vertex $v$
+	- **out-degree**: the number of edges pointing **away** from the vertex
 
 Connection:
-
 - **connected**: an **undirected** graph is connected if there is a path from every vertex to every other vertex.
 - **strongly connected**: a **directed** graph with above property.
 - **weakly connected**: a **directed** graph is not strongly connected, but the underlying graph(without direction to the arcs) is connected 
@@ -39,14 +34,12 @@ Connection:
 - A **complete graph** is a graph in which there is an edge between every pair of vertices.
 
 Applications:
-
 1. airport system
 2. traffic flow
 
-## Representation
+## Representation of Graphs
 
 How to represent vertices:
-
 use some kind of iterable container, whether that be a linear data structure or something like a binary search tree that can be used to efficiently look up specific vertices by a name.
 
 How to represent edges:
@@ -159,7 +152,6 @@ How to represent graph using adjacency list?
 3. **Eigenvalue centrality**: model the *influence* of vertices within a graph.
 
    Application:
-
    1.  *social network analysis*: Degree and betweenness centrality are critical to *social network analysis*, the study of how people in groups interact with each other at a *systemic* — rather than individual — level. 
    2. *influence modeling*: eigenvector centrality algorithms are important for assessing the importance of linked knowledge artifacts like scientific papers and even Web pages. Google’s PageRank algorithm is a modified version of eigenvector centrality.
 

@@ -181,6 +181,7 @@ Solution: rewrite the recursive algorithm as a nonrecursive algorithm that *syst
 - [[435. Non-overlapping Intervals]]
 - [[455. Assign Cookies]]
 - [[678. Valid Parenthesis String]]
+- [[1144. Decrease Elements To Make Array Zigzag]] enumerate + greedy
 - [[1887. Reduction Operations to Make the Array Elements Equal]]
 - [[2160. Minimum Sum of Four Digit Number After Splitting Digits]]
 - [[2195. Append K Integers With Minimal Sum]]
